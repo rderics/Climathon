@@ -16,6 +16,7 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 | `docs/FEEDSTOCK_AND_RULES.md` | Latvian EV pool, battery regulation, safety, transport |
 | `docs/SIZING_AND_COST.md` | Container size, packs per container, power, pad, cost and sale price (illustrative) |
 | `docs/PACK_SPECS_AND_RECYCLING.md` | Specs of common EV packs (kWh, V, kg), spent-pack process, recyclers |
+| `docs/RECYCLING_ROUTES_AND_COSTS.md` | Recycler shortlist, who pays whom, shipping cost per pack |
 | `docs/RULES.md` | Judging criteria (5 x 20 %), 3+3 min pitch, prizes |
 | `docs/IDEA.md` | Concept, value chain, open questions, assumptions to validate |
 | `docs/PITCH.md` | Pitch outline + checklist for Sunday 12:30 |
