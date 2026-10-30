@@ -26,3 +26,6 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 - Small commits straight to `main` are fine for docs; use a branch + PR for anything in `model/` or `web/` two people touch.
 - Every number in the pitch needs a source in `data/` or `docs/IDEA.md`. No invented metrics.
 - Pull before you start, push when you stop.
+
+## Auto pull/push (VS Code)
+Open this folder in VS Code and trust the workspace: `.vscode/settings.json` turns on auto-fetch every 60 s and an automatic pull+push after every commit (smart commit stages all changes). Pull before you start; if git reports a conflict, fix it in VS Code before pushing.
