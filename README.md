@@ -18,7 +18,8 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 | `docs/PACK_SPECS_AND_RECYCLING.md` | Specs of common EV packs (kWh, V, kg), spent-pack process, recyclers |
 | `docs/RECYCLING_ROUTES_AND_COSTS.md` | Recycler shortlist, who pays whom, shipping cost per pack |
 | `docs/RULES.md` | Judging criteria (5 x 20 %), 3+3 min pitch, prizes |
-| `docs/IDEA.md` | Concept, value chain, open questions, assumptions to validate |
+| `docs/IDEA.md` | The idea in one page (v2) |
+| `docs/IDEA_DETAIL.md` | Full concept detail: economics, risks, Q&A, expert questions |
 | `docs/PITCH.md` | Pitch outline + checklist for Sunday 12:30 |
 | `docs/TASKS.md` | Who does what (edit freely) |
 | `model/` | Techno-economic / emissions model (the "working prototype") |
