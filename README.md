@@ -11,6 +11,7 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 |---|---|
 | `docs/CONTEXT.md` | Event, team, schedule, expert plan |
 | `docs/CHALLENGE.md` | EIT UM brief + sourced second-life evidence |
+| `docs/BATTERIES.md` | Battery types research: chemistries, formats, supply timing, implications |
 | `docs/RULES.md` | Judging criteria (5 x 20 %), 3+3 min pitch, prizes |
 | `docs/IDEA.md` | Concept, value chain, open questions, assumptions to validate |
 | `docs/PITCH.md` | Pitch outline + checklist for Sunday 12:30 |
