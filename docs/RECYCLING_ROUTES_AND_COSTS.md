@@ -42,6 +42,21 @@ Assumptions: freight €350–600 per undamaged pack (EU, ADR, vendor estimate);
 | Damaged pack, any chemistry | | $1,300–2,730 all-in | **−$1,300 to −$2,730** |
 So: **budget roughly €350–800 per NMC pack and €1,200–1,800 per LFP pack as an end-of-life cost, more for damaged packs**, unless quotes prove otherwise. This is another reason to take only undamaged packs and to sell NMC modules to second-life or recyclers with metal value where possible. One cost per **kWh-sold of second-life capacity** also arises at end of life (30–40 % lower per kWh if we recycle at pack level and ship full pallets).
 
+## 4b. Capital needed if WE built the recycling ourselves (2026-10-30)
+Reported figures (market/press sources, [C] unless noted; not quotes):
+| Benchmark | Capital | Capacity | Per unit (our arithmetic) |
+|---|---|---|---|
+| Integrated hydrometallurgical plant (market report) | **EUR 250–400 M** | 50,000 t/yr | ~EUR 5,000–8,000 per annual tonne |
+| Greenfield hydromet plant, developed market (consultancy page) | USD 2,800–6,500 per annual tonne | ~10,000 t/yr plant | ~USD 28–65 M |
+| SK ecoplant + Ascend Elements, USA (press) | **USD 65 M** | ~56,000 EV packs/yr, 12,000 t black mass/yr | ~USD 1,160 per annual pack of capacity |
+| AE Elemental, Zawiercie, Poland (EBRD) | EBRD package about **EUR 120 M** (loan up to EUR 52 M + equity); total project cost estimates differ by source (e.g. USD 220 M for the 2020 battery project) | 12,000 t/yr (~28,000 packs) | |
+| Chemical treatment vs mechanical (stakeholder study, ScienceDirect 2025) | chemical step costs about 5x the capex of mechanical recycling | | |
+What is NOT found: any figure for a **small pre-treatment line** (discharge, dismantle, shred to black mass) or for a small collection/storage hub. Quote needed from equipment makers and a permit consultant.
+**Reading for us:**
+- Doing real recycling ourselves is a **EUR 50–400 M, multi-year, specialist** project. Not a hackathon-team or early-startup option.
+- Even the smallest pre-treatment plant benchmark (USD 65 M, 56,000 packs/yr) is sized for **100x the packs Latvia retires per year** (Latvia has ~13,900 EVs in total). A plant needs volume to pay back; Latvian volumes would leave it almost idle, and European capacity already exceeds supply.
+- A **collection and storage hub** (permitted fire-safe storage, discharge/testing bay, ADR packing, forklift/crane, monitoring) is a different scale: likely well below EUR 1 M, but **no sourced figure** — to be quoted. This is what we recommend (see docs/IDEA.md): partner with Fortum, AE Elemental or Eneris for the actual recycling.
+
 ## 5. Next steps (this week)
 1. **Email Fortum** (battery recycling contact form): "Latvia-based collection hub for retired EV packs, ~20 packs/year pilot, NMC/NCA and some LFP, undamaged: do you accept, what price per tonne/per pack, do you supply ADR boxes and transport?"
 2. **Email AE Elemental and Eneris** with the same questions; ask about acceptance criteria and EPR documentation.
