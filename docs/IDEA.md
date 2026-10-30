@@ -50,8 +50,9 @@ So we keep the block, but sell something different.
 - Not our own recycling plant.
 
 ## Conflicts in the repo to resolve as a team
-1. **Challenge choice:** `docs/CHALLENGE_EVALUATION.md` recommends Sadales tīkls or Latvijas Zaļais punkts over the EV-battery challenge (third pick: a battery health certificate). Our team is registered for the EV challenge.
-2. **Plant size:** `docs/LATVIA_PLANT_BUSINESS_MODEL.md` (in Latvian) proposes a 10,000 t/year centre for EUR 20–35 M. That is far bigger than the small hub described here; its own caveats say supply contracts and quotes must come first, and Latvia would supply a tiny share of the volume.
+1. **Challenge choice — DECIDED 30.10 (Rinalds): we do the EV battery challenge.** (`docs/CHALLENGE_EVALUATION.md` had recommended other challenges.)
+2. **Plant size — DECIDED 30.10 (Rinalds): start-up scale, much smaller.** `docs/LATVIA_PLANT_BUSINESS_MODEL.md` (10,000 t/year, EUR 20–35 M) is a long-term option, not the starting point.
+3. **Proposed routing (Rinalds, 30.10 — to validate):** about **70 %** of packs go to recycling (mechanical pre-treatment; sell the metal fractions; whatever we cannot process goes to Poland, or we split packs into smaller units/modules and process more in Latvia), and about **30 %** go to **ENGYcell** (Riga second-life storage start-up), who already do the second-life product, so we sell them the packs. To check: does ENGYcell buy packs, at what price and spec? What can legally and technically be processed in Latvia (VVD permits)? "Selling metal" means copper/aluminium/steel fractions and black mass to refiners; nickel, cobalt and lithium need a refiner (Poland/Finland). The 70/30 split is a hypothesis until grading data exists.
 3. **Open decisions:** first customer (recommended: fleet/depot operators such as Rīgas satiksme), feedstock policy (NMC/NCA with known history first; exclude early LMO Leafs and damaged packs), what the 3-minute demo shows.
 
 ## Biggest unknowns
