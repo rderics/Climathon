@@ -74,7 +74,7 @@ End user = the electricity company's operations/asset team; beneficiary = ratepa
 | "Evidence it works?" | Connected Energy 5 MWh, Rivian/VW/Redwood 10 MWh, B2U (hundreds of MW), Moment Energy 1 GWh factory (docs/CHALLENGE.md). |
 
 ## 9. What the team must decide (by Sat noon) **[DECIDE]**
-1. Lead promise: A (circularity-as-a-service), B (edge storage) or C (cost niche).
+1. ~~Lead promise~~ **DECIDED 2026-10-30 (Rinalds): A + B** — promise = circularity as a service (one liable party: grade, certify, operate, take back); first product = small edge/weak-grid storage (depots, chargers, grid-limited sites). C (cost niche) stays a stretch to prove with numbers.
 2. First customer: DSO, utility/solar park, or fleet/depot.
 3. Feedstock policy: NMC/NCA-first with named sources.
 4. Scope for the demo: what we show in 3 minutes (see section 10).

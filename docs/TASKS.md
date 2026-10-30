@@ -7,7 +7,8 @@
 | | Read challenge brief + rules (docs/CHALLENGE.md, docs/RULES.md) | done |
 | | Battery types, economics, feedstock and regulation research (docs/BATTERIES.md, ECONOMICS.md, FEEDSTOCK_AND_RULES.md) | done |
 | | Concept structured v1 (docs/IDEA.md) | done |
-| | **Team decisions by Sat noon:** lead promise (A/B/C), first customer, feedstock policy, demo scope (docs/IDEA.md section 9) | todo |
+| Rinalds | Decision: lead promise = **A + B** (circularity as a service + edge/weak-grid storage) | done 30.10 |
+| | **Team decisions by Sat noon:** first customer, feedstock policy, demo scope (docs/IDEA.md section 9) | todo |
 | | Verify with experts: DSO storage need and price, Latvian fire rules (VUGD), insurer view | todo |
 | | Get real numbers: used-pack price from a fleet/dismantler, quote for new LFP container, Baltic aFRR/mFRR capacity prices | todo |
 | | Latvian EV make/model/year mix (CSB/CSDD) | todo |
