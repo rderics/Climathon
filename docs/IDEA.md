@@ -55,6 +55,23 @@ So we keep the block, but sell something different.
 3. **Proposed routing (Rinalds, 30.10 — to validate):** about **70 %** of packs go to recycling (mechanical pre-treatment; sell the metal fractions; whatever we cannot process goes to Poland, or we split packs into smaller units/modules and process more in Latvia), and about **30 %** go to **ENGYcell** (Riga second-life storage start-up), who already do the second-life product, so we sell them the packs. To check: does ENGYcell buy packs, at what price and spec? What can legally and technically be processed in Latvia (VVD permits)? "Selling metal" means copper/aluminium/steel fractions and black mass to refiners; nickel, cobalt and lithium need a refiner (Poland/Finland). The 70/30 split is a hypothesis until grading data exists.
 3. **Open decisions:** first customer (recommended: fleet/depot operators such as Rīgas satiksme), feedstock policy (NMC/NCA with known history first; exclude early LMO Leafs and damaged packs), what the 3-minute demo shows.
 
+## Feedstock policy (DECIDED 30.10: Claude's proposal accepted — to refine with ENGYcell's spec and recycler quotes)
+The rules at the front door: what we accept, from whom, in what condition, and where it goes.
+- **Accept:** intact packs or modules with known make, model and year from fleets, dismantlers and insurers, with a test record or history (needed under Annex XIV of Regulation 2023/1542 to treat a pack as "used" rather than "waste").
+- **NMC/NCA** (Tesla, Hyundai, Kia, VW): accept; they carry metal value, and the best go to ENGYcell.
+- **LFP:** accept only if the supplier pays a fee or the pack is good enough for second life (recycling LFP usually costs money).
+- **Early Nissan Leaf (LMO):** recycling only, and only for a fee.
+- **Damaged packs:** do not take at the start (much costlier to ship and handle; about USD 1,300–2,730 per pack in one estimate).
+- **Three outcomes per pack:** Grade A -> sell to ENGYcell (target about 30 %); Grade B -> disassemble into modules/cells and process in Latvia if the permit allows; Grade C -> ship to Poland or Finland. Grade thresholds come from ENGYcell's specification.
+- **Sourcing:** Latvia retires only about 80 packs a year, so we also import (Norway, Lithuania, Poland, Nordics).
+- **What we sell from recycling:** copper, aluminium and steel fractions plus black mass to a refiner. We do not refine (hydrometallurgy is a large chemical plant). Recyclers typically pay about 60–72 % of the nickel/cobalt value of black mass and only about 3–5 % for lithium (Fastmarkets, 2024; China NMC black mass 72 % in Oct 2026) — so chemistry mix drives our revenue.
+
+## Demo scope (DECIDED 30.10: Claude's proposal accepted)
+What we show in the 3-minute pitch and build for Sunday: **one small tool that does two things**.
+1. **Pack triage:** enter make, model, kWh, health and chemistry; it says whether the pack goes to ENGYcell, to Latvian processing, or to Poland, and shows the value or cost of that pack.
+2. **Pilot P&L:** the same logic over about 100 packs, showing the 70/30 flow, yearly revenue, cost and result, with every input marked as sourced or assumption.
+No hardware. Supporting asset: a 1-minute explainer video of the concept (see `media/`).
+
 ## Biggest unknowns
 - Real pack prices, recycler quotes, pack dimensions.
 - Whether any customer will pay a premium for the service.
