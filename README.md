@@ -14,6 +14,7 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 | `docs/BATTERIES.md` | Battery types research: chemistries, formats, supply timing, implications |
 | `docs/ECONOMICS.md` | Revenue pools, new-storage cost, second-life costs, Latvian demand (with computed spreads) |
 | `docs/FEEDSTOCK_AND_RULES.md` | Latvian EV pool, battery regulation, safety, transport |
+| `docs/SIZING_AND_COST.md` | Container size, packs per container, power, pad, cost and sale price (illustrative) |
 | `docs/RULES.md` | Judging criteria (5 x 20 %), 3+3 min pitch, prizes |
 | `docs/IDEA.md` | Concept, value chain, open questions, assumptions to validate |
 | `docs/PITCH.md` | Pitch outline + checklist for Sunday 12:30 |
