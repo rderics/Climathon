@@ -15,7 +15,7 @@ Source: https://climathon.rtu.lv/ (read 2026-10-30)
 | Sun 1 Nov | Final teamwork, tech check, **presentations 12:30–14:00**, jury, **results 14:30** |
 
 ## Judging
-No published scoring rubric. Jury assesses **potential for further development** and **innovativeness**; expects idea → working prototype. Prizes + funding for further development of best ideas.
+Official rubric (regulations): 5 criteria x 20 % — problem, value proposition, solution, business model and sustainability, presentation and Q&A. Details, 3+3 min pitch format and prizes (1st EUR 1,000 / 2nd EUR 500 per challenge): **docs/RULES.md**. Challenge brief: **docs/CHALLENGE.md**.
 
 ## Contact
 Kristiāns Kreinbergs — Kristians.Kreinbergs@rtu.lv
