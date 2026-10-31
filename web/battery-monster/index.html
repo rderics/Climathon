@@ -64,7 +64,7 @@
   .chip-ic { display:inline-flex; width:var(--s-500); height:var(--s-500); align-items:center; justify-content:center; background:var(--raised); border-radius:var(--r-lg); font-size:24px; color:var(--ok); }
   .chip-ic.warn { color:var(--warn); } .chip-ic.bad { color:var(--bad); } .chip-ic.info { color:var(--info); }
   .card .chip-ic { margin-bottom:var(--s-100); }
-  .card .heading-6 { display:block; }
+  .card .heading-6, .card .stat { display:block; }
   .est { display:inline-block; padding:var(--s-25) var(--s-75); border-radius:999px; background:var(--raised); color:var(--warn); vertical-align:middle; margin-left:var(--s-75); }
 
   .btn { display:inline-flex; align-items:center; gap:var(--s-75); padding:var(--s-75) var(--s-200); border-radius:var(--r-lg); background:var(--text); color:#000; text-decoration:none; border:1px solid var(--text); transition:transform 300ms var(--curve), background-color 300ms var(--curve); }
@@ -101,18 +101,19 @@
 
   /* Hero */
   .hero { padding-top:var(--s-900); }
-  .hero .heading-1 { max-width:680px; background:linear-gradient(to right,#ffffff,#9b9b9b); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
+  .hero .heading-1 { max-width:680px; background:linear-gradient(to right,#ffffff,#9b9b9b); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; padding-bottom:var(--s-75); }
   .hero .sub { max-width:680px; margin-top:var(--s-200); color:var(--muted); }
   .hero .cta { margin-top:var(--s-300); }
 
   /* Journey visual */
-  .journey { margin-top:var(--s-500); display:grid; grid-template-columns:auto auto auto auto 1fr; gap:var(--s-100); align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-3xl); padding:var(--s-300); }
+  .journey { margin-top:var(--s-500); display:grid; grid-template-columns:auto auto auto auto 1fr; gap:var(--s-100); align-items:center; justify-content:center; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-3xl); padding:var(--s-300); }
   .node { display:flex; flex-direction:column; align-items:center; gap:var(--s-75); text-align:center; position:relative; min-width:72px; }
   .node .disc { position:relative; width:var(--s-700); height:var(--s-700); border-radius:999px; background:var(--raised); display:flex; align-items:center; justify-content:center; font-size:30px; color:var(--text); }
   .node .disc::after { content:""; position:absolute; inset:0; border-radius:999px; border:2px solid currentColor; opacity:0; animation:pulse 3.2s var(--curve) infinite; animation-delay:calc(var(--d, 0) * 600ms); }
   .node.ok .disc { color:var(--ok); } .node.info .disc { color:var(--info); } .node.warn .disc { color:var(--warn); }
   .link-line { position:relative; width:var(--s-600); height:2px; background:var(--line); overflow:hidden; border-radius:2px; }
   .link-line::after { content:""; position:absolute; left:0; top:0; width:var(--s-300); height:2px; background:var(--text); animation:travel 2.4s var(--curve) infinite; animation-delay:calc(var(--d, 0) * 600ms); }
+  @media (min-width:721px) { .journey .link-line { margin-bottom:var(--s-400); } }
   .branches { display:flex; flex-direction:column; gap:var(--s-200); }
   .branch { display:flex; align-items:center; gap:var(--s-100); }
   @keyframes pulse { 0% { transform:scale(1); opacity:0.6; } 70%,100% { transform:scale(1.5); opacity:0; } }
@@ -179,6 +180,7 @@
   @media (max-width:720px) { .hub .spokes { grid-template-columns:1fr 1fr; } .hub .spokes::before, .hub .spoke::before, .hub::before { display:none; } }
 
   /* Why, timeline, risks */
+  .why { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
   .why .card { display:flex; align-items:center; gap:var(--s-100); }
   .why .card .chip-ic { margin:0; }
   .timeline { position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s-200); margin-top:var(--s-300); }
@@ -213,13 +215,13 @@
   html.js .reveal { opacity:0; transform:translateY(32px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); }
   html.js .reveal.in { opacity:1; transform:none; }
   html.js .stag > * { opacity:0; transform:translateY(24px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); transition-delay:calc(var(--i, 0) * 90ms); }
-  html.js .stag.in > * { opacity:1; transform:none; }
+  html.js .stag.in > *, html.js .in .stag > * { opacity:1; transform:none; }
   html.js .vs li { opacity:0; transform:translateX(-16px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); transition-delay:calc(var(--i, 0) * 120ms + 200ms); }
   html.js .vs.in li { opacity:1; transform:none; }
   html.js .grow .bar, html.js .grow .split div { transform:scaleX(0); transition:transform 1400ms var(--curve); transition-delay:calc(var(--i, 0) * 200ms + 200ms); }
   html.js .grow.in .bar, html.js .grow.in .split div { transform:scaleX(1); }
   html.js .seg > div { opacity:0; transform:translateY(16px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); transition-delay:calc(var(--i, 0) * 200ms + 150ms); }
-  html.js .seg.in > div { opacity:1; transform:none; }
+  html.js .in .seg > div { opacity:1; transform:none; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior:auto; }
     html.js .reveal, html.js .stag > *, html.js .vs li, html.js .seg > div { transform:none; transition:opacity 300ms linear; transition-delay:0s; }
@@ -287,7 +289,7 @@
     <div class="grid proof stag reveal">
       <div class="card" style="--i:0"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg></span><span class="stat" data-count="13916">13,916</span><p class="body-6">electric cars in Latvia</p></div>
       <div class="card" style="--i:1"><span class="chip-ic bad"><svg class="ic" aria-hidden="true"><use href="#i-prohibit"/></svg></span><span class="stat" data-count="0">0</span><p class="body-6">EV battery collectors found here</p></div>
-      <div class="card" style="--i:2"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-calendar-check"/></svg></span><span class="stat">18 Feb 2027</span><p class="body-6">EU battery passport starts</p></div>
+      <div class="card" style="--i:2"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-calendar-check"/></svg></span><span class="stat">2027</span><p class="body-6">EU battery passport starts 18 Feb</p></div>
     </div>
   </section>
 
