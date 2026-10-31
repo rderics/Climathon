@@ -263,6 +263,16 @@
   .lab-d.neg { right:50%; color:#000; }
   .panel-card + .panel-card, .panel-card + .pills { margin-top:var(--s-200); }
   .est { margin-left:var(--s-75); }
+  .journey.j7 { grid-template-columns:auto 1fr auto 1fr auto 1fr auto; gap:var(--s-200); padding:var(--s-400) var(--s-300); }
+  .journey .link-line { width:100%; min-width:32px; height:3px; background:var(--line); }
+  .journey .link-line::after { width:25%; height:3px; background:linear-gradient(to right, transparent, var(--ok)); animation:flow 2.4s var(--curve) infinite; animation-delay:calc(var(--d, 0) * 600ms); }
+  .journey .branch .link-line { width:var(--s-700); }
+  @keyframes flow { 0% { transform:translateX(-100%); } 100% { transform:translateX(400%); } }
+  @media (max-width:720px) {
+    .journey.j7 { grid-template-columns:1fr; padding:var(--s-300); }
+    .journey .link-line, .journey .branch .link-line { width:var(--s-600); }
+  }
+  @media (prefers-reduced-motion: reduce) { .journey .link-line::after { animation:none; } }
 </style>
 </head>
 <body>
