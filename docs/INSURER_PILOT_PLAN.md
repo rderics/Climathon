@@ -63,7 +63,7 @@ Based on the Swiss SVV/ASS annex "Analysis of HV batteries" (voluntary guideline
 
 ## 9. Legal, safety and data checklist
 - **Liability:** a clearance followed by a fire exposes the assessor. Get professional-indemnity cover first, limit the scope in writing and in the report, and let the contract place the repair and write-off decision on the insurer and OEM rules.
-- **Qualification and safety:** live HV work needs HV3 under the Swiss guideline; scene work needs HV1 + HV2 at minimum. Confirm the Latvian equivalents and who may touch a damaged HV system. A pack could ignite later; no storage of packs at our premises during the pilot.
+- **Qualification and safety:** under the Swiss guideline (section 3.1) the hazard analysis and the non-destructive function analysis need HV1 + HV2 or equivalent; HV3 (work under voltage) is needed only when live components (connectors, modules, cells) are worked on, checked or analysed, which this protocol does not do. Confirm the Latvian equivalents and who may touch a damaged HV system. A pack could ignite later; no storage of packs at our premises during the pilot.
 - **Data protection:** VIN, plate, location, claim data and BMS or crash data link to a person, so GDPR applies: data-processing agreement, lawful basis, minimal data, retention and deletion terms (not researched in depth; lawyer to check).
 - **Conflict of interest:** we must not be the insurer's assessor and the buyer of the packs we judge. Keep the take-back business separate and disclose any link.
 - **Transport and waste:** damaged lithium packs fall under ADR special provisions and are likely hazardous waste if written off; we do not move or take packs in this pilot.
@@ -76,7 +76,21 @@ Based on the Swiss SVV/ASS annex "Analysis of HV batteries" (voluntary guideline
 - **Delayed fires:** one-time checks cannot rule out later events (a US government test of a Chevrolet Volt ended in a fire 21 days after the crash).
 - **Quarantine costs are falling** (VW and BMW cut initial quarantine to 24 h with temperature monitoring), which shrinks the saving.
 
-## 11. First actions (this week)
+## 11. Data check (31 Oct 2026, against primary documents)
+| Figure in this plan | Result | Source |
+|---|---|---|
+| Sample of 400 Allianz EV collision claims, year 2021; HV battery damaged in 2% of claims and about 7% of claim cost | **Confirmed** (the study also checked the full 2021 claims base and says it confirmed the data) | AZT Automotive, collision damage analysis of HV vehicles (14-page PDF, German) |
+| 5 cases needed a full pack swap at €13,300–43,300; 3 more saved by a casing swap at €1,100–2,200 | **Confirmed.** The study says the 5 were underbody damage and only 1 case was intrusion | same |
+| Swiss guideline: version 9, signed 31 Oct 2025; non-destructive; categories functional / repairable / damaged-defective / significantly damaged-critical; deformation of 10 mm or more, a torn casing or holes, heat above 60 °C on the casing, water in the battery | **Confirmed** (the 10 mm and 60 °C criteria sit in the "significantly damaged, critical: battery must be disposed of" rows) | SVV / LiBaService24 annex "Analyse von HV-Batterien" (25-page PDF) |
+| HV qualification | **Corrected**: HV1 + HV2 for the hazard and function analysis; HV3 only for work on live components. Earlier text said HV3 for live work generally | same, section 3.1 |
+| Guideline is voluntary | **Confirmed in substance**: it states it replaces no law and excludes liability; "voluntary" is our wording | same, section 2.1 |
+| 35,617 road accidents reported to insurers in Latvia in 2025 (34,571 in 2024) | **Confirmed** | LTAB press release 15 Jan 2026 |
+| Chevrolet Volt fire 21 days after a crash test | **Confirmed**; NHTSA's own text says delayed thermal heating and pressure release; one lab test with a rollover, GM disputed the procedure | NHTSA INOA-PE11037 |
+| About 12,991 EVs in Latvia (1 Oct 2025) | **Not verified** against CSDD; secondary source only | LSM 26 Oct 2025 |
+| About 57 triggered cases a year; €435 saving; 15% outcome-change share; €120–200 cost per assessment | **Our estimates, not data.** They cannot be validated until the pilot runs | this plan |
+| Tow and quarantine rates (LG Koblenz €76/day etc.), Thatcham, VW/BMW 24 h quarantine | **Not re-checked in this pass**; as reported in docs/POST_CRASH_SCAN.md | see that file |
+
+## 12. First actions (this week)
 1. List the six candidate insurers and find the claims-head contact at each; book 3 first meetings.
 2. Get a professional-liability and a general quote from one broker; ask which HV qualification applies in Latvia.
 3. Write the one-page protocol and the case-log template (fields in section 6).
