@@ -35,18 +35,18 @@ var STEPS = [
     viz: function () { return '<div class="grid2">' + tile("⚡", "ENGYcell", "Riga storage start-up", "#ffbe0b") + tile("🚗", "Drivers", "Tested replacement pack", "#ffbe0b") + tile("🏭", "Businesses", "Chargers, backup, farms", "#ffbe0b") + tile("🔍", "Health test", "For dealers and importers", "#ffbe0b") + "</div>"; },
     stats: [["€550–1,100", "extra price for a certified used EV (vendor data)", "s"]],
     pts: [["🛡️", "We offer buyers a take-back guarantee.", "a"], ["❓", "Does ENGYcell buy packs, and at what price?", "c"]] },
-  { icon: "♻️", short: "Recycle", title: "The rest is recycled", line: "We shred packs we can't reuse here. We sell the metals and ship the black mass to Finland or Poland.",
-    viz: function () { return flow([["📦", "Pack", ""], ["⚙️", "Shred", "in Latvia"]], "#ffbe0b") + '<div style="text-align:center;font-size:24px;margin:6px 0">⬇️</div><div class="grid2"><div class="tile" style="--c:#d68250"><div class="t">🟠 Copper, aluminium, steel</div><div class="s">sold locally</div></div><div class="tile" style="--c:#fff"><div class="t">⚫ Black mass</div><div class="s">shipped to Finland or Poland</div></div></div>'; },
-    stats: [["40–50%", "of a battery's weight ends up as black mass", "s"], ["about half", "the weight shipped if we shred first (estimate)", "a"]],
-    pts: [["📉", "Nickel-based black mass has value; LFP black mass is worth little.", "s"], ["💬", "Nobody publishes prices. We need written quotes.", "c"], ["🚫", "We do not refine.", "s"]] },
-  { icon: "📊", short: "Money", title: "A first rough pilot: 100 packs a year", line: "Before staff and rent, this rough pilot loses money. Shipping whole packs is the biggest cost.",
-    viz: function () { function bar(l, v, col) { var w = Math.abs(v) / 60 * 50; var s = v < 0 ? "right:50%;width:" + w + "%" : "left:50%;width:" + w + "%"; return '<div class="bar"><span>' + l + '</span><div class="track"><div class="fill" style="' + s + ";background:" + col + '"></div></div><b>' + (v > 0 ? "+" : "") + v + "k €</b></div>"; } return '<div class="bars">' + bar("Low case", -58.6, "#ff6b6b") + bar("Base case", -20.8, "#ffbe0b") + bar("High case", 39.3, "#3ddc97") + '</div><div class="gl" style="margin-top:8px"><span>Result per year, before staff, rent and equipment</span></div>'; },
-    stats: [["+€8k–49k", "extra per year from a health-test service", "a"]],
-    pts: [["📝", "Rough estimates. Our own shredding line is not counted.", "c"]] },
+  { icon: "♻️", short: "Recycle", title: "The rest is recycled", line: "At the start we hand packs to a recycler abroad and charge a fee. Our own shredding line comes later, only if quotes and volume prove it.",
+    viz: function () { return flow([["📦", "Pack", ""], ["🚚", "Recycler", "Finland or Poland"]], "#ffbe0b") + chips(["Later, if the numbers allow: our own shredding line"], "#ffbe0b"); },
+    stats: [["€738", "what a recycler charges for a 400 kg nickel-based pack (German reference tariff)", "s"], ["€1,686", "the same for an LFP pack", "s"]],
+    pts: [["💬", "Nobody publishes prices here. We need written quotes.", "c"], ["🚫", "We do not refine.", "s"]] },
+  { icon: "📊", short: "Money", title: "What a pack must cost", line: "Handing over a pack costs money. So every pack needs a prepaid fee that covers the recycler, transport and us.",
+    viz: function () { function row(l, v, col) { var w = v / 1606 * 100; return '<div class="bar"><span>' + l + '</span><div class="track" style="background:#08141f"><div class="fill" style="left:0;width:' + w + "%;background:" + col + '"></div></div><b>€' + v + "</b></div>"; } return '<div class="bars">' + row("Recycler", 738, "#4ea8ff") + row("Transport", 400, "#ffbe0b") + row("Handling", 150, "#b79cff") + row("Insurance", 50, "#ff8f8f") + row("Our margin", 268, "#3ddc97") + '</div><div class="gl" style="margin-top:8px"><span>Nickel-based pack, 400 kg: fee about €1,606 (our estimate)</span></div>'; },
+    stats: [["€1,606", "fee needed per nickel-based pack (our estimate)", "a"], ["€92", "what the Latvian producer scheme charges per pack", "s"]],
+    pts: [["⚠️", "We cannot promise zero risk. A wrong weight, wrong chemistry or refused pack can cost more than our margin.", "a"], ["❓", "Nobody has told us they would pay about €1,500. We must ask first.", "c"]] },
   { icon: "🎤", short: "Pitch", title: "Our pitch: what we sell", line: "We take old EV batteries off carmakers' and dealers' hands, test them, and give the good ones a second life.",
     viz: function () { return '<div class="grid2">' + tile("🏭", "Take-back service", "Carmakers, dealers, fleets pay us. Main income.", "#b79cff") + tile("⚡", "Tested packs", "Storage buyers and drivers pay.", "#b79cff") + tile("🔍", "Health tests", "Dealers and importers pay.", "#b79cff") + tile("♻️", "Recycled materials", "Scrap buyers and refiners pay.", "#b79cff") + "</div>"; },
     stats: [["3 + 3 min", "pitch and questions (Sunday 1 Nov, 12:30)", "s"]],
-    pts: [["⚠️", "Be honest: the 30/70 split is a guess, and we have no quotes yet.", "a"], ["📞", "Next: call dealers, importers and ENGYcell, and ask recyclers for quotes.", "a"], ["❓", "Still to decide: first customer and demo.", "c"]] }
+    pts: [["⚠️", "Be honest: we start as a service with no capex, the price is an estimate, and nobody has agreed to pay it yet.", "a"], ["📞", "Next: call dealers, importers and ENGYcell, and ask recyclers for quotes.", "a"], ["❓", "Still to decide: first customer and demo.", "c"]] }
 ];
 
 var cur = -1;

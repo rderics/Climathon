@@ -1,6 +1,6 @@
-# Profit-protected model: a structure where no pack can lose money (31 Oct 2026)
+# Profit-protected model: a structure built so a priced, prepaid pack should not lose money (31 Oct 2026)
 
-Built from the real-data check in `docs/CHECKED_ITEMS.md` (sources there). **Honest framing:** nobody can promise "no way to lose money". What we can do is a structure where **every pack is sold at a price that already covers its full cost plus a margin, and fixed costs are close to zero**, so losses can only come from a few named risks (below), not from the pack economics. The price of that safety is lower volume and possibly **zero customers**, because the fee we must charge is high.
+Built from the real-data check in `docs/CHECKED_ITEMS.md` (sources there). **Honest framing (confirmed by a three-lens adversarial review, section 6):** nobody can promise "no way to lose money", and this model does not. What we can do is a structure where **every pack is sold at a price that already covers its full cost plus a margin, and fixed costs are close to zero**, so losses can only come from a few named risks (below), not from the pack economics. The price of that safety is lower volume and possibly **zero customers**, because the fee we must charge is high.
 
 ## 1. What the real data changed
 - **Getting rid of a pack costs money.** The only published 2026 recycler-style tariff (GRS Germany, reference ceiling, excl. VAT): undamaged NMC/NCA modules **€1.31/kg**, LFP/LMO modules **€3.68/kg**, plus a pallet slot (€214.50 first, €125 further). A 400 kg NMC pack costs about **€738** to hand over; LFP about **€1,686**. Damaged packs: NMC €1.44/kg, LFP €4.38/kg; transport-critical packs need a safety container (€825 or a €3,000 deposit): **do not take damaged packs**.
@@ -21,7 +21,7 @@ Built from the real-data check in `docs/CHECKED_ITEMS.md` (sources there). **Hon
 4. **Intact packs only** (no swelling, leaks, crash damage, unknown history); damaged packs are refused or quoted separately with the recycler's own price.
 5. **Pass through freight and ADR at actual cost**; our margin is on top, never inside the freight.
 6. **No inventory:** pack moves from customer to recycler (or customer to second-life buyer) under contracts signed in advance; we never hold stock we have not been paid to hold.
-7. **No capital spending before cash in:** no lease, no equipment, no staff on payroll. Use a partner's site or the recycler's own collection, subcontracted ADR carrier, contractors paid per pack.
+7. **No capital spending before cash in ("no capex", not "zero fixed cost"):** no lease, no equipment, no staff on payroll. Use a partner's site or the recycler's own collection, subcontracted ADR carrier, contractors paid per pack.
 8. **Second-life sales only against a purchase order with price per kWh**; model them as zero in the base case.
 9. **Fix the exposure window:** quotes valid for the shipment, price clauses for gate-fee changes, insurance per shipment.
 
@@ -43,7 +43,7 @@ The fee we need (about **€1,500–1,600 per NMC pack, about 17 times the Latvi
 
 ## 3. Add profit layers only when funded by earned cash
 1. **Triage and health test** (€60–130 market price; our variable cost about €10–15): a way to meet dealers and importers and learn their real take-back costs.
-2. **Second-life sales against purchase orders:** a clean tested pack sold for second life avoids the recycling fee entirely (about €1,300 per NMC pack) and brings the sale price, so these are the highest-margin packs, but only with a signed buyer.
+2. **Second-life sales against purchase orders:** a clean tested pack sold for second life avoids the recycler's fee (about €738 for a 400 kg NMC pack; freight to the buyer still applies) and brings the sale price, so these are the highest-margin packs, but only with a signed buyer.
 3. **Own mechanical line only after** (a) written black-mass payable quotes, (b) measured yields on trial batches, (c) volume above a few hundred packs a year, (d) a permit decision. Today the data say it likely loses money.
 4. **Grants** (EIT Urban Mobility, Norway Grants via LIAA) fund pilots; never use them to hide losses on packs.
 
@@ -60,3 +60,17 @@ The fee we need (about **€1,500–1,600 per NMC pack, about 17 times the Latvi
 2. Get **binding recycler quotes** (GRS-type tariffs are only a ceiling): Fortum, Stena, Eneris, AE Elemental, GRS.
 3. Ask VVD about the exact permit and whether a broker that never stores packs needs one; get an insurance quote for per-shipment cover.
 4. Only then change the pitch from a hub to a service with a price.
+
+## 6. Review findings (three skeptics: finance, legal, market; 31 Oct 2026)
+**Verdict:** the per-pack arithmetic is correct (finance recomputed every row), but **"no pack can lose money" is not supported** and we must not say it. Honest wording: *"We accept a pack only against a signed order with customer prepayment covering the recycler's binding quote, the carrier's binding quote and our fee, so the base-case contribution per pack is about €270 on our assumptions. Open risks: whether anyone will pay, and unquantified regulatory and fixed costs."* Legal points were not checked against EUR-Lex and need a lawyer and a written VVD answer.
+
+**Critical problems and the fix to adopt**
+1. **No proven payer.** Under EU law the pack holder may already have a free take-back route, so the biggest risk is zero revenue. Fix: find out who the obligated producer is for four origins (new car, used import, insurer write-off, end-of-life vehicle) and who pays pickup today; test prices on real prospects.
+2. **A broker may be a regulated actor** (permit, registration, possibly notifier with a financial guarantee; a 2020 slide mentioned EUR 10,000 security x 2.5 for hazardous waste transport, unverified). Fix: written VVD answer; make the recycler or the producer scheme the collector, carrier, consignor and notifier of record by contract; add the costs.
+3. **Fixed fee quoted on assumed freight, weight and chemistry.** Fix: rule 2 now needs a **binding carrier quote as well**; quote **per kg plus pallet fee** with the recycler's weighbridge weight governing and a tolerance clause; check chemistry and VIN before ordering; surcharge clause.
+4. **Reclassification, refusal and return have no price.** LFP declared as NMC (400 kg) costs 948 EUR more (3.5x the margin); a 540 kg NMC pack costs 922 instead of 738; damaged-but-safe adds 52 (NMC) or 280 (LFP); transport-critical packs add 700 to 3,000 with a safety container; a return leg costs another 250-930. Fix: hold back margin plus a contingency until the recycler's acceptance note, add a per-pack loss reserve (start with 5-10% of fees; not sourced), return-freight and storage charges in the contract, and get the recycler's commitment to accept.
+5. **The fee is anchored to a ceiling tariff**: about 17x the Latvian scheme fee (EUR 92) and 2.2x the recycler price. Fix: test a visible service fee (for example EUR 150-400) on top of the recycler's own quote, instead of x1.20 on everything.
+
+**Major fixes:** replace "zero fixed cost" with "no capex" and build an annual fixed-cost list (permit and security, liability and environmental insurance, ADR safety adviser, accountant, lawyer), then recompute break-even against a realistic first-year volume of tens of packs, not 11 a month; ADR consignor duties and the adviser fall on the broker unless the recycler or an ADR carrier is consignor; the insurance allowance of EUR 30/50/80 has no evidence (get one written quote); freight base of EUR 400-600 needs two written ADR quotes (model 1, 5 and 20 packs per trip); the intact-only rule excludes the orphan and damaged packs where a gap may exist (decide scope); a recycler or scheme can bypass us (ask about agent terms and exclusivity); state all fees excl. VAT and confirm treatment with an accountant; "never stores packs" does not remove holder status (keep the customer as holder until the recycler's vehicle takes custody); keep second life at zero and out of the pitch as profit.
+
+**Other corrections:** the 20% multiplier is a markup on cost (about 16.7% of the fee) and must absorb all unpriced events; replace "penalties are small" with "administrative fines are small; failed-shipment cost is not quantified"; require 100% bank-transfer prepayment and keep customer funds separate; fleet and bus demand is unchecked.
