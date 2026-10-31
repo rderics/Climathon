@@ -352,34 +352,40 @@
       <span class="title-3">One checked claim<span class="est caption-3">est.</span></span>
       <div class="row"><span class="l body-6">Insurer saves</span><div class="track"><div class="bar" style="width:100%;background:var(--ok);--i:0"></div><span class="lab button-sm">about €435</span></div></div>
       <div class="row"><span class="l body-6">Insurer pays us</span><div class="track"><div class="bar" style="width:46%;background:var(--info);--i:1"></div><span class="lab button-sm">€200</span></div></div>
-      <div class="row"><span class="l body-6">Our cost</span><div class="track"><div class="bar" style="width:37%;background:var(--muted);--i:2"></div><span class="lab button-sm">€160</span></div></div>
-      <div class="row"><span class="l body-6">We keep</span><div class="track"><div class="bar" style="width:9%;min-width:96px;background:var(--warn);--i:3"></div><span class="lab button-sm">€40</span></div></div>
+      <div class="row"><span class="l body-6">Technician, per case</span><div class="track"><div class="bar" style="width:25%;min-width:110px;background:var(--muted);--i:2"></div><span class="lab button-sm">€110</span></div></div>
+      <div class="row"><span class="l body-6">We keep</span><div class="track"><div class="bar" style="width:21%;min-width:110px;background:var(--warn);--i:3"></div><span class="lab button-sm">€90</span></div></div>
     </div>
 
     <div class="panel-card grow reveal">
       <span class="title-3">Profit per year<span class="est caption-3">model, not a forecast</span></span>
       <div class="scn">
-        <div class="scn-head"><span class="title-3">Latvia only</span><span class="body-6 muted">57 checks × €200 · €160 cost each</span></div>
-        <div class="diverge"><span class="zero"></span><div class="bar neg" style="width:37%;background:var(--bad);--i:0"></div><span class="lab-d neg button-sm">−€9.7k</span></div>
-        <p class="body-6 muted">Revenue €11k, costs €21k</p>
+        <div class="scn-head"><span class="title-3">Latvia, one insurer</span><span class="body-6 muted">57 checks and a yearly on call fee</span></div>
+        <div class="track"><div class="bar" style="width:11%;min-width:110px;background:var(--ok);--i:0"></div><span class="lab button-sm">+€3k</span></div>
+        <p class="body-6 muted">Revenue €17k, costs €14k</p>
       </div>
       <div class="scn">
-        <div class="scn-head"><span class="title-3">Baltics</span><span class="body-6 muted">250 checks × €200 · €160 cost each</span></div>
-        <div class="diverge"><span class="zero"></span><div class="bar neg" style="width:8%;background:var(--warn);--i:1"></div><span class="lab-d neg button-sm">−€2.0k</span></div>
-        <p class="body-6 muted">Revenue €50k, costs €52k</p>
+        <div class="scn-head"><span class="title-3">Baltics, per check fees only</span><span class="body-6 muted">250 checks</span></div>
+        <div class="track"><div class="bar" style="width:37%;min-width:110px;background:var(--ok);--i:1"></div><span class="lab button-sm">+€10k</span></div>
+        <p class="body-6 muted">Revenue €50k, costs €40k</p>
       </div>
       <div class="scn">
-        <div class="scn-head"><span class="title-3">Baltics, cheaper checks</span><span class="body-6 muted">250 checks × €200 · €100 cost each</span></div>
-        <div class="diverge"><span class="zero"></span><div class="bar pos" style="width:50%;background:var(--ok);--i:2"></div><span class="lab-d pos button-sm">+€13k</span></div>
-        <p class="body-6 muted">Revenue €50k, costs €37k</p>
+        <div class="scn-head"><span class="title-3">Baltics, three insurers</span><span class="body-6 muted">250 checks and yearly on call fees</span></div>
+        <div class="track"><div class="bar" style="width:100%;background:var(--ok);--i:2"></div><span class="lab button-sm">+€28k</span></div>
+        <p class="body-6 muted">Revenue €68k, costs €40k</p>
       </div>
-      <p class="body-6 muted" style="margin-top:var(--s-100)">All three include €12k a year of fixed costs (insurance, training, legal, accounting, kit). That figure is our assumption, not a quote. Break even at €160 a check is about 300 checks a year.</p>
+      <p class="body-6 muted" style="margin-top:var(--s-100)">Break even: about 22 checks a year with one insurer on call fee, about 133 on per check fees alone. Assumptions we still have to confirm: €110 per case, €500 a month on call fee, €8k to 12k fixed costs.</p>
     </div>
 
     <div class="pills stag reveal" style="margin-top:var(--s-200)">
+      <div class="pill-card" style="--i:0"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-handshake"/></svg></span><span class="title-3">Yearly contract covers fixed costs</span></div>
+      <div class="pill-card" style="--i:1"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-currency-eur"/></svg></span><span class="title-3">Technicians paid per case</span></div>
+      <div class="pill-card" style="--i:2"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-hand-coins"/></svg></span><span class="title-3">Kit bought after signing</span></div>
+      <div class="pill-card" style="--i:3"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span><span class="title-3">Stop on any false all clear</span></div>
+    </div>
+    <div class="pills stag reveal" style="margin-top:var(--s-100)">
       <div class="pill-card" style="--i:0"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-currency-eur"/></svg></span><span class="title-3">Fee per check</span><span class="pill caption-3">CORE</span></div>
-      <div class="pill-card" style="--i:1"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-handshake"/></svg></span><span class="title-3">Share of savings</span><span class="pill caption-3">OPTION</span></div>
-      <div class="pill-card" style="--i:2"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-buildings"/></svg></span><span class="title-3">Fixed site fee</span><span class="pill caption-3">OPTION</span></div>
+      <div class="pill-card" style="--i:1"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></span><span class="title-3">On call fee</span><span class="pill caption-3">CORE</span></div>
+      <div class="pill-card" style="--i:2"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-recycle"/></svg></span><span class="title-3">Pack take back</span><span class="pill caption-3">LATER</span></div>
       <div class="pill-card" style="--i:3"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span><span class="title-3">Tow firms, leasing</span><span class="pill caption-3">LATER</span></div>
     </div>
   </section>
