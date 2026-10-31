@@ -1,246 +1,121 @@
-// flag: s = sourced, a = estimate/assumption, c = to check. Format: [text, flag, children]
-const DATA = ["Used EV batteries: from the factory to second life or recycling", "", [
- ["1 · Where batteries come from", "", [
-  ["Raw materials: lithium, nickel, cobalt, manganese, graphite (LFP: iron and phosphate)", ""],
-  ["Cell makers: LG, Panasonic, CATL, BYD, Samsung SDI, AESC", "s", [
-    ["Leaf: AESC pouch cells. Kona, VW MEB: LG. Tesla 2170: Panasonic. BMW i3: Samsung SDI", "s"]]],
-  ["Cells become modules, modules become a pack (with BMS, cooling, housing)", "s", [
-    ["Nissan Leaf 40 kWh: 192 cells, 24 modules, about 303 kg, about 360 V", "s"],
-    ["Hyundai Kona 64 kWh: 294 cells, 5 modules, 452 kg, 356 V", "s"],
-    ["Tesla Model 3 Long Range: about 75-82 kWh, about 480 kg, about 355 V", "s"],
-    ["Hyundai/Kia E-GMP (Ioniq 5, EV6): 800 V class, cannot share a string with 400 V packs", "s"]]],
-  ["The carmaker (OEM) builds the pack into the car and is legally the battery's 'producer'", "s"],
-  ["On European roads: LFP only about 10% (2025); the rest is nickel-based (NMC/NCA)", "s"]
- ]],
- ["2 · First life: in the car", "", [
-  ["Cars are sold new or imported used: about half of Latvia's EV stock arrived as used imports", "s"],
-  ["Latvia: 13,916 electric cars at end-2025; 1,602 new ones registered in 2025", "s"],
-  ["Typical pack: 40-80 kWh, 300-480 kg, 350-400 V", "s"],
-  ["Most packs stay in cars until the mid-2030s (IEA), so few retire now", "s"]
- ]],
- ["3 · Degradation and the swap", "", [
-  ["Pack leaves the car at about 70-80% capacity (measured first-generation Leaf packs: 60-67%)", "s"],
-  ["Triggers: capacity loss or warranty claim, crash or write-off, owner upgrade", "a"],
-  ["Who swaps it: authorised dealer or service, independent garage; insurers decide write-offs", "a"],
-  ["Replacement pack: new, refurbished or used", "", [
-    ["Prices in Europe not found (US: used 24-30 kWh packs $4-8k installed)", "c"]]],
-  ["The removed pack now needs an owner and a decision: reuse, repurpose or recycle", ""]
- ]],
- ["4 · Why used packs sit in storage", "", [
-  ["Nobody to hand them to: no Latvian EV-pack collector found", "c"],
-  ["Cost: freight about 350-600 EUR per pack; damaged packs about 1,300-2,730 USD", "a"],
-  ["Legal limbo: 'used' vs 'waste' must be proven (test record + contract + transport protection)", "s"],
-  ["Storage rules (Cabinet Reg. 485): sealed, weatherproof surface or container. Permit type and fire rules for lithium packs still to confirm", "c"],
-  ["What dealers and importers really do and what it costs them", "c", [
-    ["Ask importers, dealers, Rīgas satiksme", "c"]]]
- ]],
- ["5 · Who must pay, how much, and what if they don't comply", "", [
-  ["Producers (OEM, importer) must take back and finance end-of-life (EU Reg. 2023/1542; producer duties since 18 Aug 2025)", "s"],
-  ["How much? Not set by law: it is a contract or market price", "s", [
-    ["2024 gate fees: NMC 0-400 EUR per tonne, about 0-140 EUR per 350 kg pack", "s"],
-    ["LFP 3,000-4,000 EUR per tonne, about 1,050-1,400 EUR per pack (2024, now moving)", "s"],
-    ["2026: gate fees fading outside China; LFP black mass now bought for its lithium", "a"]]],
-  ["If they don't comply", "", [
-    ["EU sets no fine scale; Member States must set 'effective, proportionate, dissuasive' penalties (Art. 93)", "s"],
-    ["Authorities can restrict, withdraw or recall a non-compliant battery (Art. 83)", "s"],
-    ["Example: Germany has administrative fines in its Battery Act (BattDG, section 60)", "s"],
-    ["Latvia: fine amounts NOT found", "c"]]],
-  ["Latvia (Cabinet Reg. 485): battery producers must ensure storage, treatment and recycling; they register within one month; waste traders register with the State Environmental Service before starting", "s"],
-  ["If WE repurpose: we become the producer (Art. 56(2)); the original producer pays no extra (Art. 56(5))", "s"],
-  ["Our pitch to producers: we fulfil your take-back duty; our price = their avoided cost", "a"]
- ]],
- ["6 · Take-back: our hub intake", "", [
-  ["Sources: OEMs and importers, dealers and garages, fleets and buses, insurers, dismantlers, imports (Norway removed 4,570 batteries in 2024)", "s"],
-  ["Intake checks: pack ID, photos, damage check; quarantine or refuse damaged packs", "a"],
-  ["Read the BMS history: law gives read-only access (Art. 14) to SOH, throughput, harmful events", "s"],
-  ["Safe storage: fire-safe room, low charge, spacing, detection", "a", [
-    ["Waste or storage permit (State Environmental Service): type to confirm", "c"]]],
-  ["Transport: licensed ADR carrier; used packs UN 3480, damaged packs special provision 376", "s"],
-  ["Paperwork: contract + test record (used) or waste documents and consent for cross-border waste", "s"]
- ]],
- ["7 · Test and grade", "", [
-  ["1. Identify the pack and read BMS data", ""],
-  ["2. Visual and mechanical inspection (X-ray possible)", "s"],
-  ["3. Insulation / isolation test", "s"],
-  ["4. Self-discharge check: rest the pack and measure voltage drift", "s"],
-  ["5. Capacity and internal resistance: fast SoH test takes minutes, full capacity test takes hours", "s"],
-  ["6. Cell and module imbalance, thermal behaviour", "s"],
-  ["7. Grade: A second life, B take apart into modules, C recycle", "a"],
-  ["Cost benchmarks: module-level test about 57 EUR/kWh (Portuguese case); consumer SoH certificate 99 EUR (AVILOO retail)", "s"],
-  ["Our equipment list and test cost per pack", "c"]
- ]],
- ["8 · Certify: can we do it ourselves?", "", [
-  ["A. Proof that a pack is 'used', not 'waste' (Art. 73)", "s", [
-    ["SoH test record from an EU state + sale contract + transport protection", "s"],
-    ["We can issue the test record ourselves", "a"]]],
-  ["B. A repurposed battery is a new product and we are its manufacturer (Art. 38(11))", "s", [
-    ["Self-declared conformity, Module A (Art. 17(3))", "s"],
-    ["Safety documentation and tests: thermal propagation, fire, gas emission (Art. 12, Annex V)", "s"],
-    ["New label and QR code (Art. 13(9)); BMS software reset right (Art. 14)", "s"],
-    ["New battery passport linked to the original, from 18 Feb 2027 (Art. 77)", "s"],
-    ["Producer registration and EPR", "s"]]],
-  ["C. Standards and outside labs", "", [
-    ["UL 1974, IEC 63330-1, IEC 63338, IEC 62619; systems: UL 9540 / 9540A", "s"],
-    ["An accredited lab (e.g. Intertek, UL) gives credibility and helps with insurers", "a"]]],
-  ["Answer: we can self-declare and issue test records; independent certificates need an accredited lab. Whole-pack, single-OEM designs are cheaper to certify", "a"],
-  ["Still pending: end-of-waste implementing act; passport access act (consultation to 16 Nov 2026)", "s"],
-  ["Insurers prefer LFP, outdoor sites and monitoring, so NMC second life is harder to insure", "a"]
- ]],
- ["9 · Route A: second life, who buys", "", [
-  ["ENGYcell (Riga start-up founded 2024: storage software, hardware and trading; EUR 450k funding in 2025)", "s", [
-    ["To confirm with them: do they buy used packs? Make, health, voltage, volume, price, warranty", "c"],
-    ["Reference price: recyclers about 8 USD/kWh, second-life firms about 30 USD/kWh (2024, North America)", "a"],
-    ["Market risk: Baltic balancing revenues are down 70-90%", "a"]]],
-  ["Drivers who need a replacement pack: sell a tested used pack, offer the test service, take their old pack as a trade-in", "a", [
-    ["Price per pack in Europe not found", "c"]]],
-  ["Businesses needing storage or backup", "", [
-    ["EV charger and bus-depot buffers (Connected Energy at Volvo; Madrid e-buses)", "s"],
-    ["Backup replacing lead-acid or diesel: clinics, schools, water pumps, telecom, municipalities", "s"],
-    ["Farms and small businesses with solar (France: about 30% below new)", "s"],
-    ["Events and construction sites (portable power)", "s"]]],
-  ["Light vehicles and machines (sweepers, carts)", "s"],
-  ["Do it ourselves: build storage units (needs conformity, insurance, installers)", "a"],
-  ["Services: battery health test for dealers and importers; trade-in of their packs", "a", [
-    ["Vendor data (Aviloo): certified used EVs sold for 550-1,100 EUR more and up to 36% faster", "s"],
-    ["90% of 60 UK dealers want a standard battery test (Startline survey); the test costs about 99 EUR", "s"],
-    ["Latvia: used-EV buyers get a 3,000 EUR subsidy; local demand for a test is not yet tested", "c"]]]
- ]],
- ["10 · Route B: recycle mechanically (our own line, later)", "", [
-  ["Steps: discharge safely, dismantle pack into modules (housing, cables, BMS, cooling), shred in a controlled line, separate", "a", [
-    ["Magnet takes steel; eddy current takes aluminium and copper; sieving gives black mass", "a"]]],
-  ["What we sell and to whom", "", [
-    ["Copper, aluminium, steel to scrap dealers or smelters", "a"],
-    ["Plastics, electrolyte, residues to licensed waste handlers", "a"],
-    ["Black mass to refiners (Fortum, Umicore, BASF...)", "s"],
-    ["Black mass paid about 60-72% of nickel/cobalt value, only 3-5% for lithium (2024)", "s"]]],
-  ["Unknowns: black-mass yield per pack (do not assume 40%), line capex, Latvian permits", "c"],
-  ["A large plant (10,000 t/yr, 20-35 M EUR, teammate model) is the later scale-up", "a"]
- ]],
- ["11 · Route C: send it to Poland or Finland", "", [
-  ["Fortum (Finland): takes EV batteries incl. damaged; provides packaging and paperwork", "s"],
-  ["AE Elemental (Zawiercie, PL): 12,000 t/yr, about 28,000 packs, shreds to black mass", "s"],
-  ["Eneris (Żarki, PL): large Li-ion recycler", "s"],
-  ["Also Umicore (BE), BASF (DE), Hydrovolt (NO, verify)", "s"],
-  ["Cost per pack: NMC about break-even to -760 EUR; LFP about -1,250 to -1,800 EUR; damaged much more", "a"],
-  ["Who pays depends on chemistry: get written quotes", "c"],
-  ["Legal: ADR packing instruction P909; cross-border waste consent", "s"]
- ]],
- ["12 · Money: costs, revenue, profit (pilot: 100 packs a year)", "", [
-  ["Assumptions: pack 350 kg and 45 kWh, 75% usable = 34 kWh; 30 packs to ENGYcell, 70 shipped whole to a recycler (low / base / high case)", "a"],
-  ["Revenue per year", "", [
-    ["Take-back fee 0 / 70 / 140 EUR per pack = 0 / 7k / 14k EUR", "a"],
-    ["ENGYcell pays 8 / 20 / 30 USD per kWh = 8.2k / 20.4k / 30.6k EUR", "a"],
-    ["Recycler charges or pays per pack: -140 / -70 / +360 EUR = -9.8k / -4.9k / +25.2k EUR", "a"],
-    ["Extra: health-test service, 82 EUR net per test x 100 / 300 / 600 tests = 8k / 25k / 49k EUR", "a"]]],
-  ["Costs per year", "", [
-    ["Freight 600 / 475 / 350 EUR per recycled pack = 42k / 33k / 24.5k EUR", "a"],
-    ["Grading 150 / 100 / 60 EUR per pack = 15k / 10k / 6k EUR", "a"],
-    ["Fixed costs: people, storage, insurance, permits, equipment. NOT estimated: the biggest unknown", "c"]]],
-  ["Result BEFORE fixed costs and test income: -58.6k (low) / -20.8k (base) / +39.3k EUR (high)", "a"],
-  ["Reading: whole-pack freight is the biggest cost. Profit needs producer fees, test-service income, cheap packs, and later on-site pre-processing", "a"],
-  ["All numbers are illustrative, built by us from the repo's research; replace with quotes", "a"]
- ]],
- ["13 · Answers found so far, and what is still open", "", [
-  ["Found", "", [
-    ["Latvian law (Cabinet Reg. 485): producers must ensure storage, treatment and recycling; storage sites need a sealed, weatherproof surface; treatment sites need scales, sealed floors, water collection and wastewater systems; the Environmental Service inspects them yearly", "s"],
-    ["No Latvian collector for EV packs found. Eco Baltia handles hazardous products and small batteries; Latvijas Zaļais punkts covers packaging and electronics waste", "s"],
-    ["Health tests: certified used EVs sell for more and faster (vendor data); dealers want a standard test", "s"],
-    ["ENGYcell: Riga start-up, 450k EUR from Change Ventures and an EU grant, software focus", "s"]]],
-  ["Still open", "", [
-    ["Latvian penalty amounts for battery producers who do not comply", "c"],
-    ["Written quotes from recyclers (Fortum, AE Elemental, Eneris)", "c"],
-    ["Waste-permit type and fire rules for storing used lithium packs", "c"],
-    ["Does ENGYcell buy used packs, and at what price and spec?", "c"],
-    ["What dealers and importers do with swapped packs, and what it costs them", "c"],
-    ["Would Latvian buyers or dealers pay for a battery health test?", "c"]]]
- ]]
-]];
+// Battery Monster: step-by-step explainer. Plain DOM, no libraries (the site CSP only allows scripts from the same origin).
+var TAGS = { s: ["Sourced", "#3ddc97"], a: ["Estimate", "#ffbe0b"], c: ["To check", "#ff6b6b"] };
+var PH = [
+  { name: "Life of the battery", color: "#4ea8ff", n: 3 },
+  { name: "The problem", color: "#ff8f8f", n: 2 },
+  { name: "What we do", color: "#3ddc97", n: 3 },
+  { name: "Where batteries go", color: "#ffbe0b", n: 3 },
+  { name: "Money and next", color: "#b79cff", n: 2 }
+];
 
-const COLORS = ["#3ddc97","#2ec4b6","#4ea8ff","#a78bfa","#ff8fab","#ffbe0b","#ff9f43","#70d6ff","#9be564","#e0aaff","#4ea8ff","#ffd166","#ff6b6b"];
-const FLAGC = { s:"#3ddc97", a:"#ffbe0b", c:"#ff6b6b" };
-const NW = 290, GAP_X = 70, GAP_Y = 12, LH = 17, PADY = 12;
-const svg = document.getElementById("svg"), vp = document.getElementById("vp");
-const ctx = document.createElement("canvas").getContext("2d");
-ctx.font = "13px 'Segoe UI', system-ui, Arial, sans-serif";
+function tg(k) { return k ? '<span class="tg" style="background:' + TAGS[k][1] + '">' + TAGS[k][0] + "</span>" : ""; }
+function node(e, t, s, c) { return '<div class="node" style="--c:' + (c || "#4ea8ff") + '"><div class="e">' + e + '</div><div class="t">' + t + "</div>" + (s ? '<div class="s">' + s + "</div>" : "") + "</div>"; }
+function arr() { return '<span class="arr">➜</span>'; }
+function flow(items, c) {
+  var out = [];
+  items.forEach(function (it, i) { if (i) out.push(arr()); out.push(node(it[0], it[1], it[2], c)); });
+  return '<div class="flow">' + out.join("") + "</div>";
+}
+function tile(e, t, s, c) { return '<div class="tile" style="--c:' + (c || "#4ea8ff") + '"><div class="e">' + e + '</div><div class="t">' + t + '</div><div class="s">' + s + "</div></div>"; }
+function chips(list, c) { return '<div class="chips">' + list.map(function (x) { return '<span class="chip" style="--c:' + (c || "#ffbe0b") + '">' + x + "</span>"; }).join("") + "</div>"; }
+function gauge(pct, l1, l2) { return '<div class="gauge"><i style="width:' + pct + '%"></i></div><div class="gl"><span>' + l1 + "</span><span>" + l2 + "</span></div>"; }
 
-function wrap(text, maxw) {
-  const words = text.split(" "), lines = []; let cur = "";
-  for (const w of words) { const t = cur ? cur + " " + w : w;
-    if (ctx.measureText(t).width <= maxw) cur = t; else { if (cur) lines.push(cur); cur = w; } }
-  if (cur) lines.push(cur); return lines;
-}
-function build(a, depth, color, idx) {
-  const n = { text: a[0], flag: a[1], kids: (a[2] || []).map((k, i) => build(k, depth + 1, color, i)), depth, color, open: false };
-  n.w = depth === 0 ? 330 : NW;
-  n.lines = wrap(n.text, n.w - 40 - (n.kids.length ? 14 : 0));
-  n.h = n.lines.length * LH + PADY * 2;
-  return n;
-}
-const root = build(DATA, 0, "#ffffff");
-root.kids.forEach((s, i) => { (function paint(n) { n.color = COLORS[i % COLORS.length]; n.kids.forEach(paint); })(s); });
-root.open = true;
+var STEPS = [
+  { icon: "⛏️", short: "Made", title: "Where batteries come from", line: "A battery starts as metals like lithium and nickel. They become cells, the cells become a pack, and the carmaker fits the pack into the car.",
+    viz: function () { return flow([["⛏️", "Metals", "lithium, nickel, cobalt"], ["🔋", "Cells", "LG, CATL, Panasonic..."], ["📦", "Pack", "cells + computer + cooling"], ["🚗", "Car", "built by the carmaker"]], "#4ea8ff") + chips(["The carmaker is the legal 'producer' of the battery"], "#4ea8ff"); },
+    stats: [["40–80 kWh", "typical car pack", "s"], ["300–480 kg", "weight of a pack", "s"], ["~10%", "LFP share in the EU (2025); the rest is nickel-based", "s"]],
+    pts: [["🏭", "Because the carmaker is the 'producer', the law makes it responsible for the battery at the end of its life.", "s"], ["🔋", "Most European cars use nickel-based batteries (NMC/NCA). Cheaper LFP batteries are still rare here.", "s"]] },
+  { icon: "🚗", short: "In the car", title: "First life: driving", line: "The battery powers the car for years. Latvia has few electric cars so far, and many arrived second-hand from abroad.",
+    viz: function () { return '<div class="stack"><div style="font-size:70px">🚗🔋</div>' + gauge(100, "Battery full health", "100%") + "</div>"; },
+    stats: [["13,916", "electric cars in Latvia, end of 2025", "s"], ["1,602", "new electric cars registered in 2025", "s"], ["about half", "of the stock came as used imports", "a"]],
+    pts: [["⏳", "Most batteries stay in cars until the mid-2030s, so only a few come out now.", "s"], ["🌍", "Latvia has to bring many packs in from other countries to have enough volume.", "a"]] },
+  { icon: "📉", short: "Wears out", title: "The battery gets weaker and is swapped", line: "After years the battery holds less energy. At about 70–80% left it is swapped. It is not dead, just too weak for a car.",
+    viz: function () { return '<div class="stack" style="width:100%">' + gauge(100, "New", "100%") + '<div style="font-size:26px">⬇️</div>' + gauge(75, "When swapped", "about 70–80% left") + "</div>" + flow([["🔧", "Dealer or garage", "swaps the pack"], ["📦", "Old pack", "comes out"], ["🆕", "New pack", "goes in"]], "#4ea8ff"); },
+    stats: [["70–80%", "capacity left when a pack leaves the car", "s"], ["60–67%", "measured on real first-generation Nissan Leaf packs", "s"]],
+    pts: [["🔧", "Who swaps it: a dealer, a garage, or an insurer after a crash.", "a"], ["❓", "What a replacement pack costs in Europe: not found yet.", "c"]] },
+  { icon: "📦", short: "Stuck", title: "Old packs sit in storage", line: "The swapped pack often just sits. There is nobody to hand it to, shipping is expensive, and the rules are unclear.",
+    viz: function () { return '<div class="grid2">' + tile("🚚", "Shipping is costly", "about €350–600 per pack; damaged packs far more", "#ff8f8f") + tile("🕳️", "No collector", "no Latvian collector for EV packs found", "#ff8f8f") + tile("📄", "Used or waste?", "must be proven with a test record and a contract", "#ff8f8f") + tile("🔥", "Storage rules", "permit and fire rules for lithium not confirmed", "#ff8f8f") + "</div>"; },
+    stats: [["€350–600", "freight per pack inside the EU", "a"]],
+    pts: [["📄", "A pack counts as 'used' only with a health test, a sale contract and safe packaging. Otherwise it is waste.", "s"], ["🔥", "Latvian law asks for a sealed, weatherproof storage surface or container.", "s"], ["📞", "What dealers and importers really do with swapped packs: we must ask them.", "c"]] },
+  { icon: "💶", short: "Who pays", title: "Who has to pay, and what if they don't?", line: "By EU law the carmaker or importer must take old batteries back and pay for it. The price is not fixed by law. It is agreed between companies.",
+    viz: function () { return flow([["🏭", "Carmaker or importer", "must organise and pay"], ["💶", "Take-back fee", "agreed price"], ["🏢", "Us", "collect and handle it"]], "#ff8f8f") + chips(["Nickel-based (NMC) pack: about €0–140 per pack", "LFP pack: about €1,050–1,400 per pack (2024, moving)"], "#ffbe0b"); },
+    stats: [["€0–140", "per NMC pack (2024 gate fees)", "s"], ["€1,050–1,400", "per LFP pack (2024)", "s"]],
+    pts: [["⚖️", "If a producer doesn't comply, each country sets the penalty. Batteries can also be recalled or banned from sale.", "s"], ["❓", "Latvian fine amounts: not found yet.", "c"], ["🔄", "If we repurpose a battery, we become its 'producer' ourselves.", "s"], ["🤝", "Our pitch to producers: we do your take-back duty for you.", "a"]] },
+  { icon: "🏭", short: "Our hub", title: "Our take-back hub", line: "We collect used packs from many places into one safe site in Latvia and check them in.",
+    viz: function () { return '<div class="flow">' + ["🚌|Fleets and buses", "🔧|Dealers and garages", "🚨|Insurers", "🧰|Dismantlers", "🌍|Imports"].map(function (x) { var p = x.split("|"); return node(p[0], p[1], "", "#3ddc97"); }).join("") + "</div><div style='text-align:center;font-size:28px;margin:6px 0'>⬇️</div>" + '<div class="flow">' + node("🏭", "Our hub", "intake · safe storage · paperwork", "#3ddc97") + "</div>"; },
+    stats: [["4,570", "batteries taken out of scrapped cars in Norway in 2024: a big nearby source", "s"]],
+    pts: [["🧠", "We read the battery's history from its own computer (BMS). The law gives us access.", "s"], ["🚫", "At the start we do not take damaged packs. They are very costly and risky.", "a"], ["🧯", "Safe storage means a fire-safe room, a sealed floor and a low charge.", "a"], ["❓", "Which exact waste permit we need: to check.", "c"]] },
+  { icon: "🔬", short: "Test", title: "We test every pack", line: "Each pack gets a check-up. The result decides: live again, take apart, or recycle.",
+    viz: function () { return flow([["📖", "Read data", ""], ["👀", "Look for damage", ""], ["⚡", "Insulation", ""], ["🔋", "Self-discharge", ""], ["📏", "Capacity", ""], ["⚖️", "Balance", ""]], "#3ddc97") + '<div class="chips" style="margin-top:14px"><span class="chip" style="--c:#3ddc97">A · reuse</span><span class="chip" style="--c:#ffbe0b">B · take apart</span><span class="chip" style="--c:#b79cff">C · recycle</span></div>'; },
+    stats: [["minutes", "a quick health test", "s"], ["hours", "a full capacity test", "s"], ["~€99", "price of a consumer health test", "s"]],
+    pts: [["🎯", "A single health number is not enough. A 90% pack can still fail on leaks, imbalance or hidden damage.", "s"], ["💶", "At module level, a test costs about €57 per kWh in one study.", "s"], ["🧰", "Our equipment list and the cost per pack: to work out.", "c"]] },
+  { icon: "✅", short: "Certify", title: "Approvals: what we can do ourselves", line: "There are three kinds of approval. We can do some ourselves; for others we need an outside lab.",
+    viz: function () { return '<div class="grid3">' + tile("📝", "Used, not waste", "A test record, a sale contract and safe packaging. <b>We can issue this.</b>", "#3ddc97") + tile("📋", "New product", "A repurposed battery is a new product and we are its maker: self-declared conformity, safety tests, new label, new battery passport from Feb 2027.", "#ffbe0b") + tile("🏅", "Lab certificates", "Standards like UL 1974 and IEC 63330. <b>Needs an accredited lab.</b>", "#b79cff") + "</div>"; },
+    stats: [["18 Feb 2027", "battery passport becomes mandatory", "s"]],
+    pts: [["🛡️", "Insurers prefer LFP, outdoor sites and monitoring. Nickel-based second life is harder to insure.", "a"], ["⏳", "Some EU rules are still being finished (end-of-waste, passport access).", "s"]] },
+  { icon: "⚡", short: "Reuse", title: "Route A: a second life. Who buys?", line: "The good packs live again, mostly as stationary storage or as replacement packs.",
+    viz: function () { return '<div class="grid2">' + tile("⚡", "ENGYcell", "Riga storage start-up. To confirm: do they buy used packs?", "#ffbe0b") + tile("🚗", "Drivers", "A tested used pack as a replacement, plus a trade-in of the old one.", "#ffbe0b") + tile("🏭", "Businesses", "EV charger and bus-depot buffers, backup for clinics and schools, farms with solar.", "#ffbe0b") + tile("🔍", "Health test service", "For dealers and importers who sell used electric cars.", "#ffbe0b") + "</div>"; },
+    stats: [["€550–1,100", "extra price for a certified used EV (vendor data)", "s"], ["36%", "faster sale with a health certificate (vendor data)", "s"], ["~$8 vs ~$30", "per kWh: what recyclers vs second-life firms pay (2024)", "a"]],
+    pts: [["📊", "90% of 60 UK dealers want a standard battery test.", "s"], ["🇱🇻", "Latvia gives a €3,000 subsidy for used electric cars. Local demand for a test is not yet tested.", "c"], ["❓", "ENGYcell's spec, volume and price: only they can say.", "c"]] },
+  { icon: "♻️", short: "Recycle", title: "Route B: recycle in our own line (later)", line: "Packs that can't be reused are taken apart and shredded. We sell what comes out.",
+    viz: function () { return flow([["📦", "Pack", ""], ["🔧", "Modules", "take apart"], ["⚙️", "Shred", "safe, controlled"]], "#ffbe0b") + '<div style="text-align:center;font-size:26px;margin:6px 0">⬇️</div>' + '<div class="grid2"><div class="tile" style="--c:#d68250"><div class="t">🟠 Copper</div><div class="s">to scrap buyers</div></div><div class="tile" style="--c:#c0cad4"><div class="t">⚪ Aluminium</div><div class="s">to scrap buyers</div></div><div class="tile" style="--c:#788796"><div class="t">⬜ Steel</div><div class="s">to scrap buyers</div></div><div class="tile" style="--c:#fff"><div class="t">⚫ Black mass</div><div class="s">to a refiner: nickel, cobalt, lithium powder</div></div></div>'; },
+    stats: [["60–72%", "of nickel and cobalt value paid for black mass (2024)", "s"], ["3–5%", "paid for the lithium (2024)", "s"]],
+    pts: [["🚫", "We do not refine. Refining is a huge chemical plant (tens or hundreds of millions of euros).", "s"], ["❓", "How much black mass one pack gives, what the line costs, and the permits: not known yet.", "c"]] },
+  { icon: "🚚", short: "Send", title: "Route C: send to Poland or Finland", line: "What we can't process ourselves goes to big recyclers abroad.",
+    viz: function () { return flow([["🏭", "Our hub", "Latvia"], ["🇫🇮", "Fortum", "Finland"]], "#ffbe0b") + '<div style="height:10px"></div>' + flow([["🏭", "Our hub", "Latvia"], ["🇵🇱", "AE Elemental, Eneris", "Poland"]], "#ffbe0b"); },
+    stats: [["€350–600", "freight per pack", "a"], ["≈ break-even", "for nickel-based packs", "a"], ["we pay", "for LFP packs (about €1,250–1,800 per pack)", "a"]],
+    pts: [["📜", "Dangerous-goods transport rules apply, and cross-border waste needs consent.", "s"], ["💬", "Nobody publishes prices. We need written quotes.", "c"]] },
+  { icon: "📊", short: "Money", title: "A first rough pilot: 100 packs a year", line: "Before staff and rent, a small pilot loses money in the base case. Shipping whole packs abroad is the biggest cost.",
+    viz: function () { function bar(l, v, col) { var w = Math.abs(v) / 60 * 50; var s = v < 0 ? "right:50%;width:" + w + "%" : "left:50%;width:" + w + "%"; return '<div class="bar"><span>' + l + '</span><div class="track"><div class="fill" style="' + s + ";background:" + col + '"></div></div><b>' + (v > 0 ? "+" : "") + v + "k €</b></div>"; } return '<div class="bars">' + bar("Low case", -58.6, "#ff6b6b") + bar("Base case", -20.8, "#ffbe0b") + bar("High case", 39.3, "#3ddc97") + '</div><div class="gl" style="margin-top:8px"><span>Result per year, before staff, rent, insurance and equipment</span></div>'; },
+    stats: [["+€8k–49k", "extra per year from a health-test service (100–600 tests)", "a"], ["not counted", "staff, storage, insurance, permits, equipment", "c"]],
+    pts: [["🧮", "Assumes 30 packs sold to ENGYcell and 70 shipped whole to a recycler.", "a"], ["💡", "What helps: fees from producers, a paid test service, cheap packs, more volume, and later our own processing.", "a"], ["📝", "All numbers are rough estimates built from our research. We will replace them with quotes.", "a"]] },
+  { icon: "🔎", short: "Next", title: "What we know, and what is still open", line: "We found part of the answers on the web. The rest needs phone calls and quotes.",
+    viz: function () { return '<div class="grid2"><div class="tile" style="--c:#3ddc97"><div class="t">✅ Found</div><div class="s">Latvian law asks for sealed storage and yearly inspection. Health tests sell used EVs for more (vendor data). ENGYcell is a Riga start-up with €450k funding.</div></div><div class="tile" style="--c:#ff6b6b"><div class="t">❓ Still open</div><div class="s">Latvian penalty amounts. Recycler quotes. Waste permit and fire rules. Whether ENGYcell buys packs. What dealers do with old packs. Demand for a health test in Latvia.</div></div></div>'; },
+    stats: [],
+    pts: [["📞", "Next: call dealers, importers and ENGYcell, and ask three recyclers for written quotes.", "a"]] }
+];
 
-function layout(n, y0) {
-  if (n.open && n.kids.length) {
-    let cy = 0; n.kids.forEach(k => { layout(k, 0); cy += k.sh; }); cy += GAP_Y * (n.kids.length - 1);
-    n.sh = Math.max(n.h, cy);
-  } else n.sh = n.h;
+var cur = -1;
+var phasesEl = document.getElementById("phases"), stripEl = document.getElementById("strip"), panelEl = document.getElementById("panel"), pinEl = document.getElementById("pin"), hintEl = document.getElementById("hint");
+
+function build() {
+  var idx = 0, html = "";
+  PH.forEach(function (p) {
+    for (var k = 0; k < p.n; k++) { STEPS[idx + k].color = p.color; STEPS[idx + k].phase = p.name; }
+    html += '<div class="phase" style="flex:' + p.n + ";background:" + p.color + '">' + p.name + "</div>";
+    idx += p.n;
+  });
+  phasesEl.innerHTML = html;
+  stripEl.innerHTML = STEPS.map(function (s, i) {
+    return '<button class="step" data-i="' + i + '" style="--c:' + s.color + '" aria-label="Step ' + (i + 1) + ": " + s.title + '"><div class="badge" style="background:' + s.color + '">' + (i + 1) + '</div><div class="card"><div class="ico">' + s.icon + '</div><div class="lab">' + s.short + "</div></div></button>";
+  }).join("");
+  Array.prototype.forEach.call(stripEl.children, function (b) { b.addEventListener("click", function () { show(parseInt(b.getAttribute("data-i"), 10)); }); });
 }
-function place(n, x, y) {
-  n.x = x; n.y = y + n.sh / 2 - n.h / 2;
-  if (n.open && n.kids.length) {
-    const total = n.kids.reduce((s, k) => s + k.sh, 0) + GAP_Y * (n.kids.length - 1);
-    let cy = y + (n.sh - total) / 2;
-    n.kids.forEach(k => { place(k, x + n.w + GAP_X, cy); cy += k.sh + GAP_Y; });
-  }
+
+function show(i) {
+  if (i < 0 || i >= STEPS.length) return;
+  cur = i; var s = STEPS[i];
+  Array.prototype.forEach.call(stripEl.children, function (b, k) { b.classList.toggle("on", k === i); });
+  panelEl.style.setProperty("--c", s.color);
+  var stats = s.stats.map(function (x) { return '<div class="stat" style="--c:' + s.color + '"><b>' + x[0] + "</b><span>" + x[1] + " " + tg(x[2]) + "</span></div>"; }).join("");
+  var pts = s.pts.map(function (x) { return '<li><span class="pi">' + x[0] + "</span><span>" + x[1] + tg(x[2]) + "</span></li>"; }).join("");
+  pinEl.innerHTML =
+    '<div class="phead"><span class="big">' + s.icon + '</span><div><div style="font-size:13px;color:' + s.color + ';font-weight:700">STEP ' + (i + 1) + " OF " + STEPS.length + " · " + s.phase.toUpperCase() + '</div><h2 class="ptitle">' + s.title + '</h2></div>' +
+    '<div class="nav"><button class="nb" id="prev">← Back</button><button class="nb" id="next">Next →</button><button class="nb" id="close">Close</button></div></div>' +
+    '<p class="line">' + s.line + "</p>" +
+    '<div class="cols"><div class="viz" style="--c:' + s.color + '">' + s.viz() + '</div><div>' + (stats ? '<div class="stats">' + stats + "</div>" : "") + '<ul class="pts">' + pts + "</ul></div></div>";
+  document.getElementById("prev").addEventListener("click", function () { show(cur - 1); });
+  document.getElementById("next").addEventListener("click", function () { show(cur + 1); });
+  document.getElementById("close").addEventListener("click", closePanel);
+  document.getElementById("prev").disabled = i === 0; document.getElementById("next").disabled = i === STEPS.length - 1;
+  panelEl.classList.add("open"); panelEl.scrollTop = 0; hintEl.style.display = "none";
+  var b = stripEl.children[i]; if (b.scrollIntoView) b.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
 }
-let tx = 40, ty = 80, sc = 0.9;
-function applyT() { vp.setAttribute("transform", `translate(${tx},${ty}) scale(${sc})`); }
-function draw() {
-  layout(root, 0); place(root, 0, 0);
-  let html = "";
-  (function links(n) { if (n.open) n.kids.forEach(k => {
-      const x1 = n.x + n.w, y1 = n.y + n.h / 2, x2 = k.x, y2 = k.y + k.h / 2, mx = (x1 + x2) / 2;
-      html += `<path class="link" stroke="${k.color}" d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}"/>`; links(k); }); })(root);
-  (function nodes(n, i) {
-    const fill = n.depth === 0 ? "#1d4f7a" : "#12263c";
-    const stroke = n.depth === 0 ? "#ffffff" : n.color;
-    html += `<g class="node ${n.kids.length ? 'has' : ''}"><rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" fill="${fill}" stroke="${stroke}"/>`;
-    if (n.flag) html += `<circle cx="${n.x + 16}" cy="${n.y + 16}" r="5" fill="${FLAGC[n.flag]}"/>`;
-    n.lines.forEach((l, j) => {
-      const bold = (n.depth <= 1) ? ' style="font-weight:700;font-size:' + (n.depth === 0 ? 17 : 14) + 'px"' : "";
-      html += `<text x="${n.x + (n.flag ? 30 : 16)}" y="${n.y + PADY + 13 + j * LH}"${bold}>${l.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</text>`; });
-    if (n.kids.length) html += `<text class="plus" x="${n.x + n.w - 18}" y="${n.y + n.h / 2 + 5}">${n.open ? "−" : "+"}</text>`;
-    html += `</g>`;
-    if (n.open) n.kids.forEach(k => nodes(k));
-  })(root);
-  vp.innerHTML = html;
-  // attach clicks using traversal order
-  const els = vp.querySelectorAll(".node"); const list = []; (function t(n) { list.push(n); if (n.open) n.kids.forEach(t); })(root);
-  els.forEach((el, i) => { const n = list[i]; if (n.kids.length) el.addEventListener("click", ev => { ev.stopPropagation(); toggle(n); }); });
-}
-function closeAll(n) { n.open = false; n.kids.forEach(closeAll); }
-function openAll(n) { n.open = true; n.kids.forEach(openAll); }
-function toggle(n) {
-  if (n.depth === 1 && !n.open) { root.kids.forEach(s => { if (s !== n) closeAll(s); }); n.open = true; n.kids.forEach(k => { k.open = true; }); }
-  else n.open = !n.open;
-  draw(); if (n.depth === 1) focusOn(n);
-}
-function focusOn(n) { tx = 40 - n.x * sc + 20; ty = (innerHeight / 2) - (n.y + n.sh / 2) * sc; applyT(); }
-function fit() {
-  let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
-  (function t(n) { x0 = Math.min(x0, n.x); y0 = Math.min(y0, n.y); x1 = Math.max(x1, n.x + n.w); y1 = Math.max(y1, n.y + n.h); if (n.open) n.kids.forEach(t); })(root);
-  const w = innerWidth - 60, h = innerHeight - 110;
-  sc = Math.min(w / (x1 - x0), h / (y1 - y0), 1.1); tx = 30 - x0 * sc + (w - (x1 - x0) * sc) / 2; ty = 80 - y0 * sc + (h - (y1 - y0) * sc) / 2; applyT();
-}
-document.getElementById("bAll").onclick = () => { openAll(root); draw(); fit(); };
-document.getElementById("bNone").onclick = () => { closeAll(root); root.open = true; draw(); fit(); };
-document.getElementById("bFit").onclick = fit;
-let drag = null;
-svg.addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, tx, ty }; svg.classList.add("drag"); });
-addEventListener("pointermove", e => { if (!drag) return; tx = drag.tx + e.clientX - drag.x; ty = drag.ty + e.clientY - drag.y; applyT(); });
-addEventListener("pointerup", () => { drag = null; svg.classList.remove("drag"); });
-svg.addEventListener("wheel", e => { e.preventDefault(); const k = Math.exp(-e.deltaY * 0.0012), ns = Math.max(0.2, Math.min(2.5, sc * k));
-  tx = e.clientX - (e.clientX - tx) * ns / sc; ty = e.clientY - (e.clientY - ty) * ns / sc; sc = ns; applyT(); }, { passive: false });
-draw(); fit();
-addEventListener("resize", fit);
+function closePanel() { panelEl.classList.remove("open"); cur = -1; Array.prototype.forEach.call(stripEl.children, function (b) { b.classList.remove("on"); }); hintEl.style.display = ""; }
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight") show(cur < 0 ? 0 : Math.min(cur + 1, STEPS.length - 1));
+  else if (e.key === "ArrowLeft") show(cur < 0 ? 0 : Math.max(cur - 1, 0));
+  else if (e.key === "Escape") closePanel();
+});
+build();
