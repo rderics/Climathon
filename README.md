@@ -18,7 +18,8 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 | `docs/PACK_SPECS_AND_RECYCLING.md` | Specs of common EV packs (kWh, V, kg), spent-pack process, recyclers |
 | `docs/RECYCLING_ROUTES_AND_COSTS.md` | Recycler shortlist, who pays whom, shipping cost per pack |
 | `media/climathon_concept_video.mp4` | 2-minute explainer video of the idea (source in `media/video_source/`) |
-| `docs/mindmap.html` | Interactive mind map of the whole process A to Z (open in a browser); notes in `docs/MINDMAP.md` |
+| `web/battery-monster/` | Interactive mind map of the whole process A to Z (live: rderics.id.lv/battery-monster); notes in `docs/MINDMAP.md` |
+| `docs/ANSWERS.md` | Answers found by web research to the question list, with what is still open |
 | `docs/QUESTIONS.md` | Question list for experts, dealers, ENGYcell, recyclers and authorities |
 | `docs/RULES.md` | Judging criteria (5 x 20 %), 3+3 min pitch, prizes |
 | `docs/IDEA.md` | The idea in one page (v2) |

@@ -1,44 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Used EV batteries: process A to Z</title>
-<style>
-  :root { --bg:#0b1929; --panel:#12263c; --text:#f2f6fa; --muted:#9fb3c8; }
-  * { box-sizing: border-box; }
-  html, body { margin:0; height:100%; background:var(--bg); color:var(--text); font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif; overflow:hidden; }
-  #bar { position:fixed; top:0; left:0; right:0; z-index:5; display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px 14px; background:rgba(11,25,41,.92); border-bottom:1px solid #1e3a57; }
-  #bar h1 { font-size:16px; margin:0 12px 0 0; font-weight:700; }
-  button { background:#1b3a5a; color:var(--text); border:1px solid #2f5b86; border-radius:8px; padding:6px 12px; font-size:13px; cursor:pointer; }
-  button:hover { background:#24507d; }
-  .legend { margin-left:auto; display:flex; gap:14px; font-size:12px; color:var(--muted); flex-wrap:wrap; }
-  .dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:-1px; }
-  #hint { position:fixed; bottom:10px; left:14px; z-index:5; font-size:12px; color:var(--muted); background:rgba(11,25,41,.85); padding:6px 10px; border-radius:8px; }
-  svg { width:100vw; height:100vh; display:block; cursor:grab; }
-  svg.drag { cursor:grabbing; }
-  .node rect { rx:12; ry:12; stroke-width:2.5; }
-  .node text { fill:#f2f6fa; font-size:13px; pointer-events:none; }
-  .node.has { cursor:pointer; }
-  .node .plus { fill:#9fb3c8; font-size:14px; font-weight:700; }
-  .link { fill:none; stroke-width:2.2; opacity:.55; }
-</style>
-</head>
-<body>
-<div id="bar">
-  <h1>Used EV batteries: the whole process, A to Z</h1>
-  <button id="bAll">Expand all</button>
-  <button id="bNone">Collapse all</button>
-  <button id="bFit">Fit to screen</button>
-  <div class="legend">
-    <span><span class="dot" style="background:#3ddc97"></span>sourced in our research</span>
-    <span><span class="dot" style="background:#ffbe0b"></span>our estimate / assumption</span>
-    <span><span class="dot" style="background:#ff6b6b"></span>unknown, to check</span>
-  </div>
-</div>
-<div id="hint">Click a box to open or close it. Drag to move, scroll to zoom. Clicking a stage opens it and closes the others.</div>
-<svg id="svg"><g id="vp"></g></svg>
-<script>
 // flag: s = sourced, a = estimate/assumption, c = to check. Format: [text, flag, children]
 const DATA = ["Used EV batteries: from the factory to second life or recycling", "", [
  ["1 · Where batteries come from", "", [
@@ -71,7 +30,7 @@ const DATA = ["Used EV batteries: from the factory to second life or recycling",
   ["Nobody to hand them to: no Latvian EV-pack collector found", "c"],
   ["Cost: freight about 350-600 EUR per pack; damaged packs about 1,300-2,730 USD", "a"],
   ["Legal limbo: 'used' vs 'waste' must be proven (test record + contract + transport protection)", "s"],
-  ["Storage rules: hazardous-waste permit and fire safety. Latvian specifics not confirmed", "c"],
+  ["Storage rules (Cabinet Reg. 485): sealed, weatherproof surface or container. Permit type and fire rules for lithium packs still to confirm", "c"],
   ["What dealers and importers really do and what it costs them", "c", [
     ["Ask importers, dealers, Rīgas satiksme", "c"]]]
  ]],
@@ -86,7 +45,7 @@ const DATA = ["Used EV batteries: from the factory to second life or recycling",
     ["Authorities can restrict, withdraw or recall a non-compliant battery (Art. 83)", "s"],
     ["Example: Germany has administrative fines in its Battery Act (BattDG, section 60)", "s"],
     ["Latvia: fine amounts NOT found", "c"]]],
-  ["Latvia: producers register with the State Environmental Service register; a producer organisation (e.g. Latvijas Zaļais punkts) may take over duties", "c"],
+  ["Latvia (Cabinet Reg. 485): battery producers must ensure storage, treatment and recycling; they register within one month; waste traders register with the State Environmental Service before starting", "s"],
   ["If WE repurpose: we become the producer (Art. 56(2)); the original producer pays no extra (Art. 56(5))", "s"],
   ["Our pitch to producers: we fulfil your take-back duty; our price = their avoided cost", "a"]
  ]],
@@ -128,10 +87,10 @@ const DATA = ["Used EV batteries: from the factory to second life or recycling",
   ["Insurers prefer LFP, outdoor sites and monitoring, so NMC second life is harder to insure", "a"]
  ]],
  ["9 · Route A: second life, who buys", "", [
-  ["ENGYcell (Riga start-up: storage hardware plus trading / VPP software)", "s", [
-    ["No named installations found; confirm they buy packs, spec, volume, price, warranty", "c"],
+  ["ENGYcell (Riga start-up founded 2024: storage software, hardware and trading; EUR 450k funding in 2025)", "s", [
+    ["To confirm with them: do they buy used packs? Make, health, voltage, volume, price, warranty", "c"],
     ["Reference price: recyclers about 8 USD/kWh, second-life firms about 30 USD/kWh (2024, North America)", "a"],
-    ["Risk: Baltic balancing revenues are down 70-90%, so do they still want packs?", "c"]]],
+    ["Market risk: Baltic balancing revenues are down 70-90%", "a"]]],
   ["Drivers who need a replacement pack: sell a tested used pack, offer the test service, take their old pack as a trade-in", "a", [
     ["Price per pack in Europe not found", "c"]]],
   ["Businesses needing storage or backup", "", [
@@ -141,7 +100,10 @@ const DATA = ["Used EV batteries: from the factory to second life or recycling",
     ["Events and construction sites (portable power)", "s"]]],
   ["Light vehicles and machines (sweepers, carts)", "s"],
   ["Do it ourselves: build storage units (needs conformity, insurance, installers)", "a"],
-  ["Services: battery health test for dealers and importers; trade-in of their packs", "a"]
+  ["Services: battery health test for dealers and importers; trade-in of their packs", "a", [
+    ["Vendor data (Aviloo): certified used EVs sold for 550-1,100 EUR more and up to 36% faster", "s"],
+    ["90% of 60 UK dealers want a standard battery test (Startline survey); the test costs about 99 EUR", "s"],
+    ["Latvia: used-EV buyers get a 3,000 EUR subsidy; local demand for a test is not yet tested", "c"]]]
  ]],
  ["10 · Route B: recycle mechanically (our own line, later)", "", [
   ["Steps: discharge safely, dismantle pack into modules (housing, cables, BMS, cooling), shred in a controlled line, separate", "a", [
@@ -178,14 +140,19 @@ const DATA = ["Used EV batteries: from the factory to second life or recycling",
   ["Reading: whole-pack freight is the biggest cost. Profit needs producer fees, test-service income, cheap packs, and later on-site pre-processing", "a"],
   ["All numbers are illustrative, built by us from the repo's research; replace with quotes", "a"]
  ]],
- ["13 · To check (who to ask)", "", [
-  ["Laura Berga, Latvijas Zaļais punkts: who collects EV packs in Latvia, and at what fee?", "c"],
-  ["Importers, dealers, Rīgas satiksme: what do they do with swapped packs and what does it cost?", "c"],
-  ["Fortum, AE Elemental, Eneris: written quotes (EUR per tonne, boxes, acceptance)", "c"],
-  ["ENGYcell: do they buy packs? Spec and price?", "c"],
-  ["State Environmental Service and fire service: permits and fire rules for storage", "c"],
-  ["likumi.lv: Latvian penalty amounts for battery producer non-compliance", "c"],
-  ["Would anyone pay for a battery health test, and how much?", "c"]
+ ["13 · Answers found so far, and what is still open", "", [
+  ["Found", "", [
+    ["Latvian law (Cabinet Reg. 485): producers must ensure storage, treatment and recycling; storage sites need a sealed, weatherproof surface; treatment sites need scales, sealed floors, water collection and wastewater systems; the Environmental Service inspects them yearly", "s"],
+    ["No Latvian collector for EV packs found. Eco Baltia handles hazardous products and small batteries; Latvijas Zaļais punkts covers packaging and electronics waste", "s"],
+    ["Health tests: certified used EVs sell for more and faster (vendor data); dealers want a standard test", "s"],
+    ["ENGYcell: Riga start-up, 450k EUR from Change Ventures and an EU grant, software focus", "s"]]],
+  ["Still open", "", [
+    ["Latvian penalty amounts for battery producers who do not comply", "c"],
+    ["Written quotes from recyclers (Fortum, AE Elemental, Eneris)", "c"],
+    ["Waste-permit type and fire rules for storing used lithium packs", "c"],
+    ["Does ENGYcell buy used packs, and at what price and spec?", "c"],
+    ["What dealers and importers do with swapped packs, and what it costs them", "c"],
+    ["Would Latvian buyers or dealers pay for a battery health test?", "c"]]]
  ]]
 ]];
 
@@ -277,6 +244,3 @@ svg.addEventListener("wheel", e => { e.preventDefault(); const k = Math.exp(-e.d
   tx = e.clientX - (e.clientX - tx) * ns / sc; ty = e.clientY - (e.clientY - ty) * ns / sc; sc = ns; applyT(); }, { passive: false });
 draw(); fit();
 addEventListener("resize", fit);
-</script>
-</body>
-</html>

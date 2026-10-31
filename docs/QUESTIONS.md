@@ -1,4 +1,5 @@
 # Questions to ask (from the red "to check" items in the mind map)
+> Answers found by web research so far: docs/ANSWERS.md. What is still open needs a person to call.
 
 Today is Saturday 31 Oct. **Expert carousel: round 1 11:30-13:00, round 2 13:30-15:00 (15 minutes each, no sign-up).** 30-minute sessions: 15:00-17:00 and 18:40-20:00 (book on Notion). Mentor check-ins: 09:30-11:30 and 20:40-22:00. Experts and rooms: docs/CONTEXT.md.
 
