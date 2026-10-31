@@ -22,6 +22,7 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 | `docs/ANSWERS.md` | Answers found by web research to the question list, with what is still open |
 | `docs/QUESTIONS.md` | Question list for experts, dealers, ENGYcell, recyclers and authorities |
 | `docs/BENCHMARKS.md` | What we can take from tozero, Voltfang and Skeleton Technologies |
+| `docs/GRADING_EQUIPMENT.md` | Topsound products and prices, alternatives, rough grading-station budget |
 | `docs/RULES.md` | Judging criteria (5 x 20 %), 3+3 min pitch, prizes |
 | `docs/IDEA.md` | The idea in one page (v2) |
 | `docs/IDEA_DETAIL.md` | Full concept detail: economics, risks, Q&A, expert questions |
