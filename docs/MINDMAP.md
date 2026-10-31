@@ -2,21 +2,14 @@
 
 Live page: https://rderics.id.lv/battery-monster . Source: `web/battery-monster/` (`index.html` + `app.js`; serve the folder or open index.html, it needs app.js next to it). Answers found by research are in docs/ANSWERS.md. Click a stage to open it (it closes the others), drag to move, scroll to zoom. Dots: green = sourced in our research, amber = our estimate or assumption, red = unknown / to check.
 
-## The 14 stages
-1. Where batteries come from (materials, cell makers, pack, OEM as legal producer)
-2. First life in the car (Latvia: 13,916 EVs end-2025; about half arrived as used imports)
-3. Degradation and the swap (leaves the car at about 70-80%; dealer / garage / insurer)
-4. Why used packs sit in storage (no collector found, freight, used-vs-waste limbo, storage rules unconfirmed)
-5. Who must pay, how much, and what if they don't comply
-6. Take-back: our hub intake
-7. Test and grade
-8. Certify: can we do it ourselves?
-9. Route A: second life, who buys (ENGYcell, drivers needing a replacement, businesses, do it ourselves)
-10. Route B: recycle mechanically (our own line, later)
-11. Route C: send to Poland or Finland
-12. Money: costs, revenue, profit
-13. To check (who to ask)
-14. Our pitch: what we sell (four income lines, the 3-minute story, honest caveats)
+## The 7 steps (public page, simplified 31 Oct)
+1. The problem: old EV batteries pile up
+2. Who has to pay (carmaker or importer; price agreed)
+3. Collect, test and grade every pack (reuse / take apart / recycle)
+4. Reuse: good packs get a second life (ENGYcell, drivers, businesses, health-test service)
+5. Recycle: shred here, sell metals, ship black mass to Finland or Poland
+6. Money: first rough pilot (100 packs a year)
+7. Our pitch: what we sell, honest caveats, next steps
 
 ## Pilot money model (illustrative, per year, 100 packs)
 Built by us from numbers elsewhere in the repo. **Not validated; replace with quotes.** Treats USD roughly as EUR.
