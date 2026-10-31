@@ -236,6 +236,8 @@
   .btn.ghost:hover { background:var(--raised); }
   @media (max-width:520px) { .btn.ghost { margin-left:0; margin-top:var(--s-75); } }
   .stage { position:relative; margin-top:var(--s-500); border:1px solid var(--line); border-radius:var(--r-3xl); overflow:hidden; background:#000; aspect-ratio:16/9; }
+  .stage-btn { position:absolute; right:var(--s-200); bottom:var(--s-200); padding:var(--s-50) var(--s-100); border-radius:var(--r-lg); border:1px solid var(--line); background:rgba(24,24,24,0.72); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); color:var(--text); font-family:inherit; cursor:pointer; transition:background-color 300ms var(--curve); }
+  .stage-btn:hover { background:var(--raised); }
   .stage video { width:100%; height:100%; display:block; object-fit:cover; }
   .stage-tag { position:absolute; left:var(--s-200); bottom:var(--s-200); padding:var(--s-50) var(--s-100); border-radius:var(--r-lg); background:rgba(24,24,24,0.72); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); color:var(--muted); }
   section { padding-top:var(--s-600); }
@@ -305,7 +307,7 @@
     <p class="sub body-3">We scan crashed EVs and tell insurers: keep, repair or replace the battery.</p>
     <div class="cta"><a class="btn button-md" href="#money">See where we make money <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a> <a class="btn ghost button-md" href="scan.html">Watch the scan in 3D <svg class="ic" aria-hidden="true"><use href="#i-scan"/></svg></a></div>
 
-    <div class="stage reveal"><video id="loop" muted loop playsinline preload="metadata" poster="hero-loop.jpg" aria-label="Animated 3D loop: a crashed EV battery pack is scanned, opened and its cells read, then closed again."><source src="hero-loop.webm" type="video/webm"><source src="hero-loop.mp4" type="video/mp4"></video><span class="stage-tag caption-3">3D loop made in Blender. Illustration, not real data.</span></div>
+    <div class="stage reveal"><video id="loop" muted loop playsinline preload="metadata" poster="hero-loop.jpg" aria-label="Animated 3D loop: a crashed EV battery pack is scanned, opened and its cells read, then closed again."><source src="hero-loop.webm" type="video/webm"><source src="hero-loop.mp4" type="video/mp4"></video><button class="stage-btn button-sm" id="loopbtn" type="button" aria-label="Pause video">Pause</button><span class="stage-tag caption-3">3D loop made in Blender. Illustration, not real data.</span></div>
 
     <div class="journey j7 reveal" aria-label="After a crash we scan the car, write a report, and the insurer decides to keep, repair or replace the battery">
       <div class="node bad" style="--d:0"><div class="disc"><svg class="ic" aria-hidden="true"><use href="#i-siren"/></svg></div><span class="body-5">EV crash</span></div>
@@ -461,6 +463,6 @@
     <p class="body-6">est. is our estimate, goal is a target. Other figures are published data. Climathon 2026, Team 5. Work in progress.</p>
   </div>
 </footer>
-<script src="reveal.js?v=4"></script>
+<script src="reveal.js?v=5"></script>
 </body>
 </html>

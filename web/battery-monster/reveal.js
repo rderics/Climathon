@@ -85,10 +85,18 @@
 
   // Hero loop video: play only while visible, never when the visitor prefers reduced motion
   var vid = document.getElementById('loop');
-  if (vid && 'IntersectionObserver' in window && !reduce) {
+  var vbtn = document.getElementById('loopbtn'), userPaused = false;
+  if (vbtn && vid) {
+    vbtn.addEventListener('click', function () {
+      userPaused = !userPaused;
+      if (userPaused) { vid.pause(); } else { var q = vid.play(); if (q && q.catch) q.catch(function () {}); }
+      vbtn.textContent = userPaused ? 'Play' : 'Pause'; vbtn.setAttribute('aria-label', userPaused ? 'Play video' : 'Pause video');
+    });
+  }
+  if (vid && 'IntersectionObserver' in window) {
     var vio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
-        if (e.isIntersecting) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } else { vid.pause(); }
+        if (e.isIntersecting) { if (!userPaused) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } } else { vid.pause(); }
       });
     }, { threshold: 0.25 });
     vio.observe(vid);
