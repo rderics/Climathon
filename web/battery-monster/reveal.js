@@ -17,6 +17,31 @@
     items.forEach(function (el) { el.classList.add('in'); });
   }
 
+
+  // Count up numbers once when they scroll into view
+  var counters = document.querySelectorAll('[data-count]');
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  function run(el) {
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    if (reduce || target === 0) { el.textContent = fmt(target) + suffix; return; }
+    var start = null, dur = 1400;
+    function tick(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+      el.textContent = fmt(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if ('IntersectionObserver' in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); cio.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    counters.forEach(function (el) { el.textContent = el.getAttribute('data-count') === '0' ? '0' : '0' + (el.getAttribute('data-suffix') || ''); cio.observe(el); });
+  }
+
   // Tagline: each word goes from muted to full colour as it crosses the trigger line
   var tag = document.getElementById('tagline');
   if (tag) {

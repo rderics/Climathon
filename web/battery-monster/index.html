@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="description" content="Battery Monster, Climathon 2026 Team 5: a Baltic partner that collects, tests, reuses and recycles retired EV batteries. Work in progress. Figures marked as estimates.">
+<meta name="description" content="Battery Monster, Climathon 2026 Team 5: a Baltic partner that collects, tests, reuses and recycles retired EV batteries. Work in progress. Figures marked est. are our estimates.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* Design values follow the landing page design skill (Part B): one typeface, flat dark surfaces,
-     fixed spacing and type scales, base motion curve, no gradients except hero heading text. */
+  /* Values follow the landing page design skill: one typeface, flat dark surfaces, fixed spacing and type scales,
+     base motion curve, transform and opacity animation only, gradient only on the hero heading text. */
   :root {
     --s-25:2px; --s-50:4px; --s-75:8px; --s-100:12px; --s-200:16px; --s-300:24px; --s-400:32px; --s-500:40px; --s-600:48px; --s-700:64px; --s-800:80px; --s-900:96px;
     --bg:#000000; --surface:#181818; --inner:#1F1F1F; --raised:#272727; --line:#313131;
@@ -29,51 +29,48 @@
   }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { margin:0; background:var(--bg); color:var(--text); font-family:"Manrope", system-ui, sans-serif; font-size:16px; line-height:24px; font-weight:400; font-style:normal; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:"Manrope", system-ui, sans-serif; font-size:16px; line-height:24px; font-weight:400; font-style:normal; overflow-x:hidden; }
   em, i, cite { font-style:normal; }
   a { color:var(--text); }
+  h1, h2, h3, p { margin:0; }
+  h1, h2 { text-wrap:balance; }
+  p, li { text-wrap:pretty; }
   .ic { width:1em; height:1em; fill:currentColor; flex:0 0 auto; }
+  .muted { color:var(--muted); }
 
-  /* Named text styles */
   .heading-1 { font-size:36px; line-height:40px; font-weight:600; }
   .heading-3 { font-size:30px; line-height:36px; font-weight:600; }
   .heading-6 { font-size:20px; line-height:28px; font-weight:600; }
-  .title-2 { font-size:18px; line-height:28px; font-weight:500; }
   .title-3 { font-size:16px; line-height:24px; font-weight:500; }
-  .body-2 { font-size:16px; line-height:24px; font-weight:500; }
   .body-3 { font-size:16px; line-height:24px; font-weight:400; }
+  .body-5 { font-size:14px; line-height:20px; font-weight:500; }
   .body-6 { font-size:14px; line-height:20px; font-weight:400; }
   .button-md { font-size:16px; line-height:24px; font-weight:600; }
   .button-sm { font-size:14px; line-height:20px; font-weight:600; }
-  .caption-2 { font-size:14px; line-height:20px; font-weight:400; }
   .caption-3 { font-size:12px; line-height:16px; font-weight:600; }
-  .stat { font-size:36px; line-height:40px; font-weight:600; }
+  .stat { font-size:36px; line-height:40px; font-weight:600; font-variant-numeric:tabular-nums; }
   @media (min-width:768px) {
     .heading-1 { font-size:60px; line-height:60px; }
     .heading-3 { font-size:36px; line-height:40px; }
     .stat { font-size:48px; line-height:48px; }
   }
-  h1, h2, h3, p { margin:0; }
-  h1, h2 { text-wrap:balance; }
-  p, li { text-wrap:pretty; }
-  .muted { color:var(--muted); }
 
-  /* Layout */
   .wrap { max-width:1040px; margin:0 auto; padding-left:var(--s-200); padding-right:var(--s-200); }
-  section { padding:var(--s-700) 0 0; scroll-margin-top:var(--s-800); }
+  section { padding-top:var(--s-800); scroll-margin-top:var(--s-800); }
   .section-head { display:flex; flex-direction:column; gap:var(--s-75); margin-bottom:var(--s-400); }
-  .section-head .heading-3 { max-width:680px; }
-  .grid { display:grid; gap:var(--s-200); grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
-  .card { background:var(--surface); border:1px solid var(--line); border-radius:var(--r-3xl); padding:var(--s-200); }
+  .grid { display:grid; gap:var(--s-200); grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:var(--r-3xl); padding:var(--s-200); transition:transform 500ms var(--curve), background-color 300ms var(--curve); }
+  .card:hover { transform:translateY(-4px); background:var(--inner); }
   .chip-ic { display:inline-flex; width:var(--s-500); height:var(--s-500); align-items:center; justify-content:center; background:var(--raised); border-radius:var(--r-lg); font-size:24px; color:var(--ok); }
   .chip-ic.warn { color:var(--warn); } .chip-ic.bad { color:var(--bad); } .chip-ic.info { color:var(--info); }
   .card .chip-ic { margin-bottom:var(--s-100); }
-  .card .heading-6, .card .title-2 { display:block; }
-  .card .body-6 { color:var(--muted); margin-top:var(--s-50); }
+  .card .heading-6 { display:block; }
+  .est { display:inline-block; padding:var(--s-25) var(--s-75); border-radius:999px; background:var(--raised); color:var(--warn); vertical-align:middle; margin-left:var(--s-75); }
 
-  /* Buttons and focus */
   .btn { display:inline-flex; align-items:center; gap:var(--s-75); padding:var(--s-75) var(--s-200); border-radius:var(--r-lg); background:var(--text); color:#000; text-decoration:none; border:1px solid var(--text); transition:transform 300ms var(--curve), background-color 300ms var(--curve); }
   .btn:hover { transform:translateY(-2px); background:#e6e6e6; }
+  .btn:hover .ic { transform:translateX(4px); }
+  .btn .ic { transition:transform 500ms var(--curve); }
   .btn:active { transform:scale(0.98); }
   a:focus-visible, button:focus-visible, summary:focus-visible { outline:2px solid var(--ok); outline-offset:2px; border-radius:var(--r-lg); }
   .skip { position:absolute; left:var(--s-200); top:-80px; background:var(--text); color:#000; padding:var(--s-75) var(--s-200); border-radius:var(--r-lg); z-index:20; }
@@ -107,248 +104,312 @@
   .hero .heading-1 { max-width:680px; background:linear-gradient(to right,#ffffff,#9b9b9b); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
   .hero .sub { max-width:680px; margin-top:var(--s-200); color:var(--muted); }
   .hero .cta { margin-top:var(--s-300); }
+
+  /* Journey visual */
+  .journey { margin-top:var(--s-500); display:grid; grid-template-columns:auto auto auto auto 1fr; gap:var(--s-100); align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-3xl); padding:var(--s-300); }
+  .node { display:flex; flex-direction:column; align-items:center; gap:var(--s-75); text-align:center; position:relative; min-width:72px; }
+  .node .disc { position:relative; width:var(--s-700); height:var(--s-700); border-radius:999px; background:var(--raised); display:flex; align-items:center; justify-content:center; font-size:30px; color:var(--text); }
+  .node .disc::after { content:""; position:absolute; inset:0; border-radius:999px; border:2px solid currentColor; opacity:0; animation:pulse 3.2s var(--curve) infinite; animation-delay:calc(var(--d, 0) * 600ms); }
+  .node.ok .disc { color:var(--ok); } .node.info .disc { color:var(--info); } .node.warn .disc { color:var(--warn); }
+  .link-line { position:relative; width:var(--s-600); height:2px; background:var(--line); overflow:hidden; border-radius:2px; }
+  .link-line::after { content:""; position:absolute; left:0; top:0; width:var(--s-300); height:2px; background:var(--text); animation:travel 2.4s var(--curve) infinite; animation-delay:calc(var(--d, 0) * 600ms); }
+  .branches { display:flex; flex-direction:column; gap:var(--s-200); }
+  .branch { display:flex; align-items:center; gap:var(--s-100); }
+  @keyframes pulse { 0% { transform:scale(1); opacity:0.6; } 70%,100% { transform:scale(1.5); opacity:0; } }
+  @keyframes travel { 0% { transform:translateX(-24px); } 100% { transform:translateX(48px); } }
+  @media (max-width:720px) {
+    .journey { grid-template-columns:1fr; justify-items:center; }
+    .link-line { transform:rotate(90deg); margin:var(--s-100) 0; }
+    .branches { align-items:center; }
+    .branch { flex-direction:column; }
+  }
+  .split { display:flex; gap:var(--s-75); margin-top:var(--s-200); }
+  .split div { padding:var(--s-100) var(--s-200); border-radius:var(--r-lg); color:#000; text-align:center; transform-origin:left; }
+
+  /* Stats */
   .proof { margin-top:var(--s-500); }
   .proof .card .stat { display:block; }
-  .proof .card .body-6 { margin-top:var(--s-75); }
+  .proof .card .body-6 { margin-top:var(--s-75); color:var(--muted); }
 
-  /* Flow */
-  .flow { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:var(--s-200); }
-  .flow .card { position:relative; }
-  .flow .n { position:absolute; top:var(--s-200); right:var(--s-200); color:var(--muted); }
-  .split { display:flex; gap:var(--s-75); margin-top:var(--s-200); }
-  .split div { padding:var(--s-100) var(--s-200); border-radius:var(--r-lg); color:#000; text-align:center; }
-
-  /* Versus */
-  .vs { display:grid; gap:var(--s-200); grid-template-columns:1fr 1fr; }
-  @media (max-width:720px) { .vs { grid-template-columns:1fr; } }
-  .vs h3 { display:flex; align-items:center; gap:var(--s-75); margin-bottom:var(--s-100); }
-  .vs ul { list-style:none; margin:0; padding:0; }
-  .vs li { display:flex; gap:var(--s-100); padding:var(--s-100) 0; border-top:1px solid var(--line); }
-  .vs li:first-child { border-top:0; }
-  .vs li .ic { font-size:24px; margin-top:var(--s-25); }
-  .vs .no .ic { color:var(--bad); } .vs .yes .ic { color:var(--ok); }
-
-  /* Bars */
-  .bars { background:var(--surface); border:1px solid var(--line); border-radius:var(--r-3xl); padding:var(--s-200); margin-top:var(--s-200); }
-  .bars .title-3 { margin-bottom:var(--s-100); display:block; }
-  .stack { display:flex; border-radius:var(--r-lg); overflow:hidden; min-height:var(--s-600); color:#000; }
-  .stack div { display:flex; align-items:center; justify-content:center; text-align:center; padding:var(--s-75); }
-  @media (max-width:640px) { .stack { flex-direction:column; } .stack div { flex:none !important; } }
-  .row { display:flex; align-items:center; gap:var(--s-100); margin:var(--s-75) 0; }
-  .row .l { flex:0 0 140px; color:var(--muted); }
-  .track { flex:1; min-height:var(--s-400); background:var(--inner); border-radius:var(--r-lg); overflow:hidden; }
-  .fill { min-height:var(--s-400); display:flex; align-items:center; padding:0 var(--s-100); color:#000; white-space:nowrap; }
-  @media (max-width:520px) { .row { flex-direction:column; align-items:stretch; gap:var(--s-50); } .row .l { flex:none; } }
-  .note { color:var(--muted); margin-top:var(--s-100); }
-  .pill { display:inline-block; margin-top:var(--s-100); padding:var(--s-25) var(--s-75); border-radius:999px; background:var(--raised); color:var(--ok); }
-
-  /* Why invest */
-  .why { counter-reset:w; }
-  .why .card::before { counter-increment:w; content:counter(w); display:inline-flex; width:var(--s-400); height:var(--s-400); border-radius:var(--r-lg); background:var(--raised); color:var(--ok); font-weight:600; align-items:center; justify-content:center; margin-bottom:var(--s-100); }
-  .road { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:var(--s-200); margin-top:var(--s-200); }
-  .road .card .caption-3 { color:var(--ok); display:block; margin-bottom:var(--s-50); }
-
-  /* Tagline reveal */
+  /* Tagline */
   .tagline { padding-top:var(--s-900); }
   .tagline p { max-width:680px; }
   .tagline .w { opacity:0.3; transition:opacity 500ms var(--curve); }
   .tagline .w.on { opacity:1; }
   html:not(.js) .tagline .w { opacity:1; }
 
+  /* Versus */
+  .vs { display:grid; gap:var(--s-200); grid-template-columns:1fr 1fr; }
+  @media (max-width:720px) { .vs { grid-template-columns:1fr; } }
+  .vs .big { display:flex; align-items:baseline; gap:var(--s-100); margin-bottom:var(--s-200); }
+  .vs ul { list-style:none; margin:0; padding:0; }
+  .vs li { display:flex; align-items:center; gap:var(--s-100); padding:var(--s-100) 0; border-top:1px solid var(--line); }
+  .vs li .ic { font-size:24px; }
+  .vs .no .ic { color:var(--bad); } .vs .yes .ic { color:var(--ok); }
+  .vs .no .big { color:var(--bad); } .vs .yes .big { color:var(--ok); }
+
+  /* Money */
+  .panel-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--r-3xl); padding:var(--s-200); }
+  .panel-card + .panel-card, .panel-card + .grid, .grid + .panel-card { margin-top:var(--s-200); }
+  .stack { display:flex; border-radius:var(--r-lg); overflow:hidden; min-height:var(--s-700); color:#000; margin-top:var(--s-100); gap:var(--s-25); }
+  .stack div { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:var(--s-75); }
+  .stack .n { font-size:20px; line-height:28px; font-weight:600; }
+  @media (max-width:640px) { .stack { flex-direction:column; } .stack div { flex:none !important; } }
+  .row { display:flex; align-items:center; gap:var(--s-100); margin:var(--s-75) 0; }
+  .row .l { flex:0 0 132px; color:var(--muted); }
+  .track { position:relative; flex:1; min-height:var(--s-400); background:var(--inner); border-radius:var(--r-lg); overflow:hidden; }
+  .bar { position:absolute; left:0; top:0; bottom:0; transform-origin:left; border-radius:var(--r-lg); }
+  .lab { position:relative; z-index:1; display:flex; align-items:center; min-height:var(--s-400); padding:0 var(--s-100); color:#000; }
+  @media (max-width:520px) { .row { flex-direction:column; align-items:stretch; gap:var(--s-50); } .row .l { flex:none; } }
+  .pill { display:inline-block; margin-top:var(--s-100); padding:var(--s-25) var(--s-75); border-radius:999px; background:var(--raised); color:var(--ok); }
+  .ring { display:inline-block; animation:spin 14s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* Hub */
+  .hub { position:relative; display:flex; flex-direction:column; align-items:center; }
+  .hub .core { position:relative; width:var(--s-800); height:var(--s-800); border-radius:999px; background:var(--surface); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; z-index:1; }
+  .hub .core img { width:var(--s-600); height:var(--s-600); border-radius:var(--r-2xl); }
+  .hub .core::after { content:""; position:absolute; inset:0; border-radius:999px; border:2px solid var(--ok); opacity:0; animation:pulse 3.2s var(--curve) infinite; }
+  .hub .spokes { position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s-200); width:100%; margin-top:var(--s-300); }
+  .hub .spokes::before { content:""; position:absolute; top:calc(var(--s-300) * -1); left:12.5%; right:12.5%; height:1px; background:var(--line); }
+  .hub .spoke { position:relative; text-align:center; }
+  .hub .spoke::before { content:""; position:absolute; top:calc(var(--s-300) * -1); left:50%; height:var(--s-300); width:1px; background:var(--line); }
+  .hub::before { content:""; position:absolute; top:var(--s-800); left:50%; height:var(--s-300); width:1px; background:var(--line); }
+  .hub .spoke .chip-ic { margin:0 auto var(--s-75); }
+  @media (max-width:720px) { .hub .spokes { grid-template-columns:1fr 1fr; } .hub .spokes::before, .hub .spoke::before, .hub::before { display:none; } }
+
+  /* Why, timeline, risks */
+  .why .card { display:flex; align-items:center; gap:var(--s-100); }
+  .why .card .chip-ic { margin:0; }
+  .timeline { position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s-200); margin-top:var(--s-300); }
+  .timeline::before { content:""; position:absolute; left:12.5%; right:12.5%; top:var(--s-300); height:2px; background:var(--line); }
+  .timeline .t-line { position:absolute; left:12.5%; right:12.5%; top:var(--s-300); height:2px; background:var(--ok); transform-origin:left; transform:scaleX(0); transition:transform 1600ms var(--curve) 300ms; }
+  .timeline.in .t-line { transform:scaleX(1); }
+  html:not(.js) .timeline .t-line { transform:none; }
+  .timeline .step { position:relative; text-align:center; }
+  .timeline .dot { position:relative; z-index:1; width:var(--s-600); height:var(--s-600); margin:0 auto var(--s-100); border-radius:999px; background:var(--raised); border:2px solid var(--ok); display:flex; align-items:center; justify-content:center; font-size:24px; color:var(--ok); }
+  @media (max-width:720px) { .timeline { grid-template-columns:1fr 1fr; } .timeline::before, .timeline .t-line { display:none; } }
+  .risks .card { display:flex; align-items:center; gap:var(--s-100); }
+  .risks .card .chip-ic { margin:0; }
+
   /* FAQ */
   details { background:var(--surface); border:1px solid var(--line); border-radius:var(--r-2xl); padding:var(--s-200); margin-bottom:var(--s-75); }
-  summary { cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:var(--s-200); align-items:center; }
+  summary { cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:var(--s-200); align-items:center; font-size:16px; line-height:24px; font-weight:500; }
   summary::-webkit-details-marker { display:none; }
-  summary .ic { transition:transform 500ms var(--curve); }
+  summary .ic { font-size:24px; transition:transform 500ms var(--curve); }
   details[open] summary .ic { transform:rotate(45deg); }
   details p { margin-top:var(--s-100); color:var(--muted); }
 
-  /* Final CTA and footer */
-  .final { text-align:left; }
+  .final .card:hover { transform:none; background:var(--surface); }
   footer { margin-top:var(--s-800); border-top:1px solid var(--line); padding:var(--s-400) 0 var(--s-600); color:var(--muted); }
   footer ul { padding-left:var(--s-300); margin:var(--s-100) 0; }
   footer li { margin:var(--s-50) 0; }
   footer a { color:var(--text); }
+  footer summary { color:var(--text); }
+  footer details { background:transparent; border:0; padding:0; }
   .legal { display:flex; gap:var(--s-300); margin-top:var(--s-200); flex-wrap:wrap; }
 
-  /* Scroll reveal: transform and opacity only, once */
+  /* Scroll reveals: transform and opacity only, once */
   html.js .reveal { opacity:0; transform:translateY(32px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); }
   html.js .reveal.in { opacity:1; transform:none; }
+  html.js .stag > * { opacity:0; transform:translateY(24px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); transition-delay:calc(var(--i, 0) * 90ms); }
+  html.js .stag.in > * { opacity:1; transform:none; }
+  html.js .vs li { opacity:0; transform:translateX(-16px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); transition-delay:calc(var(--i, 0) * 120ms + 200ms); }
+  html.js .vs.in li { opacity:1; transform:none; }
+  html.js .grow .bar, html.js .grow .split div { transform:scaleX(0); transition:transform 1400ms var(--curve); transition-delay:calc(var(--i, 0) * 200ms + 200ms); }
+  html.js .grow.in .bar, html.js .grow.in .split div { transform:scaleX(1); }
+  html.js .seg > div { opacity:0; transform:translateY(16px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); transition-delay:calc(var(--i, 0) * 200ms + 150ms); }
+  html.js .seg.in > div { opacity:1; transform:none; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior:auto; }
-    html.js .reveal { transform:none; transition:opacity 300ms linear; }
-    .tagline .w { transition:none; }
-    .panel a, .menu-btn span, summary .ic, .btn { transition:none; }
+    html.js .reveal, html.js .stag > *, html.js .vs li, html.js .seg > div { transform:none; transition:opacity 300ms linear; transition-delay:0s; }
+    html.js .grow .bar, html.js .grow .split div, .timeline .t-line { transition:none; transform:none; }
+    .node .disc::after, .link-line::after, .hub .core::after, .ring { animation:none; }
+    .tagline .w, .panel a, .menu-btn span, summary .ic, .btn, .btn .ic, .card { transition:none; }
   }
 </style>
 </head>
 <body>
 <a class="skip button-sm" href="#main">Skip to content</a>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="i-arrow-right" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol><symbol id="i-arrows-split" viewBox="0 0 256 256"><path d="M229.66,189.66l-32,32a8,8,0,0,1-11.32,0l-32-32a8,8,0,0,1,11.32-11.32L184,196.69V139.31l-56-56-56,56v57.38l18.34-18.35a8,8,0,0,1,11.32,11.32l-32,32a8,8,0,0,1-11.32,0l-32-32a8,8,0,0,1,11.32-11.32L56,196.69V136a8,8,0,0,1,2.34-5.66L120,68.69V24a8,8,0,0,1,16,0V68.69l61.66,61.65A8,8,0,0,1,200,136v60.69l18.34-18.35a8,8,0,0,1,11.32,11.32Z"/></symbol><symbol id="i-atom" viewBox="0 0 256 256"><path d="M196.12,128c24.65-34.61,37.22-70.38,19.74-87.86S162.61,35.23,128,59.88C93.39,35.23,57.62,22.66,40.14,40.14S35.23,93.39,59.88,128c-24.65,34.61-37.22,70.38-19.74,87.86h0c5.63,5.63,13.15,8.14,21.91,8.14,18.48,0,42.48-11.17,66-27.88C151.47,212.83,175.47,224,194,224c8.76,0,16.29-2.52,21.91-8.14h0C233.34,198.38,220.77,162.61,196.12,128Zm8.43-76.55c7.64,7.64,2.48,32.4-18.52,63.28a300.33,300.33,0,0,0-21.19-23.57A300.33,300.33,0,0,0,141.27,70C172.15,49,196.91,43.8,204.55,51.45ZM176.29,128a289.14,289.14,0,0,1-22.76,25.53A289.14,289.14,0,0,1,128,176.29a289.14,289.14,0,0,1-25.53-22.76A289.14,289.14,0,0,1,79.71,128,298.62,298.62,0,0,1,128,79.71a289.14,289.14,0,0,1,25.53,22.76A289.14,289.14,0,0,1,176.29,128ZM51.45,51.45c2.2-2.21,5.83-3.35,10.62-3.35C73.89,48.1,92.76,55,114.72,70A304,304,0,0,0,91.16,91.16,300.33,300.33,0,0,0,70,114.73C49,83.85,43.81,59.09,51.45,51.45Zm0,153.1C43.81,196.91,49,172.15,70,141.27a300.33,300.33,0,0,0,21.19,23.57A304.18,304.18,0,0,0,114.73,186C83.85,207,59.09,212.2,51.45,204.55Zm153.1,0c-7.64,7.65-32.4,2.48-63.28-18.52a304.18,304.18,0,0,0,23.57-21.19A300.33,300.33,0,0,0,186,141.27C207,172.15,212.19,196.91,204.55,204.55ZM140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128Z"/></symbol><symbol id="i-battery-charging" viewBox="0 0 256 256"><path d="M200,56H32A24,24,0,0,0,8,80v96a24,24,0,0,0,24,24H200a24,24,0,0,0,24-24V80A24,24,0,0,0,200,56Zm8,120a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H200a8,8,0,0,1,8,8Zm48-80v64a8,8,0,0,1-16,0V96a8,8,0,0,1,16,0ZM138.81,123.79a8,8,0,0,1,.35,7.79l-16,32a8,8,0,0,1-14.32-7.16L119.06,136H100a8,8,0,0,1-7.16-11.58l16-32a8,8,0,1,1,14.32,7.16L112.94,120H132A8,8,0,0,1,138.81,123.79Z"/></symbol><symbol id="i-calendar-check" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"/></symbol><symbol id="i-car" viewBox="0 0 256 256"><path d="M240,104H229.2L201.42,41.5A16,16,0,0,0,186.8,32H69.2a16,16,0,0,0-14.62,9.5L26.8,104H16a8,8,0,0,0,0,16h8v80a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V184h96v16a16,16,0,0,0,16,16h24a16,16,0,0,0,16-16V120h8a8,8,0,0,0,0-16ZM69.2,48H186.8l24.89,56H44.31ZM64,200H40V184H64Zm128,0V184h24v16Zm24-32H40V120H216ZM56,144a8,8,0,0,1,8-8H80a8,8,0,0,1,0,16H64A8,8,0,0,1,56,144Zm112,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,144Z"/></symbol><symbol id="i-coins" viewBox="0 0 256 256"><path d="M184,89.57V84c0-25.08-37.83-44-88-44S8,58.92,8,84v40c0,20.89,26.25,37.49,64,42.46V172c0,25.08,37.83,44,88,44s88-18.92,88-44V132C248,111.3,222.58,94.68,184,89.57ZM232,132c0,13.22-30.79,28-72,28-3.73,0-7.43-.13-11.08-.37C170.49,151.77,184,139,184,124V105.74C213.87,110.19,232,122.27,232,132ZM72,150.25V126.46A183.74,183.74,0,0,0,96,128a183.74,183.74,0,0,0,24-1.54v23.79A163,163,0,0,1,96,152,163,163,0,0,1,72,150.25Zm96-40.32V124c0,8.39-12.41,17.4-32,22.87V123.5C148.91,120.37,159.84,115.71,168,109.93ZM96,56c41.21,0,72,14.78,72,28s-30.79,28-72,28S24,97.22,24,84,54.79,56,96,56ZM24,124V109.93c8.16,5.78,19.09,10.44,32,13.57v23.37C36.41,141.4,24,132.39,24,124Zm64,48v-4.17c2.63.1,5.29.17,8,.17,3.88,0,7.67-.13,11.39-.35A121.92,121.92,0,0,0,120,171.41v23.46C100.41,189.4,88,180.39,88,172Zm48,26.25V174.4a179.48,179.48,0,0,0,24,1.6,183.74,183.74,0,0,0,24-1.54v23.79a165.45,165.45,0,0,1-48,0Zm64-3.38V171.5c12.91-3.13,23.84-7.79,32-13.57V172C232,180.39,219.59,189.4,200,194.87Z"/></symbol><symbol id="i-factory" viewBox="0 0 256 256"><path d="M116,176a8,8,0,0,1-8,8H80a8,8,0,0,1,0-16h28A8,8,0,0,1,116,176Zm60-8H148a8,8,0,0,0,0,16h28a8,8,0,0,0,0-16Zm64,48a8,8,0,0,1-8,8H24a8,8,0,0,1,0-16h8V88a8,8,0,0,1,12.8-6.4L96,120V88a8,8,0,0,1,12.8-6.4l38.74,29.05L159.1,29.74A16.08,16.08,0,0,1,174.94,16h18.12A16.08,16.08,0,0,1,208.9,29.74l15,105.13s.08.78.08,1.13v72h8A8,8,0,0,1,240,216Zm-77.86-94.4,8.53,6.4h36.11L193.06,32H174.94ZM48,208H208V144H168a8,8,0,0,1-4.8-1.6l-14.4-10.8,0,0L112,104v32a8,8,0,0,1-12.8,6.4L48,104Z"/></symbol><symbol id="i-file-text" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"/></symbol><symbol id="i-flag" viewBox="0 0 256 256"><path d="M42.76,50A8,8,0,0,0,40,56V224a8,8,0,0,0,16,0V179.77c26.79-21.16,49.87-9.75,76.45,3.41,16.4,8.11,34.06,16.85,53,16.85,13.93,0,28.54-4.75,43.82-18a8,8,0,0,0,2.76-6V56A8,8,0,0,0,218.76,50c-28,24.23-51.72,12.49-79.21-1.12C111.07,34.76,78.78,18.79,42.76,50ZM216,172.25c-26.79,21.16-49.87,9.74-76.45-3.41-25-12.35-52.81-26.13-83.55-8.4V59.79c26.79-21.16,49.87-9.75,76.45,3.4,25,12.35,52.82,26.13,83.55,8.4Z"/></symbol><symbol id="i-flame" viewBox="0 0 256 256"><path d="M173.79,51.48a221.25,221.25,0,0,0-41.67-34.34,8,8,0,0,0-8.24,0A221.25,221.25,0,0,0,82.21,51.48C54.59,80.48,40,112.47,40,144a88,88,0,0,0,176,0C216,112.47,201.41,80.48,173.79,51.48ZM96,184c0-27.67,22.53-47.28,32-54.3,9.48,7,32,26.63,32,54.3a32,32,0,0,1-64,0Zm77.27,15.93A47.8,47.8,0,0,0,176,184c0-44-42.09-69.79-43.88-70.86a8,8,0,0,0-8.24,0C122.09,114.21,80,140,80,184a47.8,47.8,0,0,0,2.73,15.93A71.88,71.88,0,0,1,56,144c0-34.41,20.4-63.15,37.52-81.19A216.21,216.21,0,0,1,128,33.54a215.77,215.77,0,0,1,34.48,29.27C193.49,95.5,200,125,200,144A71.88,71.88,0,0,1,173.27,199.93Z"/></symbol><symbol id="i-globe-hemisphere-west" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm88,104a87.62,87.62,0,0,1-6.4,32.94l-44.7-27.49a15.92,15.92,0,0,0-6.24-2.23l-22.82-3.08a16.11,16.11,0,0,0-16,7.86h-8.72l-3.8-7.86a15.91,15.91,0,0,0-11-8.67l-8-1.73L96.14,104h16.71a16.06,16.06,0,0,0,7.73-2l12.25-6.76a16.62,16.62,0,0,0,3-2.14l26.91-24.34A15.93,15.93,0,0,0,166,49.1l-.36-.65A88.11,88.11,0,0,1,216,128ZM143.31,41.34,152,56.9,125.09,81.24,112.85,88H96.14a16,16,0,0,0-13.88,8l-8.73,15.23L63.38,84.19,74.32,58.32a87.87,87.87,0,0,1,69-17ZM40,128a87.53,87.53,0,0,1,8.54-37.8l11.34,30.27a16,16,0,0,0,11.62,10l21.43,4.61L96.74,143a16.09,16.09,0,0,0,14.4,9h1.48l-7.23,16.23a16,16,0,0,0,2.86,17.37l.14.14L128,205.94l-1.94,10A88.11,88.11,0,0,1,40,128Zm102.58,86.78,1.13-5.81a16.09,16.09,0,0,0-4-13.9,1.85,1.85,0,0,1-.14-.14L120,174.74,133.7,144l22.82,3.08,45.72,28.12A88.18,88.18,0,0,1,142.58,214.78Z"/></symbol><symbol id="i-lightning" viewBox="0 0 256 256"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></symbol><symbol id="i-magnifying-glass" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></symbol><symbol id="i-package" viewBox="0 0 256 256"><path d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32l80.34,44-29.77,16.3-80.35-44ZM128,120,47.66,76l33.9-18.56,80.34,44ZM40,90l80,43.78v85.79L40,175.82Zm176,85.78h0l-80,43.79V133.82l32-17.51V152a8,8,0,0,0,16,0V107.55L216,90v85.77Z"/></symbol><symbol id="i-phone" viewBox="0 0 256 256"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></symbol><symbol id="i-plant" viewBox="0 0 256 256"><path d="M247.63,47.89a8,8,0,0,0-7.52-7.52c-51.76-3-93.32,12.74-111.18,42.22-11.8,19.49-11.78,43.16-.16,65.74a71.34,71.34,0,0,0-14.17,27L98.33,159c7.82-16.33,7.52-33.35-1-47.49-13.2-21.79-43.67-33.47-81.5-31.25a8,8,0,0,0-7.52,7.52c-2.23,37.83,9.46,68.3,31.25,81.5A45.82,45.82,0,0,0,63.44,176,54.58,54.58,0,0,0,87,170.33l25,25V224a8,8,0,0,0,16,0V194.51a55.61,55.61,0,0,1,12.27-35,73.91,73.91,0,0,0,33.31,8.4,60.9,60.9,0,0,0,31.83-8.86C234.89,141.21,250.67,99.65,247.63,47.89ZM47.81,155.6C32.47,146.31,23.79,124.32,24,96c28.32-.24,50.31,8.47,59.6,23.81,4.85,8,5.64,17.33,2.46,26.94L61.65,122.34a8,8,0,0,0-11.31,11.31l24.41,24.41C65.14,161.24,55.82,160.45,47.81,155.6Zm149.31-10.22c-13.4,8.11-29.15,8.73-45.15,2l53.69-53.7a8,8,0,0,0-11.31-11.31L140.65,136c-6.76-16-6.15-31.76,2-45.15,13.94-23,47-35.82,89.33-34.83C232.94,98.34,220.14,131.44,197.12,145.38Z"/></symbol><symbol id="i-plus-circle" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H136v32a8,8,0,0,1-16,0V136H88a8,8,0,0,1,0-16h32V88a8,8,0,0,1,16,0v32h32A8,8,0,0,1,176,128Z"/></symbol><symbol id="i-prohibit" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm88,104a87.56,87.56,0,0,1-20.41,56.28L71.72,60.4A88,88,0,0,1,216,128ZM40,128A87.56,87.56,0,0,1,60.41,71.72L184.28,195.6A88,88,0,0,1,40,128Z"/></symbol><symbol id="i-question" viewBox="0 0 256 256"><path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></symbol><symbol id="i-recycle" viewBox="0 0 256 256"><path d="M96,208a8,8,0,0,1-8,8H40a24,24,0,0,1-20.77-36l34.29-59.25L39.47,124.5A8,8,0,1,1,35.33,109l32.77-8.77a8,8,0,0,1,9.8,5.66l8.79,32.77A8,8,0,0,1,81,148.5a8.37,8.37,0,0,1-2.08.27,8,8,0,0,1-7.72-5.93l-3.8-14.15L33.11,188A8,8,0,0,0,40,200H88A8,8,0,0,1,96,208Zm140.73-28-23.14-40a8,8,0,0,0-13.84,8l23.14,40A8,8,0,0,1,216,200H147.31l10.34-10.34a8,8,0,0,0-11.31-11.32l-24,24a8,8,0,0,0,0,11.32l24,24a8,8,0,0,0,11.31-11.32L147.31,216H216a24,24,0,0,0,20.77-36ZM128,32a7.85,7.85,0,0,1,6.92,4l34.29,59.25-14.08-3.78A8,8,0,0,0,151,106.92l32.78,8.79a8.23,8.23,0,0,0,2.07.27,8,8,0,0,0,7.72-5.93l8.79-32.79a8,8,0,1,0-15.45-4.14l-3.8,14.17L148.77,28a24,24,0,0,0-41.54,0L84.07,68a8,8,0,0,0,13.85,8l23.16-40A7.85,7.85,0,0,1,128,32Z"/></symbol><symbol id="i-scroll" viewBox="0 0 256 256"><path d="M96,104a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H104A8,8,0,0,1,96,104Zm8,40h64a8,8,0,0,0,0-16H104a8,8,0,0,0,0,16Zm128,48a32,32,0,0,1-32,32H88a32,32,0,0,1-32-32V64a16,16,0,0,0-32,0c0,5.74,4.83,9.62,4.88,9.66h0A8,8,0,0,1,24,88a7.89,7.89,0,0,1-4.79-1.61h0C18.05,85.54,8,77.61,8,64A32,32,0,0,1,40,32H176a32,32,0,0,1,32,32V168h8a8,8,0,0,1,4.8,1.6C222,170.46,232,178.39,232,192ZM96.26,173.48A8.07,8.07,0,0,1,104,168h88V64a16,16,0,0,0-16-16H67.69A31.71,31.71,0,0,1,72,64V192a16,16,0,0,0,32,0c0-5.74-4.83-9.62-4.88-9.66A7.82,7.82,0,0,1,96.26,173.48ZM216,192a12.58,12.58,0,0,0-3.23-8h-94a26.92,26.92,0,0,1,1.21,8,31.82,31.82,0,0,1-4.29,16H200A16,16,0,0,0,216,192Z"/></symbol><symbol id="i-shield-check" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol><symbol id="i-stack" viewBox="0 0 256 256"><path d="M230.91,172A8,8,0,0,1,228,182.91l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,36,169.09l92,53.65,92-53.65A8,8,0,0,1,230.91,172ZM220,121.09l-92,53.65L36,121.09A8,8,0,0,0,28,134.91l96,56a8,8,0,0,0,8.06,0l96-56A8,8,0,1,0,220,121.09ZM24,80a8,8,0,0,1,4-6.91l96-56a8,8,0,0,1,8.06,0l96,56a8,8,0,0,1,0,13.82l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,24,80Zm23.88,0L128,126.74,208.12,80,128,33.26Z"/></symbol><symbol id="i-stethoscope" viewBox="0 0 256 256"><path d="M220,160a12,12,0,1,1-12-12A12,12,0,0,1,220,160Zm-4.55,39.29A48.08,48.08,0,0,1,168,240H144a48.05,48.05,0,0,1-48-48V151.49A64,64,0,0,1,40,88V40a8,8,0,0,1,8-8H72a8,8,0,0,1,0,16H56V88a48,48,0,0,0,48.64,48c26.11-.34,47.36-22.25,47.36-48.83V48H136a8,8,0,0,1,0-16h24a8,8,0,0,1,8,8V87.17c0,32.84-24.53,60.29-56,64.31V192a32,32,0,0,0,32,32h24a32.06,32.06,0,0,0,31.22-25,40,40,0,1,1,16.23.27ZM232,160a24,24,0,1,0-24,24A24,24,0,0,0,232,160Z"/></symbol><symbol id="i-target" viewBox="0 0 256 256"><path d="M221.87,83.16A104.1,104.1,0,1,1,195.67,49l22.67-22.68a8,8,0,0,1,11.32,11.32l-96,96a8,8,0,0,1-11.32-11.32l27.72-27.72a40,40,0,1,0,17.87,31.09,8,8,0,1,1,16-.9,56,56,0,1,1-22.38-41.65L184.3,60.39a87.88,87.88,0,1,0,23.13,29.67,8,8,0,0,1,14.44-6.9Z"/></symbol><symbol id="i-trash" viewBox="0 0 256 256"><path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"/></symbol><symbol id="i-truck" viewBox="0 0 256 256"><path d="M255.42,117l-14-35A15.93,15.93,0,0,0,226.58,72H192V64a8,8,0,0,0-8-8H32A16,16,0,0,0,16,72V184a16,16,0,0,0,16,16H49a32,32,0,0,0,62,0h50a32,32,0,0,0,62,0h17a16,16,0,0,0,16-16V120A7.94,7.94,0,0,0,255.42,117ZM192,88h34.58l9.6,24H192ZM32,72H176v64H32ZM80,208a16,16,0,1,1,16-16A16,16,0,0,1,80,208Zm81-24H111a32,32,0,0,0-62,0H32V152H176v12.31A32.11,32.11,0,0,0,161,184Zm31,24a16,16,0,1,1,16-16A16,16,0,0,1,192,208Zm48-24H223a32.06,32.06,0,0,0-31-24V128h48Z"/></symbol></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="i-arrow-right" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol><symbol id="i-atom" viewBox="0 0 256 256"><path d="M196.12,128c24.65-34.61,37.22-70.38,19.74-87.86S162.61,35.23,128,59.88C93.39,35.23,57.62,22.66,40.14,40.14S35.23,93.39,59.88,128c-24.65,34.61-37.22,70.38-19.74,87.86h0c5.63,5.63,13.15,8.14,21.91,8.14,18.48,0,42.48-11.17,66-27.88C151.47,212.83,175.47,224,194,224c8.76,0,16.29-2.52,21.91-8.14h0C233.34,198.38,220.77,162.61,196.12,128Zm8.43-76.55c7.64,7.64,2.48,32.4-18.52,63.28a300.33,300.33,0,0,0-21.19-23.57A300.33,300.33,0,0,0,141.27,70C172.15,49,196.91,43.8,204.55,51.45ZM176.29,128a289.14,289.14,0,0,1-22.76,25.53A289.14,289.14,0,0,1,128,176.29a289.14,289.14,0,0,1-25.53-22.76A289.14,289.14,0,0,1,79.71,128,298.62,298.62,0,0,1,128,79.71a289.14,289.14,0,0,1,25.53,22.76A289.14,289.14,0,0,1,176.29,128ZM51.45,51.45c2.2-2.21,5.83-3.35,10.62-3.35C73.89,48.1,92.76,55,114.72,70A304,304,0,0,0,91.16,91.16,300.33,300.33,0,0,0,70,114.73C49,83.85,43.81,59.09,51.45,51.45Zm0,153.1C43.81,196.91,49,172.15,70,141.27a300.33,300.33,0,0,0,21.19,23.57A304.18,304.18,0,0,0,114.73,186C83.85,207,59.09,212.2,51.45,204.55Zm153.1,0c-7.64,7.65-32.4,2.48-63.28-18.52a304.18,304.18,0,0,0,23.57-21.19A300.33,300.33,0,0,0,186,141.27C207,172.15,212.19,196.91,204.55,204.55ZM140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128Z"/></symbol><symbol id="i-battery-charging" viewBox="0 0 256 256"><path d="M200,56H32A24,24,0,0,0,8,80v96a24,24,0,0,0,24,24H200a24,24,0,0,0,24-24V80A24,24,0,0,0,200,56Zm8,120a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H200a8,8,0,0,1,8,8Zm48-80v64a8,8,0,0,1-16,0V96a8,8,0,0,1,16,0ZM138.81,123.79a8,8,0,0,1,.35,7.79l-16,32a8,8,0,0,1-14.32-7.16L119.06,136H100a8,8,0,0,1-7.16-11.58l16-32a8,8,0,1,1,14.32,7.16L112.94,120H132A8,8,0,0,1,138.81,123.79Z"/></symbol><symbol id="i-calendar-check" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"/></symbol><symbol id="i-car" viewBox="0 0 256 256"><path d="M240,104H229.2L201.42,41.5A16,16,0,0,0,186.8,32H69.2a16,16,0,0,0-14.62,9.5L26.8,104H16a8,8,0,0,0,0,16h8v80a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V184h96v16a16,16,0,0,0,16,16h24a16,16,0,0,0,16-16V120h8a8,8,0,0,0,0-16ZM69.2,48H186.8l24.89,56H44.31ZM64,200H40V184H64Zm128,0V184h24v16Zm24-32H40V120H216ZM56,144a8,8,0,0,1,8-8H80a8,8,0,0,1,0,16H64A8,8,0,0,1,56,144Zm112,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,144Z"/></symbol><symbol id="i-coins" viewBox="0 0 256 256"><path d="M184,89.57V84c0-25.08-37.83-44-88-44S8,58.92,8,84v40c0,20.89,26.25,37.49,64,42.46V172c0,25.08,37.83,44,88,44s88-18.92,88-44V132C248,111.3,222.58,94.68,184,89.57ZM232,132c0,13.22-30.79,28-72,28-3.73,0-7.43-.13-11.08-.37C170.49,151.77,184,139,184,124V105.74C213.87,110.19,232,122.27,232,132ZM72,150.25V126.46A183.74,183.74,0,0,0,96,128a183.74,183.74,0,0,0,24-1.54v23.79A163,163,0,0,1,96,152,163,163,0,0,1,72,150.25Zm96-40.32V124c0,8.39-12.41,17.4-32,22.87V123.5C148.91,120.37,159.84,115.71,168,109.93ZM96,56c41.21,0,72,14.78,72,28s-30.79,28-72,28S24,97.22,24,84,54.79,56,96,56ZM24,124V109.93c8.16,5.78,19.09,10.44,32,13.57v23.37C36.41,141.4,24,132.39,24,124Zm64,48v-4.17c2.63.1,5.29.17,8,.17,3.88,0,7.67-.13,11.39-.35A121.92,121.92,0,0,0,120,171.41v23.46C100.41,189.4,88,180.39,88,172Zm48,26.25V174.4a179.48,179.48,0,0,0,24,1.6,183.74,183.74,0,0,0,24-1.54v23.79a165.45,165.45,0,0,1-48,0Zm64-3.38V171.5c12.91-3.13,23.84-7.79,32-13.57V172C232,180.39,219.59,189.4,200,194.87Z"/></symbol><symbol id="i-factory" viewBox="0 0 256 256"><path d="M116,176a8,8,0,0,1-8,8H80a8,8,0,0,1,0-16h28A8,8,0,0,1,116,176Zm60-8H148a8,8,0,0,0,0,16h28a8,8,0,0,0,0-16Zm64,48a8,8,0,0,1-8,8H24a8,8,0,0,1,0-16h8V88a8,8,0,0,1,12.8-6.4L96,120V88a8,8,0,0,1,12.8-6.4l38.74,29.05L159.1,29.74A16.08,16.08,0,0,1,174.94,16h18.12A16.08,16.08,0,0,1,208.9,29.74l15,105.13s.08.78.08,1.13v72h8A8,8,0,0,1,240,216Zm-77.86-94.4,8.53,6.4h36.11L193.06,32H174.94ZM48,208H208V144H168a8,8,0,0,1-4.8-1.6l-14.4-10.8,0,0L112,104v32a8,8,0,0,1-12.8,6.4L48,104Z"/></symbol><symbol id="i-file-text" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"/></symbol><symbol id="i-flag" viewBox="0 0 256 256"><path d="M42.76,50A8,8,0,0,0,40,56V224a8,8,0,0,0,16,0V179.77c26.79-21.16,49.87-9.75,76.45,3.41,16.4,8.11,34.06,16.85,53,16.85,13.93,0,28.54-4.75,43.82-18a8,8,0,0,0,2.76-6V56A8,8,0,0,0,218.76,50c-28,24.23-51.72,12.49-79.21-1.12C111.07,34.76,78.78,18.79,42.76,50ZM216,172.25c-26.79,21.16-49.87,9.74-76.45-3.41-25-12.35-52.81-26.13-83.55-8.4V59.79c26.79-21.16,49.87-9.75,76.45,3.4,25,12.35,52.82,26.13,83.55,8.4Z"/></symbol><symbol id="i-flame" viewBox="0 0 256 256"><path d="M173.79,51.48a221.25,221.25,0,0,0-41.67-34.34,8,8,0,0,0-8.24,0A221.25,221.25,0,0,0,82.21,51.48C54.59,80.48,40,112.47,40,144a88,88,0,0,0,176,0C216,112.47,201.41,80.48,173.79,51.48ZM96,184c0-27.67,22.53-47.28,32-54.3,9.48,7,32,26.63,32,54.3a32,32,0,0,1-64,0Zm77.27,15.93A47.8,47.8,0,0,0,176,184c0-44-42.09-69.79-43.88-70.86a8,8,0,0,0-8.24,0C122.09,114.21,80,140,80,184a47.8,47.8,0,0,0,2.73,15.93A71.88,71.88,0,0,1,56,144c0-34.41,20.4-63.15,37.52-81.19A216.21,216.21,0,0,1,128,33.54a215.77,215.77,0,0,1,34.48,29.27C193.49,95.5,200,125,200,144A71.88,71.88,0,0,1,173.27,199.93Z"/></symbol><symbol id="i-globe-hemisphere-west" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm88,104a87.62,87.62,0,0,1-6.4,32.94l-44.7-27.49a15.92,15.92,0,0,0-6.24-2.23l-22.82-3.08a16.11,16.11,0,0,0-16,7.86h-8.72l-3.8-7.86a15.91,15.91,0,0,0-11-8.67l-8-1.73L96.14,104h16.71a16.06,16.06,0,0,0,7.73-2l12.25-6.76a16.62,16.62,0,0,0,3-2.14l26.91-24.34A15.93,15.93,0,0,0,166,49.1l-.36-.65A88.11,88.11,0,0,1,216,128ZM143.31,41.34,152,56.9,125.09,81.24,112.85,88H96.14a16,16,0,0,0-13.88,8l-8.73,15.23L63.38,84.19,74.32,58.32a87.87,87.87,0,0,1,69-17ZM40,128a87.53,87.53,0,0,1,8.54-37.8l11.34,30.27a16,16,0,0,0,11.62,10l21.43,4.61L96.74,143a16.09,16.09,0,0,0,14.4,9h1.48l-7.23,16.23a16,16,0,0,0,2.86,17.37l.14.14L128,205.94l-1.94,10A88.11,88.11,0,0,1,40,128Zm102.58,86.78,1.13-5.81a16.09,16.09,0,0,0-4-13.9,1.85,1.85,0,0,1-.14-.14L120,174.74,133.7,144l22.82,3.08,45.72,28.12A88.18,88.18,0,0,1,142.58,214.78Z"/></symbol><symbol id="i-hand-coins" viewBox="0 0 256 256"><path d="M230.33,141.06a24.43,24.43,0,0,0-21.24-4.23l-41.84,9.62A28,28,0,0,0,140,112H89.94a31.82,31.82,0,0,0-22.63,9.37L44.69,144H16A16,16,0,0,0,0,160v40a16,16,0,0,0,16,16H120a7.93,7.93,0,0,0,1.94-.24l64-16a6.94,6.94,0,0,0,1.19-.4L226,182.82l.44-.2a24.6,24.6,0,0,0,3.93-41.56ZM16,160H40v40H16Zm203.43,8.21-38,16.18L119,200H56V155.31l22.63-22.62A15.86,15.86,0,0,1,89.94,128H140a12,12,0,0,1,0,24H112a8,8,0,0,0,0,16h32a8.32,8.32,0,0,0,1.79-.2l67-15.41.31-.08a8.6,8.6,0,0,1,6.3,15.9ZM164,96a36,36,0,0,0,5.9-.48,36,36,0,1,0,28.22-47A36,36,0,1,0,164,96Zm60-12a20,20,0,1,1-20-20A20,20,0,0,1,224,84ZM164,40a20,20,0,0,1,19.25,14.61,36,36,0,0,0-15,24.93A20.42,20.42,0,0,1,164,80a20,20,0,0,1,0-40Z"/></symbol><symbol id="i-lightning" viewBox="0 0 256 256"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></symbol><symbol id="i-magnifying-glass" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></symbol><symbol id="i-package" viewBox="0 0 256 256"><path d="M223.68,66.15,135.68,18a15.88,15.88,0,0,0-15.36,0l-88,48.17a16,16,0,0,0-8.32,14v95.64a16,16,0,0,0,8.32,14l88,48.17a15.88,15.88,0,0,0,15.36,0l88-48.17a16,16,0,0,0,8.32-14V80.18A16,16,0,0,0,223.68,66.15ZM128,32l80.34,44-29.77,16.3-80.35-44ZM128,120,47.66,76l33.9-18.56,80.34,44ZM40,90l80,43.78v85.79L40,175.82Zm176,85.78h0l-80,43.79V133.82l32-17.51V152a8,8,0,0,0,16,0V107.55L216,90v85.77Z"/></symbol><symbol id="i-phone" viewBox="0 0 256 256"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></symbol><symbol id="i-plant" viewBox="0 0 256 256"><path d="M247.63,47.89a8,8,0,0,0-7.52-7.52c-51.76-3-93.32,12.74-111.18,42.22-11.8,19.49-11.78,43.16-.16,65.74a71.34,71.34,0,0,0-14.17,27L98.33,159c7.82-16.33,7.52-33.35-1-47.49-13.2-21.79-43.67-33.47-81.5-31.25a8,8,0,0,0-7.52,7.52c-2.23,37.83,9.46,68.3,31.25,81.5A45.82,45.82,0,0,0,63.44,176,54.58,54.58,0,0,0,87,170.33l25,25V224a8,8,0,0,0,16,0V194.51a55.61,55.61,0,0,1,12.27-35,73.91,73.91,0,0,0,33.31,8.4,60.9,60.9,0,0,0,31.83-8.86C234.89,141.21,250.67,99.65,247.63,47.89ZM47.81,155.6C32.47,146.31,23.79,124.32,24,96c28.32-.24,50.31,8.47,59.6,23.81,4.85,8,5.64,17.33,2.46,26.94L61.65,122.34a8,8,0,0,0-11.31,11.31l24.41,24.41C65.14,161.24,55.82,160.45,47.81,155.6Zm149.31-10.22c-13.4,8.11-29.15,8.73-45.15,2l53.69-53.7a8,8,0,0,0-11.31-11.31L140.65,136c-6.76-16-6.15-31.76,2-45.15,13.94-23,47-35.82,89.33-34.83C232.94,98.34,220.14,131.44,197.12,145.38Z"/></symbol><symbol id="i-plus-circle" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H136v32a8,8,0,0,1-16,0V136H88a8,8,0,0,1,0-16h32V88a8,8,0,0,1,16,0v32h32A8,8,0,0,1,176,128Z"/></symbol><symbol id="i-prohibit" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm88,104a87.56,87.56,0,0,1-20.41,56.28L71.72,60.4A88,88,0,0,1,216,128ZM40,128A87.56,87.56,0,0,1,60.41,71.72L184.28,195.6A88,88,0,0,1,40,128Z"/></symbol><symbol id="i-question" viewBox="0 0 256 256"><path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></symbol><symbol id="i-recycle" viewBox="0 0 256 256"><path d="M96,208a8,8,0,0,1-8,8H40a24,24,0,0,1-20.77-36l34.29-59.25L39.47,124.5A8,8,0,1,1,35.33,109l32.77-8.77a8,8,0,0,1,9.8,5.66l8.79,32.77A8,8,0,0,1,81,148.5a8.37,8.37,0,0,1-2.08.27,8,8,0,0,1-7.72-5.93l-3.8-14.15L33.11,188A8,8,0,0,0,40,200H88A8,8,0,0,1,96,208Zm140.73-28-23.14-40a8,8,0,0,0-13.84,8l23.14,40A8,8,0,0,1,216,200H147.31l10.34-10.34a8,8,0,0,0-11.31-11.32l-24,24a8,8,0,0,0,0,11.32l24,24a8,8,0,0,0,11.31-11.32L147.31,216H216a24,24,0,0,0,20.77-36ZM128,32a7.85,7.85,0,0,1,6.92,4l34.29,59.25-14.08-3.78A8,8,0,0,0,151,106.92l32.78,8.79a8.23,8.23,0,0,0,2.07.27,8,8,0,0,0,7.72-5.93l8.79-32.79a8,8,0,1,0-15.45-4.14l-3.8,14.17L148.77,28a24,24,0,0,0-41.54,0L84.07,68a8,8,0,0,0,13.85,8l23.16-40A7.85,7.85,0,0,1,128,32Z"/></symbol><symbol id="i-rocket" viewBox="0 0 256 256"><path d="M152,224a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h32A8,8,0,0,1,152,224ZM128,112a12,12,0,1,0-12-12A12,12,0,0,0,128,112Zm95.62,43.83-12.36,55.63a16,16,0,0,1-25.51,9.11L158.51,200h-61L70.25,220.57a16,16,0,0,1-25.51-9.11L32.38,155.83a16.09,16.09,0,0,1,3.32-13.71l28.56-34.26a123.07,123.07,0,0,1,8.57-36.67c12.9-32.34,36-52.63,45.37-59.85a16,16,0,0,1,19.6,0c9.34,7.22,32.47,27.51,45.37,59.85a123.07,123.07,0,0,1,8.57,36.67l28.56,34.26A16.09,16.09,0,0,1,223.62,155.83ZM99.43,184h57.14c21.12-37.54,25.07-73.48,11.74-106.88C156.55,47.64,134.49,29,128,24c-6.51,5-28.57,23.64-40.33,53.12C74.36,110.52,78.31,146.46,99.43,184Zm-15,5.85Q68.28,160.5,64.83,132.16L48,152.36,60.36,208l.18-.13ZM208,152.36l-16.83-20.2q-3.42,28.28-19.56,57.69l23.85,18,.18.13Z"/></symbol><symbol id="i-scales" viewBox="0 0 256 256"><path d="M239.43,133l-32-80h0a8,8,0,0,0-9.16-4.84L136,62V40a8,8,0,0,0-16,0V65.58L54.26,80.19A8,8,0,0,0,48.57,85h0v.06L16.57,165a7.92,7.92,0,0,0-.57,3c0,23.31,24.54,32,40,32s40-8.69,40-32a7.92,7.92,0,0,0-.57-3L66.92,93.77,120,82V208H104a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16H136V78.42L187,67.1,160.57,133a7.92,7.92,0,0,0-.57,3c0,23.31,24.54,32,40,32s40-8.69,40-32A7.92,7.92,0,0,0,239.43,133ZM56,184c-7.53,0-22.76-3.61-23.93-14.64L56,109.54l23.93,59.82C78.76,180.39,63.53,184,56,184Zm144-32c-7.53,0-22.76-3.61-23.93-14.64L200,77.54l23.93,59.82C222.76,148.39,207.53,152,200,152Z"/></symbol><symbol id="i-scroll" viewBox="0 0 256 256"><path d="M96,104a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H104A8,8,0,0,1,96,104Zm8,40h64a8,8,0,0,0,0-16H104a8,8,0,0,0,0,16Zm128,48a32,32,0,0,1-32,32H88a32,32,0,0,1-32-32V64a16,16,0,0,0-32,0c0,5.74,4.83,9.62,4.88,9.66h0A8,8,0,0,1,24,88a7.89,7.89,0,0,1-4.79-1.61h0C18.05,85.54,8,77.61,8,64A32,32,0,0,1,40,32H176a32,32,0,0,1,32,32V168h8a8,8,0,0,1,4.8,1.6C222,170.46,232,178.39,232,192ZM96.26,173.48A8.07,8.07,0,0,1,104,168h88V64a16,16,0,0,0-16-16H67.69A31.71,31.71,0,0,1,72,64V192a16,16,0,0,0,32,0c0-5.74-4.83-9.62-4.88-9.66A7.82,7.82,0,0,1,96.26,173.48ZM216,192a12.58,12.58,0,0,0-3.23-8h-94a26.92,26.92,0,0,1,1.21,8,31.82,31.82,0,0,1-4.29,16H200A16,16,0,0,0,216,192Z"/></symbol><symbol id="i-seal-check" viewBox="0 0 256 256"><path d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-11.55,39.29c-4.79,5-9.75,10.17-12.38,16.52-2.52,6.1-2.63,13.07-2.73,19.82-.1,7-.21,14.33-3.32,17.43s-10.39,3.22-17.43,3.32c-6.75.1-13.72.21-19.82,2.73-6.35,2.63-11.52,7.59-16.52,12.38S132,224,128,224s-9.15-4.92-14.11-9.69-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82-2.63-6.35-7.59-11.52-12.38-16.52S32,132,32,128s4.92-9.15,9.69-14.11,9.75-10.17,12.38-16.52c2.52-6.1,2.63-13.07,2.73-19.82.1-7,.21-14.33,3.32-17.43S70.51,56.9,77.55,56.8c6.75-.1,13.72-.21,19.82-2.73,6.35-2.63,11.52-7.59,16.52-12.38S124,32,128,32s9.15,4.92,14.11,9.69,10.17,9.75,16.52,12.38c6.1,2.52,13.07,2.63,19.82,2.73,7,.1,14.33.21,17.43,3.32s3.22,10.39,3.32,17.43c.1,6.75.21,13.72,2.73,19.82,2.63,6.35,7.59,11.52,12.38,16.52S224,124,224,128,219.08,137.15,214.31,142.11ZM173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34Z"/></symbol><symbol id="i-shield-check" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol><symbol id="i-stack" viewBox="0 0 256 256"><path d="M230.91,172A8,8,0,0,1,228,182.91l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,36,169.09l92,53.65,92-53.65A8,8,0,0,1,230.91,172ZM220,121.09l-92,53.65L36,121.09A8,8,0,0,0,28,134.91l96,56a8,8,0,0,0,8.06,0l96-56A8,8,0,1,0,220,121.09ZM24,80a8,8,0,0,1,4-6.91l96-56a8,8,0,0,1,8.06,0l96,56a8,8,0,0,1,0,13.82l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,24,80Zm23.88,0L128,126.74,208.12,80,128,33.26Z"/></symbol><symbol id="i-stethoscope" viewBox="0 0 256 256"><path d="M220,160a12,12,0,1,1-12-12A12,12,0,0,1,220,160Zm-4.55,39.29A48.08,48.08,0,0,1,168,240H144a48.05,48.05,0,0,1-48-48V151.49A64,64,0,0,1,40,88V40a8,8,0,0,1,8-8H72a8,8,0,0,1,0,16H56V88a48,48,0,0,0,48.64,48c26.11-.34,47.36-22.25,47.36-48.83V48H136a8,8,0,0,1,0-16h24a8,8,0,0,1,8,8V87.17c0,32.84-24.53,60.29-56,64.31V192a32,32,0,0,0,32,32h24a32.06,32.06,0,0,0,31.22-25,40,40,0,1,1,16.23.27ZM232,160a24,24,0,1,0-24,24A24,24,0,0,0,232,160Z"/></symbol><symbol id="i-target" viewBox="0 0 256 256"><path d="M221.87,83.16A104.1,104.1,0,1,1,195.67,49l22.67-22.68a8,8,0,0,1,11.32,11.32l-96,96a8,8,0,0,1-11.32-11.32l27.72-27.72a40,40,0,1,0,17.87,31.09,8,8,0,1,1,16-.9,56,56,0,1,1-22.38-41.65L184.3,60.39a87.88,87.88,0,1,0,23.13,29.67,8,8,0,0,1,14.44-6.9Z"/></symbol><symbol id="i-trash" viewBox="0 0 256 256"><path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"/></symbol><symbol id="i-truck" viewBox="0 0 256 256"><path d="M255.42,117l-14-35A15.93,15.93,0,0,0,226.58,72H192V64a8,8,0,0,0-8-8H32A16,16,0,0,0,16,72V184a16,16,0,0,0,16,16H49a32,32,0,0,0,62,0h50a32,32,0,0,0,62,0h17a16,16,0,0,0,16-16V120A7.94,7.94,0,0,0,255.42,117ZM192,88h34.58l9.6,24H192ZM32,72H176v64H32ZM80,208a16,16,0,1,1,16-16A16,16,0,0,1,80,208Zm81-24H111a32,32,0,0,0-62,0H32V152H176v12.31A32.11,32.11,0,0,0,161,184Zm31,24a16,16,0,1,1,16-16A16,16,0,0,1,192,208Zm48-24H223a32.06,32.06,0,0,0-31-24V128h48Z"/></symbol></svg>
 
 <header class="nav" id="top">
   <a class="brand" href="#top" aria-label="Battery Monster home"><img src="logo-128.png" alt="Battery Monster logo"></a>
-  <a class="link button-sm" href="#without">Without us</a>
-  <a class="link button-sm" href="#how">How it works</a>
+  <a class="link button-sm" href="#without">Why us</a>
   <a class="link button-sm" href="#money">Money</a>
-  <a class="link button-sm" href="#planet">Environment</a>
-  <a class="link button-sm" href="#invest">Why invest</a>
+  <a class="link button-sm" href="#planet">Planet</a>
+  <a class="link button-sm" href="#value">Value</a>
+  <a class="link button-sm" href="#invest">Invest</a>
   <a class="link button-sm" href="#faq">FAQ</a>
   <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="panel"><span></span><span></span><span></span></button>
 </header>
 <nav class="panel" id="panel" aria-label="Menu">
-  <a style="--i:0" href="#without">Without us</a>
-  <a style="--i:1" href="#how">How it works</a>
-  <a style="--i:2" href="#money">Money</a>
-  <a style="--i:3" href="#planet">Environment</a>
-  <a style="--i:4" href="#invest">Why invest</a>
+  <a style="--i:0" href="#without">Why us</a>
+  <a style="--i:1" href="#money">Money</a>
+  <a style="--i:2" href="#planet">Planet</a>
+  <a style="--i:3" href="#value">Value</a>
+  <a style="--i:4" href="#invest">Invest</a>
   <a style="--i:5" href="#faq">FAQ</a>
 </nav>
 
 <main id="main">
   <!-- HERO -->
-  <section class="hero wrap" style="padding-top:var(--s-900)">
+  <section class="hero wrap">
     <h1 class="heading-1">Every EV battery gets the right end.</h1>
-    <p class="sub body-3">Battery Monster collects, tests, reuses and recycles retired EV batteries across the Baltics, so owners and dealers make one call instead of solving it alone.</p>
+    <p class="sub body-3">We collect, test, reuse and recycle retired EV batteries across the Baltics.</p>
     <div class="cta"><a class="btn button-md" href="#money">See where we make money <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
-    <div class="grid proof">
-      <div class="card"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg></span><span class="stat">13,916</span><p class="body-6 muted">electric cars in Latvia at the end of 2025, up from 9,234</p></div>
-      <div class="card"><span class="chip-ic bad"><svg class="ic" aria-hidden="true"><use href="#i-prohibit"/></svg></span><span class="stat">0</span><p class="body-6 muted">EV battery collectors found in Latvia in our research</p></div>
-      <div class="card"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-calendar-check"/></svg></span><span class="stat">18 Feb 2027</span><p class="body-6 muted">the EU battery passport becomes mandatory for EV batteries</p></div>
+
+    <div class="journey reveal" aria-label="Journey of a retired battery: collect, test, then reuse or recycle">
+      <div class="node info" style="--d:0"><div class="disc"><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg></div><span class="body-5">Retired EV</span></div>
+      <div class="link-line" style="--d:0"></div>
+      <div class="node info" style="--d:1"><div class="disc"><svg class="ic" aria-hidden="true"><use href="#i-magnifying-glass"/></svg></div><span class="body-5">We test</span></div>
+      <div class="link-line" style="--d:1"></div>
+      <div class="branches">
+        <div class="branch">
+          <div class="link-line" style="--d:2"></div>
+          <div class="node ok" style="--d:2"><div class="disc"><svg class="ic" aria-hidden="true"><use href="#i-battery-charging"/></svg></div><span class="body-5">Reuse</span></div>
+          <div class="link-line" style="--d:3"></div>
+          <div class="node ok" style="--d:3"><div class="disc"><svg class="ic" aria-hidden="true"><use href="#i-lightning"/></svg></div><span class="body-5">Second life</span></div>
+        </div>
+        <div class="branch">
+          <div class="link-line" style="--d:2"></div>
+          <div class="node warn" style="--d:2"><div class="disc"><span class="ring"><svg class="ic" aria-hidden="true"><use href="#i-recycle"/></svg></span></div><span class="body-5">Recycle</span></div>
+          <div class="link-line" style="--d:3"></div>
+          <div class="node warn" style="--d:3"><div class="disc"><svg class="ic" aria-hidden="true"><use href="#i-atom"/></svg></div><span class="body-5">New materials</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="split grow reveal button-sm">
+      <div style="flex:7;background:var(--warn);--i:0">Recycle about 70%<span class="est caption-3">est.</span></div>
+      <div style="flex:3;background:var(--ok);--i:1">Reuse about 30%<span class="est caption-3">est.</span></div>
+    </div>
+
+    <div class="grid proof stag reveal">
+      <div class="card" style="--i:0"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg></span><span class="stat" data-count="13916">13,916</span><p class="body-6">electric cars in Latvia</p></div>
+      <div class="card" style="--i:1"><span class="chip-ic bad"><svg class="ic" aria-hidden="true"><use href="#i-prohibit"/></svg></span><span class="stat" data-count="0">0</span><p class="body-6">EV battery collectors found here</p></div>
+      <div class="card" style="--i:2"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-calendar-check"/></svg></span><span class="stat">18 Feb 2027</span><p class="body-6">EU battery passport starts</p></div>
     </div>
   </section>
 
-  <!-- TAGLINE REVEAL -->
+  <!-- TAGLINE -->
   <section class="tagline wrap" aria-label="Our promise">
-    <p class="heading-3" id="tagline">One partner tests every battery, sends it down the right route and carries the handling risk. Owners get a written price and a clean paper trail.</p>
+    <p class="heading-3" id="tagline">One partner tests every battery, picks the right route and carries the risk.</p>
   </section>
 
   <!-- WITHOUT / WITH -->
   <section id="without" class="wrap">
-    <div class="section-head reveal"><span class="caption-3 muted">The difference we make</span><h2 class="heading-3">Without us, with us</h2></div>
+    <div class="section-head reveal"><h2 class="heading-3">Without us, with us</h2></div>
     <div class="vs reveal">
-      <div class="card no"><h3 class="heading-6"><span class="chip-ic bad"><svg class="ic" aria-hidden="true"><use href="#i-question"/></svg></span>Without us</h3><ul>
-        <li><svg class="ic" aria-hidden="true"><use href="#i-question"/></svg><span class="body-3">No known local route. Each owner or dealer looks for a recycler alone.</span></li>
-        <li><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg><span class="body-3">Recycling a pack is a cost: about €738 for NMC or €1,686 for LFP per 400 kg pack, before transport.</span></li>
-        <li><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg><span class="body-3">Unclear paperwork and liability. Is it waste or a used battery? Who is responsible?</span></li>
-        <li><svg class="ic" aria-hidden="true"><use href="#i-trash"/></svg><span class="body-3">Packs that still work get recycled too early because nobody tests them.</span></li>
-      </ul></div>
-      <div class="card yes"><h3 class="heading-6"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span>With us</h3><ul>
-        <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="body-3">One call. One partner, one written price, paid in advance.</span></li>
-        <li><svg class="ic" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><span class="body-3">Every pack tested. Good ones are reused. The rest are recycled.</span></li>
-        <li><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg><span class="body-3">Papers and test record ready for the battery passport and waste rules.</span></li>
-        <li><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg><span class="body-3">Only intact packs, only with a signed order. We carry the handling risk.</span></li>
-      </ul></div>
+      <div class="card no">
+        <div class="big"><span class="stat">€738+</span><span class="body-6">per pack, alone<span class="est caption-3">ref.</span></span></div>
+        <ul>
+          <li style="--i:0"><svg class="ic" aria-hidden="true"><use href="#i-question"/></svg><span class="body-3">No known route</span></li>
+          <li style="--i:1"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg><span class="body-3">Recycling costs money</span></li>
+          <li style="--i:2"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg><span class="body-3">Unclear rules</span></li>
+          <li style="--i:3"><svg class="ic" aria-hidden="true"><use href="#i-trash"/></svg><span class="body-3">Good packs wasted</span></li>
+        </ul>
+      </div>
+      <div class="card yes">
+        <div class="big"><span class="stat">1</span><span class="body-6">call, one prepaid price</span></div>
+        <ul>
+          <li style="--i:0"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="body-3">One partner</span></li>
+          <li style="--i:1"><svg class="ic" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><span class="body-3">Every pack tested</span></li>
+          <li style="--i:2"><svg class="ic" aria-hidden="true"><use href="#i-file-text"/></svg><span class="body-3">Papers ready</span></li>
+          <li style="--i:3"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg><span class="body-3">We carry the risk</span></li>
+        </ul>
+      </div>
     </div>
-    <p class="caption-2 note reveal">Recycler prices come from the only published 2026 tariff we found (GRS Germany, a ceiling reference, excluding VAT). Latvian prices need real quotes.</p>
-  </section>
-
-  <!-- HOW -->
-  <section id="how" class="wrap">
-    <div class="section-head reveal"><span class="caption-3 muted">How it works</span><h2 class="heading-3">Four steps from a retired pack to the right route</h2></div>
-    <div class="flow reveal">
-      <div class="card"><span class="caption-3 n">1</span><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg></span><span class="heading-6">Collect</span><p class="body-6">From fleets, dealers and importers</p></div>
-      <div class="card"><span class="caption-3 n">2</span><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-magnifying-glass"/></svg></span><span class="heading-6">Test</span><p class="body-6">Health, safety and papers</p></div>
-      <div class="card"><span class="caption-3 n">3</span><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-arrows-split"/></svg></span><span class="heading-6">Decide</span><p class="body-6">Reuse it or recycle it</p></div>
-      <div class="card"><span class="caption-3 n">4</span><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-factory"/></svg></span><span class="heading-6">Hand over</span><p class="body-6">To licensed partners</p></div>
-    </div>
-    <div class="split reveal">
-      <div class="button-sm" style="flex:7;background:var(--info)">Recycle, about 70% (our hypothesis)</div>
-      <div class="button-sm" style="flex:3;background:var(--ok)">Reuse, about 30% (hypothesis)</div>
-    </div>
-    <p class="caption-2 note reveal">We do not build a refinery. The split is a starting guess until real test data exists.</p>
   </section>
 
   <!-- MONEY -->
   <section id="money" class="wrap">
-    <div class="section-head reveal"><span class="caption-3 muted">Where we make money</span><h2 class="heading-3">Every pack is priced to cover its cost, plus a margin</h2></div>
-    <div class="bars reveal">
-      <span class="title-3">One NMC pack of 400 kg: what the customer pays</span>
-      <div class="stack button-sm">
-        <div style="flex:738;background:var(--muted)">Recycler €738</div>
-        <div style="flex:600;background:var(--warn)">Transport, handling, insurance €600</div>
-        <div style="flex:268;background:var(--ok)">We keep €268</div>
+    <div class="section-head reveal"><h2 class="heading-3">Where we make money</h2></div>
+    <div class="panel-card reveal">
+      <span class="title-3">One NMC pack, 400 kg<span class="est caption-3">est.</span></span>
+      <div class="stack seg button-sm">
+        <div style="flex:738;background:var(--muted);--i:0"><span class="n">€738</span>Recycler</div>
+        <div style="flex:600;background:var(--warn);--i:1"><span class="n">€600</span>Freight and care</div>
+        <div style="flex:268;background:var(--ok);--i:2"><span class="n">€268</span>We keep</div>
       </div>
-      <p class="caption-2 note">Total about €1,606. The first two parts pass through at cost, and our share is a 20% mark up. This is our arithmetic from the recycler tariff plus our own estimates for freight, handling and insurance. Binding quotes will replace them.</p>
     </div>
-    <div class="grid reveal" style="margin-top:var(--s-200)">
-      <div class="card"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg></span><span class="heading-6">Take back fee</span><p class="body-6">Core income. Per pack, prepaid, on top of the recycler's own quote.</p><span class="pill caption-3">CORE</span></div>
-      <div class="card"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-stethoscope"/></svg></span><span class="heading-6">Battery health test</span><p class="body-6">Riga market price is €60 to 130 per car. It opens doors to dealers and importers.</p><span class="pill caption-3">ENTRY</span></div>
-      <div class="card"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-battery-charging"/></svg></span><span class="heading-6">Reuse sales</span><p class="body-6">Only against a signed order. A reused pack also skips the recycler fee. Counted as €0 in our base case.</p><span class="pill caption-3">BONUS</span></div>
-      <div class="card"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-atom"/></svg></span><span class="heading-6">Metals, later</span><p class="body-6">Our own sorting line only after written offers, trial yields and volume prove it. Today the data say it loses money.</p><span class="pill caption-3">LATER</span></div>
+    <div class="grid stag reveal" style="margin-top:var(--s-200)">
+      <div class="card" style="--i:0"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg></span><span class="heading-6">Take back fee</span><span class="pill caption-3">CORE</span></div>
+      <div class="card" style="--i:1"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-stethoscope"/></svg></span><span class="heading-6">Health tests</span><span class="pill caption-3">ENTRY</span></div>
+      <div class="card" style="--i:2"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-battery-charging"/></svg></span><span class="heading-6">Reuse sales</span><span class="pill caption-3">BONUS</span></div>
+      <div class="card" style="--i:3"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-atom"/></svg></span><span class="heading-6">Metals</span><span class="pill caption-3">LATER</span></div>
     </div>
-    <div class="bars reveal">
-      <span class="title-3">Packs per month we need (our assumptions)</span>
-      <div class="row"><span class="l body-6">Latvia supply</span><div class="track"><div class="fill button-sm" style="width:16%;min-width:150px;background:var(--bad)">about 7</div></div></div>
-      <div class="row"><span class="l body-6">Covers €3,000 costs</span><div class="track"><div class="fill button-sm" style="width:25%;min-width:150px;background:var(--warn)">about 11</div></div></div>
-      <div class="row"><span class="l body-6">Covers a €12,000 hub</span><div class="track"><div class="fill button-sm" style="width:100%;background:var(--ok)">about 45</div></div></div>
-      <p class="caption-2 note">So we must source across the Baltics and from abroad, not only in Latvia. About 80 packs a year in Latvia is a teammate estimate, not a count.</p>
+    <div class="panel-card grow reveal">
+      <span class="title-3">Packs per month<span class="est caption-3">est.</span></span>
+      <div class="row"><span class="l body-6">Latvia supply</span><div class="track"><div class="bar" style="width:16%;background:var(--bad);--i:0"></div><span class="lab button-sm">about 7</span></div></div>
+      <div class="row"><span class="l body-6">Pays €3,000 costs</span><div class="track"><div class="bar" style="width:25%;background:var(--warn);--i:1"></div><span class="lab button-sm">about 11</span></div></div>
+      <div class="row"><span class="l body-6">Pays €12,000 hub</span><div class="track"><div class="bar" style="width:100%;background:var(--ok);--i:2"></div><span class="lab button-sm">about 45</span></div></div>
     </div>
   </section>
 
   <!-- PLANET -->
   <section id="planet" class="wrap">
-    <div class="section-head reveal"><span class="caption-3 muted">Impact on the environment</span><h2 class="heading-3">Reuse first, then recycle, with every step documented</h2></div>
-    <div class="grid reveal">
-      <div class="card"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-recycle"/></svg></span><span class="stat">40 t</span><p class="body-6">of battery kept in a regulated route for every 100 packs (100 × 400 kg, our arithmetic)</p></div>
-      <div class="card"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></span><span class="stat">90% and 50%</span><p class="body-6">EU recovery targets by end 2027 for cobalt, nickel and copper, and for lithium. Rising to 95% and 80% by 2031.</p></div>
-      <div class="card"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-globe-hemisphere-west"/></svg></span><span class="stat">35 to 49%</span><p class="body-6">less CO₂ for recycled cathode metals than for mined ones, in two company linked studies. It depends on process and power.</p></div>
-      <div class="card"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-plant"/></svg></span><span class="heading-6">Reuse first</span><p class="body-6">A 2025 study (Münster, Fraunhofer FFB, Berkeley) finds second use avoids more CO₂ than recycling alone. Recycling follows.</p></div>
+    <div class="section-head reveal"><h2 class="heading-3">Good for the planet</h2></div>
+    <div class="grid stag reveal">
+      <div class="card" style="--i:0"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-recycle"/></svg></span><span class="stat"><span data-count="40">40</span> t</span><p class="body-6 muted">kept in a regulated route per 100 packs</p></div>
+      <div class="card" style="--i:1"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></span><span class="stat"><span data-count="90" data-suffix="%">90%</span></span><p class="body-6 muted">EU metal recovery target by 2027, 95% by 2031</p></div>
+      <div class="card" style="--i:2"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-globe-hemisphere-west"/></svg></span><span class="stat"><span data-count="35">35</span> to <span data-count="49" data-suffix="%">49%</span></span><p class="body-6 muted">less CO₂ than mined metals</p></div>
+      <div class="card" style="--i:3"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-plant"/></svg></span><span class="heading-6">Reuse first</span><p class="body-6 muted">then recycle</p></div>
     </div>
-    <p class="caption-2 note reveal">We claim direction, not a tonnage, until we have our own volumes. The reuse study models California to 2050, not Latvia.</p>
   </section>
 
   <!-- VALUE -->
   <section id="value" class="wrap">
-    <div class="section-head reveal"><span class="caption-3 muted">Value we provide</span><h2 class="heading-3">One partner removes a problem for four groups</h2></div>
-    <div class="grid reveal">
-      <div class="card"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span><span class="heading-6">Importers, dealers, fleets</span><p class="body-6">One partner, one price, no paperwork and no handling risk.</p></div>
-      <div class="card"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-factory"/></svg></span><span class="heading-6">Recyclers</span><p class="body-6">Intact, sorted packs with known chemistry and history. Fewer surprises.</p></div>
-      <div class="card"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-lightning"/></svg></span><span class="heading-6">Second life buyers</span><p class="body-6">Tested packs with a record that supports "used, not waste" status.</p></div>
-      <div class="card"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span><span class="heading-6">Latvia and the Baltics</span><p class="body-6">A first local route and know how for a fast growing fleet.</p></div>
+    <div class="section-head reveal"><h2 class="heading-3">Who wins</h2></div>
+    <div class="hub reveal">
+      <div class="core"><img src="logo-128.png" alt="Battery Monster logo"></div>
+      <div class="spokes stag">
+        <div class="spoke card" style="--i:0"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-truck"/></svg></span><span class="heading-6">Dealers and fleets</span></div>
+        <div class="spoke card" style="--i:1"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-factory"/></svg></span><span class="heading-6">Recyclers</span></div>
+        <div class="spoke card" style="--i:2"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-lightning"/></svg></span><span class="heading-6">Reuse buyers</span></div>
+        <div class="spoke card" style="--i:3"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span><span class="heading-6">The Baltics</span></div>
+      </div>
     </div>
   </section>
 
   <!-- INVEST -->
   <section id="invest" class="wrap">
-    <div class="section-head reveal"><span class="caption-3 muted">Why invest</span><h2 class="heading-3">The law creates the demand. Funding buys proof first.</h2></div>
-    <div class="grid why reveal">
-      <div class="card"><span class="heading-6">The law creates the market</span><p class="body-6">EU Battery Regulation: take back duties, recovery targets and the battery passport from 18 Feb 2027.</p></div>
-      <div class="card"><span class="heading-6">Light on capital</span><p class="body-6">No pack, building or machine bought before cash is in. Binding quotes first, and the customer pays in advance.</p></div>
-      <div class="card"><span class="heading-6">Priced so a pack should not lose</span><p class="body-6">Each pack is priced at full cost plus margin. About €268 per NMC pack in our base case.</p></div>
-      <div class="card"><span class="heading-6">Staged money</span><p class="body-6">Funding first buys proof: buyers, quotes and the permit answer. A plant comes only after.</p></div>
-      <div class="card"><span class="heading-6">Grants are open</span><p class="body-6">EIT Urban Mobility call up to €2 M (cut off 28 Jan 2027). Norway Grants via LIAA, €50k to 3 M, 2027 calls.</p></div>
-      <div class="card"><span class="heading-6">Honest about the unknowns</span><p class="body-6">Four things are still unproven, listed below. We test them first.</p></div>
+    <div class="section-head reveal"><h2 class="heading-3">Why invest</h2></div>
+    <div class="grid why stag reveal">
+      <div class="card" style="--i:0"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-scales"/></svg></span><span class="title-3">EU law creates demand</span></div>
+      <div class="card" style="--i:1"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-hand-coins"/></svg></span><span class="title-3">Light on capital</span></div>
+      <div class="card" style="--i:2"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span><span class="title-3">Every pack prepaid and priced</span></div>
+      <div class="card" style="--i:3"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-rocket"/></svg></span><span class="title-3">Proof before plant</span></div>
+      <div class="card" style="--i:4"><span class="chip-ic info"><svg class="ic" aria-hidden="true"><use href="#i-seal-check"/></svg></span><span class="title-3">EU and Norway grants open</span></div>
+      <div class="card" style="--i:5"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></span><span class="title-3">Risks named up front</span></div>
     </div>
-    <div class="road reveal">
-      <div class="card"><span class="caption-3">NEXT</span><span class="body-2">Ask 3 to 5 importers, dealers and fleets what they pay today.</span></div>
-      <div class="card"><span class="caption-3">THEN</span><span class="body-2">Get binding recycler and transport quotes.</span></div>
-      <div class="card"><span class="caption-3">THEN</span><span class="body-2">Get a written permit answer from the environment authority.</span></div>
-      <div class="card"><span class="caption-3">THEN</span><span class="body-2">Take the first prepaid pack. Decide on Baltic scale.</span></div>
+    <div class="timeline reveal">
+      <div class="t-line"></div>
+      <div class="step"><div class="dot"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></div><span class="body-5">Ask buyers</span></div>
+      <div class="step"><div class="dot"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg></div><span class="body-5">Get quotes</span></div>
+      <div class="step"><div class="dot"><svg class="ic" aria-hidden="true"><use href="#i-scroll"/></svg></div><span class="body-5">Permit answer</span></div>
+      <div class="step"><div class="dot"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg></div><span class="body-5">First pack</span></div>
     </div>
   </section>
 
   <!-- RISKS -->
   <section id="risk" class="wrap">
-    <div class="section-head reveal"><span class="caption-3 muted">What must still be proven</span><h2 class="heading-3">Four open questions</h2></div>
-    <div class="grid reveal">
-      <div class="card"><span class="chip-ic bad"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg></span><span class="heading-6">Will anyone pay our fee?</span><p class="body-6">The biggest risk. Our fee is about twice the recycler's own price.</p></div>
-      <div class="card"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-scroll"/></svg></span><span class="heading-6">Permit</span><p class="body-6">Does a broker who never stores packs need one?</p></div>
-      <div class="card"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-stack"/></svg></span><span class="heading-6">Volume</span><p class="body-6">Latvia alone is too small. We need the wider Baltic region.</p></div>
-      <div class="card"><span class="chip-ic bad"><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg></span><span class="heading-6">Fire and failed shipments</span><p class="body-6">One incident can cost more than a margin. Insurance is not yet quoted.</p></div>
+    <div class="section-head reveal"><h2 class="heading-3">Still to prove</h2></div>
+    <div class="grid risks stag reveal">
+      <div class="card" style="--i:0"><span class="chip-ic bad"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg></span><span class="title-3">Will buyers pay our fee?</span></div>
+      <div class="card" style="--i:1"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-scroll"/></svg></span><span class="title-3">Permit needed?</span></div>
+      <div class="card" style="--i:2"><span class="chip-ic warn"><svg class="ic" aria-hidden="true"><use href="#i-stack"/></svg></span><span class="title-3">Enough volume?</span></div>
+      <div class="card" style="--i:3"><span class="chip-ic bad"><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg></span><span class="title-3">Fire and shipment risk</span></div>
     </div>
   </section>
 
   <!-- FAQ -->
   <section id="faq" class="wrap">
-    <div class="section-head reveal"><span class="caption-3 muted">Questions investors ask</span><h2 class="heading-3">FAQ</h2></div>
+    <div class="section-head reveal"><h2 class="heading-3">FAQ</h2></div>
     <div class="reveal">
-      <details><summary class="title-2">Who pays us?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">Importers, dealers and fleets pay a prepaid fee per pack. Who pays today is our first question to answer.</p></details>
-      <details><summary class="title-2">Why not build a recycling plant?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">Published models show recycling loses money at today's metal prices and small volumes. We start without one.</p></details>
-      <details><summary class="title-2">Can you promise no losses?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">No. We accept a pack only with a signed order and prepayment that covers the quotes plus our fee. Open risks remain, listed above.</p></details>
-      <details><summary class="title-2">Is the volume big enough?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">Not in Latvia alone. We plan to source across the Baltics and from abroad, and we will not state a regional number until it is sourced.</p></details>
-      <details><summary class="title-2">What does funding buy first?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">Buyer interviews, binding quotes, a permit answer and a first prepaid pack. No plant, no hub lease.</p></details>
-      <details><summary class="title-2">Are these numbers final?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">No. Anything marked as an estimate is ours and will change when quotes arrive. Sources are listed below.</p></details>
+      <details><summary>Who pays us?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">Dealers, importers and fleets, prepaid per pack.</p></details>
+      <details><summary>Why no recycling plant?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">It loses money at small volumes today.</p></details>
+      <details><summary>Can you promise no losses?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">No. We take a pack only with a signed order and prepayment. Open risks remain.</p></details>
+      <details><summary>Is volume big enough?<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary><p class="body-3">Not in Latvia alone. We plan to source across the Baltics.</p></details>
     </div>
   </section>
 
@@ -356,7 +417,6 @@
   <section class="final wrap">
     <div class="card reveal" style="padding:var(--s-400)">
       <h2 class="heading-3" style="max-width:680px">Every EV battery gets the right end.</h2>
-      <p class="body-3 muted" style="margin-top:var(--s-100);max-width:680px">See the numbers behind the plan.</p>
       <div style="margin-top:var(--s-300)"><a class="btn button-md" href="#money">See where we make money <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
     </div>
   </section>
@@ -364,19 +424,21 @@
 
 <footer>
   <div class="wrap">
-    <p class="title-3" style="color:var(--text)">Sources</p>
-    <ul class="body-6">
-      <li>Electric cars, end 2025: Latvian Central Statistical Bureau, data.stat.gov.lv/sq/24973.</li>
-      <li>Battery Regulation (EU) 2023/1542, passport date and Annex XII targets: <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj">EUR Lex</a>.</li>
-      <li>Recycler tariff: GRS Germany 2026, reference ceiling. Fee table and break even: our arithmetic, docs/PROFIT_MODEL.md. Health test prices: three Riga providers.</li>
-      <li>Recycling CO₂: RecycLiCo and Minviro LCA 2022 (35%, NMC precursor); Ascend Elements LCA 2024 (49%, company study).</li>
-      <li>Reuse and recycling: <a href="https://www.electrive.com/2025/07/30/research-project-to-determine-whether-recycling-or-2nd-life-is-more-environmental">electrive, 30 Jul 2025</a> on the Münster, Fraunhofer FFB and Berkeley study (California, 2050).</li>
-      <li>Grants: EIT Urban Mobility open call and Norway Grants via LIAA, from team research.</li>
-    </ul>
-    <p class="body-6">Climathon 2026, Team 5. Work in progress. Estimates are ours. Not financial advice. No partner or customer is named.</p>
-    <div class="legend legal body-6"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://rderics.id.lv/">rderics.id.lv</a></div>
+    <details>
+      <summary class="title-3">Sources and notes<svg class="ic" aria-hidden="true"><use href="#i-plus-circle"/></svg></summary>
+      <ul class="body-6">
+        <li>est. means our estimate. ref. means a reference price from Germany, not a Latvian quote.</li>
+        <li>Electric cars, end 2025: Latvian Central Statistical Bureau, data.stat.gov.lv/sq/24973. Collectors: none found in our research.</li>
+        <li>Battery Regulation (EU) 2023/1542, passport date and recovery targets: <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj">EUR Lex</a>.</li>
+        <li>Recycler tariff: GRS Germany 2026. Fee stack, packs per month and the 70 and 30 split: our arithmetic and hypothesis, docs/PROFIT_MODEL.md. 40 t is 100 packs of 400 kg.</li>
+        <li>CO₂: RecycLiCo and Minviro LCA 2022 (35%), Ascend Elements LCA 2024 (49%, company study). Reuse first: <a href="https://www.electrive.com/2025/07/30/research-project-to-determine-whether-recycling-or-2nd-life-is-more-environmental">electrive, 30 Jul 2025</a>, Münster, Fraunhofer FFB and Berkeley study for California.</li>
+        <li>Grants: EIT Urban Mobility open call and Norway Grants via LIAA, from team research.</li>
+        <li>Climathon 2026, Team 5. Work in progress. Not financial advice. No partner or customer is named.</li>
+      </ul>
+    </details>
+    <div class="legal body-6"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://rderics.id.lv/">rderics.id.lv</a></div>
   </div>
 </footer>
-<script src="reveal.js?v=1"></script>
+<script src="reveal.js?v=2"></script>
 </body>
 </html>
