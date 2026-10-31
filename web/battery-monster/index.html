@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="description" content="Climathon 2026, Team 5 Battery Monster: what happens to a used EV battery, in 7 simple steps. Work in progress; figures are estimates.">
+<meta name="description" content="Battery Monster, Climathon 2026 Team 5: a Baltic take-back, testing and recycling partner for retired EV batteries. Work in progress; figures marked as estimates.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -11,120 +11,204 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0b1929">
 <meta property="og:image" content="logo-512.png">
-<title>Battery Monster: the life of an EV battery</title>
+<title>Battery Monster: every EV battery, the right end</title>
 <style>
-  :root { --bg:#0b1929; --panel:#10243a; --card:#16304c; --text:#f2f6fa; --muted:#9fb3c8; --line:#27496b; }
+  :root { --bg:#0b1929; --panel:#10243a; --card:#16304c; --text:#f2f6fa; --muted:#9fb3c8; --line:#27496b; --ok:#5fd08a; --warn:#f2c14e; --bad:#f2876b; --acc:#58b6ff; --vio:#c792ea; }
   * { box-sizing:border-box; }
-  html, body { margin:0; height:100%; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, Arial, sans-serif; }
-  body { display:flex; flex-direction:column; overflow:hidden; }
-  #main { flex:1 1 auto; overflow:auto; padding:18px 18px 10px; }
-  .top { display:flex; flex-wrap:wrap; align-items:flex-end; gap:8px 24px; max-width:1500px; margin:0 auto 14px; }
-  .brand { display:flex; align-items:center; gap:14px; }
-  .logo { width:64px; height:64px; border-radius:14px; flex:0 0 auto; }
-  h1 { margin:0; font-size:clamp(22px,3.2vw,34px); line-height:1.15; }
-  .sub { color:var(--muted); font-size:clamp(14px,1.6vw,17px); margin-top:4px; }
-  .legend { margin-left:auto; display:flex; gap:14px; font-size:12.5px; color:var(--muted); flex-wrap:wrap; }
-  .dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:-1px; }
-  .journey { max-width:1500px; margin:0 auto; }
-  .phases { display:flex; gap:6px; margin-bottom:8px; }
-  .phase { border-radius:10px; padding:6px 10px; font-size:13px; font-weight:700; text-align:center; color:#08141f; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .strip { display:flex; gap:6px; overflow-x:auto; padding:4px 2px 12px; }
-  .step { position:relative; flex:1 0 98px; min-width:98px; background:none; border:0; color:inherit; font:inherit; cursor:pointer; padding:0 2px; text-align:center; }
-  .step::before { content:""; position:absolute; top:22px; left:0; right:0; height:3px; background:var(--line); z-index:0; }
-  .step:first-child::before { left:50%; }
-  .step:last-child::before { right:50%; }
-  .badge { position:relative; z-index:1; margin:0 auto; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px; color:#08141f; box-shadow:0 0 0 5px var(--bg); }
-  .card { margin-top:10px; background:var(--card); border:2px solid transparent; border-radius:16px; padding:12px 6px 10px; transition:transform .15s, border-color .15s, background .15s; }
-  .step:hover .card { transform:translateY(-3px); background:#1b3a5a; }
-  .step.on .card { border-color:var(--c); background:#1d3f63; transform:translateY(-3px); }
-  .ico { font-size:clamp(28px,3.2vw,40px); line-height:1.1; }
-  .lab { margin-top:6px; font-size:clamp(12px,1.15vw,14.5px); font-weight:700; line-height:1.2; }
-  .hint { text-align:center; color:var(--muted); margin-top:6px; font-size:15px; }
-  #panel { flex:0 0 auto; height:0; overflow:hidden; background:var(--panel); border-top:3px solid var(--c, var(--line)); transition:height .3s ease; }
-  #panel.open { height:min(56vh, 560px); overflow:auto; }
-  .pin { max-width:1500px; margin:0 auto; padding:16px 18px 24px; }
-  .phead { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:10px; }
-  .big { font-size:46px; line-height:1; }
-  .ptitle { font-size:clamp(20px,2.4vw,28px); font-weight:800; margin:0; }
-  .nav { margin-left:auto; display:flex; gap:8px; }
-  button.nb { background:#1b3a5a; color:var(--text); border:1px solid #2f5b86; border-radius:10px; padding:8px 14px; font-size:14px; cursor:pointer; }
-  button.nb:hover { background:#24507d; }
-  .line { font-size:clamp(16px,1.9vw,21px); line-height:1.4; margin:2px 0 14px; max-width:1100px; }
-  .cols { display:grid; grid-template-columns: 1.25fr 1fr; gap:22px; align-items:start; }
-  @media (max-width: 900px) { .cols { grid-template-columns:1fr; } }
-  .viz { background:#0c1d30; border:1px solid var(--line); border-radius:16px; padding:16px; }
-  .flow { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 6px; }
-  .node { background:var(--card); border:2px solid var(--c, #4ea8ff); border-radius:14px; padding:8px 12px; text-align:center; min-width:92px; }
-  .node .e { font-size:30px; line-height:1.1; }
-  .node .t { font-size:13.5px; font-weight:700; margin-top:2px; }
-  .node .s { font-size:12px; color:var(--muted); margin-top:2px; }
-  .arr { font-size:24px; color:var(--muted); padding:0 2px; }
-  .stack { display:flex; flex-direction:column; gap:8px; align-items:center; }
-  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-  @media (max-width: 700px) { .grid3 { grid-template-columns:1fr; } }
-  .tile { background:var(--card); border:2px solid var(--c, #4ea8ff); border-radius:14px; padding:10px 12px; }
-  .tile .e { font-size:28px; }
-  .tile .t { font-weight:800; font-size:15px; margin:2px 0; }
-  .tile .s { font-size:13.5px; color:#cfe0f0; line-height:1.35; }
-  .chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px; }
-  .chip { border:2px solid var(--c, #ffbe0b); border-radius:999px; padding:6px 12px; font-size:13.5px; background:var(--card); }
-  .gauge { height:34px; border-radius:10px; background:#08141f; border:2px solid #fff; position:relative; overflow:hidden; margin:6px 0; }
-  .gauge i { display:block; height:100%; background:linear-gradient(90deg,#3ddc97,#2ec4b6); }
-  .gl { display:flex; justify-content:space-between; font-size:13px; color:var(--muted); }
-  .bars { display:flex; flex-direction:column; gap:10px; }
-  .bar { display:grid; grid-template-columns:70px 1fr 78px; gap:8px; align-items:center; font-size:14px; }
-  .track { position:relative; height:26px; background:#08141f; border-radius:8px; }
-  .track::after { content:""; position:absolute; left:50%; top:-3px; bottom:-3px; width:2px; background:#9fb3c8; }
-  .fill { position:absolute; top:0; bottom:0; border-radius:8px; }
-  .pts { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
-  .pts li { display:flex; gap:10px; align-items:flex-start; font-size:15.5px; line-height:1.4; }
-  .pts .pi { font-size:20px; flex:0 0 28px; text-align:center; }
-  .tg { display:inline-block; font-size:11px; font-weight:700; border-radius:6px; padding:1px 6px; margin-left:6px; color:#08141f; vertical-align:1px; white-space:nowrap; }
-  .stats { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
-  .stat { background:var(--card); border-radius:14px; padding:8px 14px; border-left:5px solid var(--c, #4ea8ff); min-width:130px; }
-  .stat b { display:block; font-size:24px; line-height:1.1; }
-  .stat span { font-size:12.5px; color:var(--muted); }
-  .open h3, .found h3 { margin:14px 0 6px; font-size:15px; }
-  .ft { font-size:12.5px; color:var(--muted); text-align:center; padding:2px 10px 8px; }
-  @media (max-width: 700px) {
-    .logo { width:44px; height:44px; }
-    #main { padding:12px 12px 6px; }
-    .legend, .sub { display:none; }
-    h1 { font-size:20px; }
-    .phase { font-size:10.5px; padding:4px 4px; }
-    .hint { font-size:13px; }
-    #panel.open { height:68vh; }
-    .big { font-size:34px; }
-    .nav { margin-left:0; width:100%; }
-    .ft { font-size:11px; }
-  }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:"Segoe UI", system-ui, -apple-system, Arial, sans-serif; line-height:1.35; }
+  main { max-width:1040px; margin:0 auto; padding:18px 16px 60px; }
+  a { color:var(--acc); }
+  nav { position:sticky; top:0; z-index:5; background:rgba(11,25,41,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+  nav div { max-width:1040px; margin:0 auto; padding:8px 16px; display:flex; gap:6px; overflow-x:auto; }
+  nav a { flex:0 0 auto; text-decoration:none; color:var(--muted); font-size:13.5px; padding:5px 11px; border-radius:99px; background:var(--panel); }
+  nav a:hover { color:var(--text); }
+  .hero { display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin:14px 0 6px; }
+  .hero img { width:84px; height:84px; border-radius:18px; }
+  h1 { margin:0; font-size:clamp(26px,5.5vw,44px); line-height:1.1; }
+  .tag { color:var(--muted); font-size:clamp(15px,2.2vw,19px); margin-top:6px; }
+  h2 { margin:44px 0 14px; font-size:clamp(21px,3.4vw,28px); display:flex; align-items:center; gap:10px; scroll-margin-top:60px; }
+  h2 i { font-style:normal; font-size:1.1em; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+  .tile { background:var(--card); border-radius:16px; padding:14px; }
+  .tile .e { font-size:30px; }
+  .tile b { display:block; font-size:clamp(22px,3.5vw,30px); margin-top:2px; }
+  .tile span { color:var(--muted); font-size:13.5px; }
+  .vs { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media (max-width:640px) { .vs { grid-template-columns:1fr; } }
+  .side { border-radius:18px; padding:14px; background:var(--panel); }
+  .side.no { border:2px solid var(--bad); }
+  .side.yes { border:2px solid var(--ok); }
+  .side h3 { margin:0 0 8px; font-size:18px; }
+  .side ul { list-style:none; margin:0; padding:0; }
+  .side li { display:flex; gap:10px; align-items:flex-start; padding:8px 0; border-top:1px solid var(--line); font-size:15px; }
+  .side li:first-child { border-top:0; }
+  .side li .e { font-size:24px; flex:0 0 32px; text-align:center; }
+  .flow { display:flex; flex-wrap:wrap; gap:8px; align-items:stretch; }
+  .step { flex:1 1 150px; background:var(--card); border-radius:16px; padding:14px 8px; text-align:center; }
+  .step .e { font-size:38px; line-height:1.1; }
+  .step b { display:block; margin-top:6px; }
+  .step span { color:var(--muted); font-size:13px; }
+  .arrow { align-self:center; font-size:24px; color:var(--muted); }
+  .split { display:flex; gap:8px; margin-top:8px; }
+  .split div { border-radius:12px; padding:8px 10px; font-size:14px; font-weight:700; color:#08141f; text-align:center; }
+  .bars { background:var(--panel); border-radius:18px; padding:14px; }
+  .bars h3 { margin:0 0 10px; font-size:16px; }
+  .stack { display:flex; height:46px; border-radius:12px; overflow:hidden; font-size:13.5px; font-weight:700; color:#08141f; }
+  .stack div { display:flex; align-items:center; justify-content:center; padding:0 6px; text-align:center; line-height:1.1; }
+  .row { display:flex; align-items:center; gap:10px; margin:8px 0; }
+  .row .l { flex:0 0 130px; font-size:14px; }
+  .track { flex:1; height:26px; background:#0b1929; border-radius:8px; overflow:hidden; }
+  .fill { height:100%; display:flex; align-items:center; padding-left:8px; font-size:13px; font-weight:700; color:#08141f; white-space:nowrap; }
+  .cap { color:var(--muted); font-size:13px; margin-top:8px; }
+  .streams { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-top:12px; }
+  .stream { background:var(--card); border-radius:16px; padding:12px; border-top:5px solid var(--c); }
+  .stream .e { font-size:30px; }
+  .stream b { display:block; }
+  .stream span { color:var(--muted); font-size:13.5px; }
+  .pill { display:inline-block; margin-top:6px; padding:1px 9px; border-radius:99px; font-size:12px; font-weight:800; color:#08141f; background:var(--c); }
+  .who { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+  .who .tile b { font-size:17px; }
+  .why { counter-reset:w; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; }
+  .why .tile::before { counter-increment:w; content:counter(w); display:inline-flex; width:28px; height:28px; border-radius:50%; background:var(--acc); color:#08141f; font-weight:800; align-items:center; justify-content:center; margin-bottom:6px; }
+  .why .tile b { font-size:18px; }
+  .road { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .road div { flex:1 1 170px; background:var(--panel); border-radius:14px; padding:10px 12px; border-left:5px solid var(--c); font-size:14px; }
+  .road b { display:block; font-size:12px; color:var(--c); }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { background:var(--card); border-radius:99px; padding:6px 12px; font-size:14px; border:2px solid var(--c); }
+  .src { color:var(--muted); font-size:12.5px; }
+  footer { margin-top:44px; color:var(--muted); font-size:13px; border-top:1px solid var(--line); padding-top:14px; }
+  footer li { margin:3px 0; }
 </style>
 </head>
 <body>
-<div id="main">
-  <div class="top">
-    <div class="brand">
-      <img class="logo" src="logo-128.png" width="64" height="64" alt="Battery Monster logo">
-      <div>
-      <h1>The life of an EV battery, in 7 steps</h1>
-      <div class="sub">Team 5 · Battery Monster · Climathon 2026 — from the factory to second life or recycling</div>
-      </div>
-    </div>
-    <div class="legend">
-      <span><span class="dot" style="background:#3ddc97"></span>sourced</span>
-      <span><span class="dot" style="background:#ffbe0b"></span>our estimate</span>
-      <span><span class="dot" style="background:#ff6b6b"></span>still to check</span>
-    </div>
+<nav><div>
+  <a href="#without">Without / with us</a><a href="#how">How it works</a><a href="#money">Where we earn</a><a href="#planet">Environment</a><a href="#value">Value</a><a href="#invest">Why invest</a><a href="#risk">Risks</a>
+</div></nav>
+<main>
+  <div class="hero">
+    <img src="logo-512.png" alt="Battery Monster logo">
+    <div><h1>Every EV battery gets the right end.</h1>
+    <div class="tag">A Baltic take-back, testing and recycling partner for retired EV batteries · Climathon 2026, Team 5 · work in progress</div></div>
   </div>
-  <div class="journey">
-    <div class="phases" id="phases"></div>
-    <div class="strip" id="strip"></div>
-    <div class="hint" id="hint">Tap a step to see how it works. Use the arrow keys to move along. <a href="insurer-pilot.html" style="color:#58b6ff">Insurer pilot plan with data check</a></div>
+
+  <div class="grid">
+    <div class="tile"><div class="e">🚗</div><b>13,916</b><span>electric cars in Latvia, end 2025 (up from 9,234)</span></div>
+    <div class="tile"><div class="e">🚫</div><b>0</b><span>EV-battery collectors found in Latvia in our research</span></div>
+    <div class="tile"><div class="e">📅</div><b>18 Feb 2027</b><span>EU battery passport becomes mandatory for EV batteries</span></div>
   </div>
-</div>
-<div id="panel"><div class="pin" id="pin"></div></div>
-<div class="ft">Work in progress. Figures marked as estimates are not validated.</div>
-<script src="app.js?v=11"></script>
+
+  <h2 id="without"><i>⚖️</i>Without us, with us</h2>
+  <div class="vs">
+    <div class="side no"><h3>🔴 Without us</h3><ul>
+      <li><span class="e">❓</span><span>No known local route. Each owner or dealer finds a recycler alone.</span></li>
+      <li><span class="e">💸</span><span>Recycling a pack is a cost: about €738 (NMC) or €1,686 (LFP) per 400 kg pack, before transport.</span></li>
+      <li><span class="e">📄</span><span>Unclear paperwork and liability. Waste or “used”? Who is responsible?</span></li>
+      <li><span class="e">🗑️</span><span>Packs that still work get recycled too early. Nobody tests them.</span></li>
+    </ul></div>
+    <div class="side yes"><h3>🟢 With us</h3><ul>
+      <li><span class="e">📞</span><span>One call. One partner, one written price, paid in advance.</span></li>
+      <li><span class="e">🔍</span><span>Every pack tested. Good ones are reused. The rest are recycled.</span></li>
+      <li><span class="e">📑</span><span>Papers and test record ready for the battery passport and waste rules.</span></li>
+      <li><span class="e">🛡️</span><span>Only intact packs, with a signed order. We carry the handling risk, not the customer.</span></li>
+    </ul></div>
+  </div>
+  <div class="cap">Recycler prices: the only published 2026 tariff we found (GRS Germany, ceiling reference, excl. VAT). Latvian prices need real quotes.</div>
+
+  <h2 id="how"><i>🔄</i>How it works</h2>
+  <div class="flow">
+    <div class="step"><div class="e">🚗</div><b>Collect</b><span>fleets, dealers, importers</span></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="e">🔍</div><b>Test</b><span>health, safety, papers</span></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="e">🔀</div><b>Decide</b><span>reuse or recycle</span></div>
+    <div class="arrow">→</div>
+    <div class="step"><div class="e">🏭</div><b>Hand over</b><span>to licensed partners</span></div>
+  </div>
+  <div class="split">
+    <div style="flex:7;background:var(--acc)">♻️ Recycle ≈ 70% (our hypothesis)</div>
+    <div style="flex:3;background:var(--ok)">🔋 Reuse ≈ 30% (hypothesis)</div>
+  </div>
+  <div class="cap">We do not build a refinery. The split is a starting guess until real tests exist.</div>
+
+  <h2 id="money"><i>💶</i>Where we make money</h2>
+  <div class="bars">
+    <h3>One NMC pack (400 kg): what the customer pays</h3>
+    <div class="stack">
+      <div style="flex:738;background:#9fb3c8">Recycler €738</div>
+      <div style="flex:600;background:var(--warn)">Transport, handling, insurance €600</div>
+      <div style="flex:268;background:var(--ok)">We keep €268</div>
+    </div>
+    <div class="cap">Total about €1,606. First two parts are passed through at cost; our share is a 20% mark-up. Our arithmetic from the recycler tariff plus our estimated freight, handling and insurance; to be replaced by binding quotes.</div>
+  </div>
+  <div class="streams">
+    <div class="stream" style="--c:#5fd08a"><div class="e">📦</div><b>Take-back fee</b><span>Core income. Per pack, prepaid, on top of the recycler’s own quote.</span><br><span class="pill">CORE</span></div>
+    <div class="stream" style="--c:#58b6ff"><div class="e">🩺</div><b>Battery health test</b><span>Riga market price €60–130 per car. Opens doors to dealers and importers.</span><br><span class="pill">ENTRY</span></div>
+    <div class="stream" style="--c:#f2c14e"><div class="e">🔋</div><b>Reuse sales</b><span>Only against a signed order. A reused pack also skips the recycler fee. Counted as €0 in our base case.</span><br><span class="pill">BONUS</span></div>
+    <div class="stream" style="--c:#c792ea"><div class="e">🧲</div><b>Metals, later</b><span>Own sorting line only after written offers, trial yields and volume prove it. Today the data say it loses money.</span><br><span class="pill">LATER</span></div>
+  </div>
+  <div class="bars" style="margin-top:12px">
+    <h3>Packs per month needed (our assumptions)</h3>
+    <div class="row"><div class="l">Latvia supply</div><div class="track"><div class="fill" style="width:13%;min-width:90px;background:var(--bad)">≈ 7 (80 a year)</div></div></div>
+    <div class="row"><div class="l">Covers €3,000 costs</div><div class="track"><div class="fill" style="width:24%;min-width:90px;background:var(--warn)">≈ 11</div></div></div>
+    <div class="row"><div class="l">Covers a €12,000 hub</div><div class="track"><div class="fill" style="width:100%;background:var(--ok)">≈ 45</div></div></div>
+    <div class="cap">So the business must source across the Baltics and from abroad, not only from Latvia. 80 packs a year is a teammate estimate, not a count.</div>
+  </div>
+
+  <h2 id="planet"><i>🌍</i>Impact on the environment</h2>
+  <div class="grid">
+    <div class="tile"><div class="e">🛢️</div><b>40 t</b><span>of battery kept in a regulated route for every 100 packs (100 × 400 kg, our arithmetic)</span></div>
+    <div class="tile"><div class="e">🎯</div><b>90% · 50%</b><span>EU recovery targets for cobalt, nickel, copper and for lithium by end 2027; 95% · 80% by 2031</span></div>
+    <div class="tile"><div class="e">⛏️</div><b>−35 to −49%</b><span>CO₂ for recycled cathode metals vs mined, in two company-linked studies. Depends on process and power.</span></div>
+    <div class="tile"><div class="e">🔋</div><b>Reuse first</b><span>A 2025 study (Münster, Fraunhofer FFB, Berkeley) finds second use avoids more CO₂ than recycling alone. Then recycle.</span></div>
+  </div>
+  <div class="cap">We claim direction, not a tonnage, until we have our own volumes. The reuse study models California to 2050, not Latvia.</div>
+
+  <h2 id="value"><i>🎁</i>Value we provide</h2>
+  <div class="who">
+    <div class="tile"><div class="e">🚘</div><b>Importers, dealers, fleets</b><span>One partner, one price, no paperwork or handling risk.</span></div>
+    <div class="tile"><div class="e">🏭</div><b>Recyclers</b><span>Intact, sorted packs with known chemistry and history. Fewer surprises.</span></div>
+    <div class="tile"><div class="e">⚡</div><b>Second-life buyers</b><span>Tested packs with a record that supports the “used, not waste” status.</span></div>
+    <div class="tile"><div class="e">🇱🇻</div><b>Latvia and the Baltics</b><span>A first local route and know-how for a fleet that is growing fast.</span></div>
+  </div>
+
+  <h2 id="invest"><i>📈</i>Why invest</h2>
+  <div class="why">
+    <div class="tile"><b>The law creates the market</b><span>EU Battery Regulation: take-back duties, recovery targets, battery passport from 18 Feb 2027.</span></div>
+    <div class="tile"><b>Capital-light</b><span>No pack, building or machine bought before cash is in. Binding quotes first, customer pays in advance.</span></div>
+    <div class="tile"><b>Built so a priced pack does not lose</b><span>Every pack priced at full cost plus margin. About €268 per NMC pack in our base case.</span></div>
+    <div class="tile"><b>Staged money</b><span>Funding buys proof first: buyers, quotes, permit. A plant comes only after.</span></div>
+    <div class="tile"><b>Grants are open</b><span>EIT Urban Mobility call up to €2 M (cut-off 28 Jan 2027). Norway Grants via LIAA, €50k–3 M, 2027 calls.</span></div>
+    <div class="tile"><b>Honest about the unknowns</b><span>Four things are still unproven (below). We say so, and test them first.</span></div>
+  </div>
+  <div class="road">
+    <div style="--c:#58b6ff"><b>NEXT</b>Ask 3–5 importers, dealers, fleets: what do you pay today?</div>
+    <div style="--c:#f2c14e"><b>THEN</b>Binding recycler and transport quotes.</div>
+    <div style="--c:#c792ea"><b>THEN</b>Written answer from the environment authority on permits.</div>
+    <div style="--c:#5fd08a"><b>THEN</b>First prepaid pack. Decide on Baltic scale.</div>
+  </div>
+
+  <h2 id="risk"><i>⚠️</i>What must still be proven</h2>
+  <div class="chips">
+    <div class="chip" style="--c:#f2876b">💰 Will anyone pay our fee? Biggest risk. It is about twice the recycler’s own price.</div>
+    <div class="chip" style="--c:#f2c14e">📜 Permit: does a broker who never stores packs need one?</div>
+    <div class="chip" style="--c:#f2c14e">📦 Volume: Latvia alone is too small.</div>
+    <div class="chip" style="--c:#f2876b">🔥 One fire or failed shipment can cost more than a margin. Insurance not yet quoted.</div>
+  </div>
+
+  <footer>
+    <div><b>Sources</b> (details and caveats in the team repo, docs/):</div>
+    <ul>
+      <li>Electric cars 13,916 end 2025: Latvian Central Statistical Bureau (data.stat.gov.lv/sq/24973).</li>
+      <li>Battery Regulation (EU) 2023/1542: passport 18 Feb 2027; recovery targets in Annex XII; <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj">EUR-Lex</a>.</li>
+      <li>Recycler tariff: GRS Germany 2026 (reference ceiling). Fee table and break-even: our arithmetic, docs/PROFIT_MODEL.md. Health-test prices: three Riga providers.</li>
+      <li>Recycling CO₂: RecycLiCo / Minviro LCA 2022 (−35%, NMC precursor) and Ascend Elements LCA 2024 (−49%, company study).</li>
+      <li>Reuse vs recycling: <a href="https://www.electrive.com/2025/07/30/research-project-to-determine-whether-recycling-or-2nd-life-is-more-environmental">electrive, 30 Jul 2025</a> on the Münster / Fraunhofer FFB / Berkeley study (California, 2050).</li>
+      <li>Grants: EIT Urban Mobility open call; Norway Grants via LIAA (team research).</li>
+    </ul>
+    <div>Estimates are ours and will change with quotes. Not financial advice. No partner or customer is named.</div>
+  </footer>
+</main>
 </body>
 </html>
