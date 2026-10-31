@@ -1,21 +1,17 @@
-# Investor view of the idea (31 Oct 2026)
+# Public page basis (31 Oct 2026, after the pivot to post-crash checks for insurers)
 
-Public page: https://rderics.id.lv/battery-monster/ (source: web/battery-monster/index.html). Every figure below is either sourced or labelled as our estimate; the page says the same.
+Page: https://rderics.id.lv/battery-monster/ (source web/battery-monster/index.html). Every figure is sourced or marked est. on the page.
 
 | On the page | Basis | Status |
 |---|---|---|
-| 13,916 electric cars, end 2025 (9,234 a year earlier) | Latvian CSB table data.stat.gov.lv/sq/24973 (docs/FEEDSTOCK_AND_RULES.md) | sourced |
-| 0 EV-battery collectors found in Latvia | docs/ANSWERS.md, question 1 ("not found") | absence in our research, not proof |
-| Battery passport 18 Feb 2027; recovery targets 90% Co/Ni/Cu and 50% Li (end 2027), 95% and 80% (end 2031) | Regulation (EU) 2023/1542, Annex XII (checked through summaries; read EUR-Lex before the pitch) | sourced, secondary check |
-| Recycler cost €738 (NMC) and €1,686 (LFP) per 400 kg pack | GRS Germany 2026 tariff, ceiling reference (docs/PROFIT_MODEL.md) | sourced, Germany, not a Latvian quote |
-| Fee stack €738 + €600 + €268 = €1,606 | Our arithmetic; freight, handling, insurance and 20% mark-up are our estimates | estimate |
-| Break-even about 11 packs a month (€3,000 costs) and about 45 (€12,000 hub) | docs/PROFIT_MODEL.md | estimate |
-| About 80 packs retiring a year in Latvia | teammate estimate (docs/IDEA.md) | estimate |
-| 70% recycle / 30% reuse | Rinalds' hypothesis, 30 Oct | hypothesis |
-| 40 t per 100 packs | 100 x 400 kg | arithmetic on an assumed weight |
-| Recycled cathode metals 35% to 49% lower CO2 | RecycLiCo/Minviro 2022 (35%, NMC precursor); Ascend Elements 2024 (49%, company study) | company-linked, range |
-| Second use avoids more CO2 than recycling alone | Münster / Fraunhofer FFB / Berkeley study, California 2050: 55.8 Mt vs 48.3 Mt (electrive, 30 Jul 2025) | modelled for California, press summary; read the paper |
-| EIT UM call up to €2 M (28 Jan 2027); Norway Grants via LIAA €50k-3 M | teammate research (docs/IDEA.md) | verify before citing |
+| Battery 2% of EV crash claims but 7% of cost; new pack EUR 13,300-43,300; 3 casing swaps at EUR 1,100-2,200 (3 of 8 packs saved) | AZT Automotive analysis of 400 Allianz EV collision claims, 2021 (read in the original PDF) | sourced, small sample, 2021 prices |
+| Check method, outcome classes, 10 mm and 60 C criteria | Swiss insurers guideline v9, signed 31 Oct 2025 (read in the original PDF) | sourced |
+| Fire 21 days after a crash test | NHTSA PE11037, one lab test | sourced, shows possibility not frequency |
+| EV fleet 9,234 to 13,916, up 51% | Latvian CSB table data.stat.gov.lv/sq/24973 (51% is our arithmetic) | sourced |
+| Insurers buy scans (12.4M scans 2021, GEICO agreement 2024) | asTech company figures via trade press (docs/DIAGNOSTIC_CENTER.md) | vendor claim |
+| EUR 435 saving per check (low 40), EUR 120-200 our cost, EUR 150-250 price, 57 checks a year in Latvia, 200-300 in the Baltics, kit EUR 2-4k, pilot cap EUR 6-8k | our estimates (docs/INSURER_PILOT_PLAN.md, docs/POST_CRASH_SCAN.md) | estimate, cannot be validated before a pilot |
+| EUR 11k a year in Latvia, EUR 40-60k Baltics at EUR 200 a check | our arithmetic on the estimates above | estimate |
+| 24 h to a report | design target | goal |
+| "A pack kept is a pack not made" | qualitative; no CO2 figure sourced | not quantified |
 
-Not claimed anywhere: a profit forecast, a revenue figure, a CO2 tonnage for our own operation, or "cannot lose money". The biggest open question stays: who pays our fee (docs/PROFIT_MODEL.md section 2, "The catch").
-The insurer pilot (docs/INSURER_PILOT_PLAN.md) is kept as a docs option and is not on the public page.
+Not claimed: that a scanner measures battery health, that a car is safe, any profit forecast, any named insurer. No insurer has been contacted.
