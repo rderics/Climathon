@@ -2,7 +2,7 @@
 
 Live page: https://rderics.id.lv/battery-monster . Source: `web/battery-monster/` (`index.html` + `app.js`; serve the folder or open index.html, it needs app.js next to it). Answers found by research are in docs/ANSWERS.md. Click a stage to open it (it closes the others), drag to move, scroll to zoom. Dots: green = sourced in our research, amber = our estimate or assumption, red = unknown / to check.
 
-## The 13 stages
+## The 14 stages
 1. Where batteries come from (materials, cell makers, pack, OEM as legal producer)
 2. First life in the car (Latvia: 13,916 EVs end-2025; about half arrived as used imports)
 3. Degradation and the swap (leaves the car at about 70-80%; dealer / garage / insurer)
@@ -16,6 +16,7 @@ Live page: https://rderics.id.lv/battery-monster . Source: `web/battery-monster/
 11. Route C: send to Poland or Finland
 12. Money: costs, revenue, profit
 13. To check (who to ask)
+14. Our pitch: what we sell (four income lines, the 3-minute story, honest caveats)
 
 ## Pilot money model (illustrative, per year, 100 packs)
 Built by us from numbers elsewhere in the repo. **Not validated; replace with quotes.** Treats USD roughly as EUR.

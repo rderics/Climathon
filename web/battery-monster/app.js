@@ -1,11 +1,11 @@
-// Battery Monster: step-by-step explainer. Plain DOM, no libraries (the site CSP only allows scripts from the same origin).
+// Battery Monster: short step-by-step explainer. Plain DOM, no libraries (the site CSP only allows scripts from the same origin).
 var TAGS = { s: ["Sourced", "#3ddc97"], a: ["Estimate", "#ffbe0b"], c: ["To check", "#ff6b6b"] };
 var PH = [
   { name: "Life of the battery", color: "#4ea8ff", n: 3 },
   { name: "The problem", color: "#ff8f8f", n: 2 },
   { name: "What we do", color: "#3ddc97", n: 3 },
   { name: "Where batteries go", color: "#ffbe0b", n: 3 },
-  { name: "Money and next", color: "#b79cff", n: 2 }
+  { name: "Money and next", color: "#b79cff", n: 3 }
 ];
 
 function tg(k) { return k ? '<span class="tg" style="background:' + TAGS[k][1] + '">' + TAGS[k][0] + "</span>" : ""; }
@@ -21,58 +21,62 @@ function chips(list, c) { return '<div class="chips">' + list.map(function (x) {
 function gauge(pct, l1, l2) { return '<div class="gauge"><i style="width:' + pct + '%"></i></div><div class="gl"><span>' + l1 + "</span><span>" + l2 + "</span></div>"; }
 
 var STEPS = [
-  { icon: "⛏️", short: "Made", title: "Where batteries come from", line: "A battery starts as metals like lithium and nickel. They become cells, the cells become a pack, and the carmaker fits the pack into the car.",
-    viz: function () { return flow([["⛏️", "Metals", "lithium, nickel, cobalt"], ["🔋", "Cells", "LG, CATL, Panasonic..."], ["📦", "Pack", "cells + computer + cooling"], ["🚗", "Car", "built by the carmaker"]], "#4ea8ff") + chips(["The carmaker is the legal 'producer' of the battery"], "#4ea8ff"); },
-    stats: [["40–80 kWh", "typical car pack", "s"], ["300–480 kg", "weight of a pack", "s"], ["~10%", "LFP share in the EU (2025); the rest is nickel-based", "s"]],
-    pts: [["🏭", "Because the carmaker is the 'producer', the law makes it responsible for the battery at the end of its life.", "s"], ["🔋", "Most European cars use nickel-based batteries (NMC/NCA). Cheaper LFP batteries are still rare here.", "s"]] },
-  { icon: "🚗", short: "In the car", title: "First life: driving", line: "The battery powers the car for years. Latvia has few electric cars so far, and many arrived second-hand from abroad.",
-    viz: function () { return '<div class="stack"><div style="font-size:70px">🚗🔋</div>' + gauge(100, "Battery full health", "100%") + "</div>"; },
-    stats: [["13,916", "electric cars in Latvia, end of 2025", "s"], ["1,602", "new electric cars registered in 2025", "s"], ["about half", "of the stock came as used imports", "a"]],
-    pts: [["⏳", "Most batteries stay in cars until the mid-2030s, so only a few come out now.", "s"], ["🌍", "Latvia has to bring many packs in from other countries to have enough volume.", "a"]] },
-  { icon: "📉", short: "Wears out", title: "The battery gets weaker and is swapped", line: "After years the battery holds less energy. At about 70–80% left it is swapped. It is not dead, just too weak for a car.",
-    viz: function () { return '<div class="stack" style="width:100%">' + gauge(100, "New", "100%") + '<div style="font-size:26px">⬇️</div>' + gauge(75, "When swapped", "about 70–80% left") + "</div>" + flow([["🔧", "Dealer or garage", "swaps the pack"], ["📦", "Old pack", "comes out"], ["🆕", "New pack", "goes in"]], "#4ea8ff"); },
-    stats: [["70–80%", "capacity left when a pack leaves the car", "s"], ["60–67%", "measured on real first-generation Nissan Leaf packs", "s"]],
-    pts: [["🔧", "Who swaps it: a dealer, a garage, or an insurer after a crash.", "a"], ["❓", "What a replacement pack costs in Europe: not found yet.", "c"]] },
-  { icon: "📦", short: "Stuck", title: "Old packs sit in storage", line: "The swapped pack often just sits. There is nobody to hand it to, shipping is expensive, and the rules are unclear.",
-    viz: function () { return '<div class="grid2">' + tile("🚚", "Shipping is costly", "about €350–600 per pack; damaged packs far more", "#ff8f8f") + tile("🕳️", "No collector", "no Latvian collector for EV packs found", "#ff8f8f") + tile("📄", "Used or waste?", "must be proven with a test record and a contract", "#ff8f8f") + tile("🔥", "Storage rules", "permit and fire rules for lithium not confirmed", "#ff8f8f") + "</div>"; },
+  { icon: "⛏️", short: "Made", title: "Where batteries come from", line: "Metals become cells, cells become a pack, and the carmaker builds it into the car.",
+    viz: function () { return flow([["⛏️", "Metals", ""], ["🔋", "Cells", ""], ["📦", "Pack", ""], ["🚗", "Car", ""]], "#4ea8ff"); },
+    stats: [["~10%", "of EU EV batteries are LFP; most are nickel-based", "s"]],
+    pts: [["🏭", "The carmaker is the legal 'producer' of the battery.", "s"]] },
+  { icon: "🚗", short: "In the car", title: "First life: driving", line: "The battery powers the car for years. Latvia has few electric cars, many bought used from abroad.",
+    viz: function () { return '<div class="stack"><div style="font-size:60px">🚗🔋</div>' + gauge(100, "Full health", "100%") + "</div>"; },
+    stats: [["13,916", "electric cars in Latvia, end of 2025", "s"]],
+    pts: [["⏳", "Most packs stay in cars until the mid-2030s.", "s"]] },
+  { icon: "📉", short: "Wears out", title: "The battery gets weaker and is swapped", line: "At about 70–80% capacity it is swapped. It is not dead, just too weak for a car.",
+    viz: function () { return '<div class="stack" style="width:100%">' + gauge(100, "New", "100%") + '<div style="font-size:24px">⬇️</div>' + gauge(75, "When swapped", "about 70–80%") + "</div>"; },
+    stats: [["70–80%", "capacity left when a pack leaves the car", "s"]],
+    pts: [["🔧", "A dealer, garage or insurer swaps it.", "a"]] },
+  { icon: "📦", short: "Stuck", title: "Old packs sit in storage", line: "Nobody takes them, shipping is costly, and the rules are unclear.",
+    viz: function () { return '<div class="grid2">' + tile("🚚", "Costly to ship", "about €350–600 per pack", "#ff8f8f") + tile("🕳️", "No collector", "none found in Latvia", "#ff8f8f") + tile("📄", "Used or waste?", "must be proven", "#ff8f8f") + tile("🔥", "Storage rules", "fire rules unconfirmed", "#ff8f8f") + "</div>"; },
     stats: [["€350–600", "freight per pack inside the EU", "a"]],
-    pts: [["📄", "A pack counts as 'used' only with a health test, a sale contract and safe packaging. Otherwise it is waste.", "s"], ["🔥", "Latvian law asks for a sealed, weatherproof storage surface or container.", "s"], ["📞", "What dealers and importers really do with swapped packs: we must ask them.", "c"]] },
-  { icon: "💶", short: "Who pays", title: "Who has to pay, and what if they don't?", line: "By EU law the carmaker or importer must take old batteries back and pay for it. The price is not fixed by law. It is agreed between companies.",
-    viz: function () { return flow([["🏭", "Carmaker or importer", "must organise and pay"], ["💶", "Take-back fee", "agreed price"], ["🏢", "Us", "collect and handle it"]], "#ff8f8f") + chips(["Nickel-based (NMC) pack: about €0–140 per pack", "LFP pack: about €1,050–1,400 per pack (2024, moving)"], "#ffbe0b"); },
-    stats: [["€0–140", "per NMC pack (2024 gate fees)", "s"], ["€1,050–1,400", "per LFP pack (2024)", "s"]],
-    pts: [["⚖️", "If a producer doesn't comply, each country sets the penalty. Batteries can also be recalled or banned from sale.", "s"], ["❓", "Latvian fine amounts: not found yet.", "c"], ["🔄", "If we repurpose a battery, we become its 'producer' ourselves.", "s"], ["🤝", "Our pitch to producers: we do your take-back duty for you.", "a"]] },
-  { icon: "🏭", short: "Our hub", title: "Our take-back hub", line: "We collect used packs from many places into one safe site in Latvia and check them in.",
-    viz: function () { return '<div class="flow">' + ["🚌|Fleets and buses", "🔧|Dealers and garages", "🚨|Insurers", "🧰|Dismantlers", "📦|Carmaker surplus", "🌍|Imports"].map(function (x) { var p = x.split("|"); return node(p[0], p[1], "", "#3ddc97"); }).join("") + "</div><div style='text-align:center;font-size:28px;margin:6px 0'>⬇️</div>" + '<div class="flow">' + node("🏭", "Our hub", "intake · safe storage · paperwork", "#3ddc97") + "</div>"; },
-    stats: [["4,570", "batteries taken out of scrapped cars in Norway in 2024: a big nearby source", "s"]],
-    pts: [["🧠", "We read the battery's history from its own computer (BMS). The law gives us access.", "s"], ["🚫", "At the start we do not take damaged packs. They are very costly and risky.", "a"], ["🧯", "Safe storage means a fire-safe room, a sealed floor and a low charge.", "a"], ["🌍", "Latvia alone is too small. We plan a Baltic hub, and we also take carmaker surplus, warranty returns and production scrap, not only end-of-life packs.", "a"], ["❓", "Which exact waste permit we need: to check.", "c"]] },
-  { icon: "🔬", short: "Test", title: "We test every pack", line: "Each pack gets a check-up. The result decides: live again, take apart, or recycle.",
-    viz: function () { return flow([["📖", "Read data", ""], ["👀", "Look for damage", ""], ["⚡", "Insulation", ""], ["🔋", "Self-discharge", ""], ["📏", "Capacity", ""], ["⚖️", "Balance", ""]], "#3ddc97") + '<div class="chips" style="margin-top:14px"><span class="chip" style="--c:#3ddc97">A · reuse</span><span class="chip" style="--c:#ffbe0b">B · take apart</span><span class="chip" style="--c:#b79cff">C · recycle</span></div>'; },
-    stats: [["minutes", "a quick health test", "s"], ["hours", "a full capacity test", "s"], ["~€99", "price of a consumer health test", "s"]],
-    pts: [["🎯", "A single health number is not enough. A 90% pack can still fail on leaks, imbalance or hidden damage.", "s"], ["💶", "At module level, a test costs about €57 per kWh in one study.", "s"], ["💶", "We can charge a fee for testing and certifying each pack, so our income does not depend only on reselling.", "a"], ["🧰", "Our equipment list and the cost per pack: to work out.", "c"]] },
-  { icon: "✅", short: "Certify", title: "Approvals: what we can do ourselves", line: "There are three kinds of approval. We can do some ourselves; for others we need an outside lab.",
-    viz: function () { return '<div class="grid3">' + tile("📝", "Used, not waste", "A test record, a sale contract and safe packaging. <b>We can issue this.</b>", "#3ddc97") + tile("📋", "New product", "A repurposed battery is a new product and we are its maker: self-declared conformity, safety tests, new label, new battery passport from Feb 2027.", "#ffbe0b") + tile("🏅", "Lab certificates", "Standards like UL 1974 and IEC 63330. <b>Needs an accredited lab.</b>", "#b79cff") + "</div>"; },
-    stats: [["18 Feb 2027", "battery passport becomes mandatory", "s"]],
-    pts: [["🛡️", "Insurers prefer LFP, outdoor sites and monitoring. Nickel-based second life is harder to insure.", "a"], ["⏳", "Some EU rules are still being finished (end-of-waste, passport access).", "s"]] },
-  { icon: "⚡", short: "Reuse", title: "Route A: a second life. Who buys?", line: "The good packs live again, mostly as stationary storage or as replacement packs.",
-    viz: function () { return '<div class="grid2">' + tile("⚡", "ENGYcell", "Riga storage start-up. To confirm: do they buy used packs?", "#ffbe0b") + tile("🚗", "Drivers", "A tested used pack as a replacement, plus a trade-in of the old one.", "#ffbe0b") + tile("🏭", "Businesses", "EV charger and bus-depot buffers, backup for clinics and schools, farms with solar.", "#ffbe0b") + tile("🔍", "Health test service", "For dealers and importers who sell used electric cars.", "#ffbe0b") + "</div>"; },
-    stats: [["€550–1,100", "extra price for a certified used EV (vendor data)", "s"], ["36%", "faster sale with a health certificate (vendor data)", "s"], ["~$8 vs ~$30", "per kWh: what recyclers vs second-life firms pay (2024)", "a"]],
-    pts: [["📊", "90% of 60 UK dealers want a standard battery test.", "s"], ["🇱🇻", "Latvia gives a €3,000 subsidy for used electric cars. Local demand for a test is not yet tested.", "c"], ["🛡️", "We would offer buyers a take-back guarantee: we take the modules back when their life ends.", "a"], ["❓", "ENGYcell's spec, volume and price: only they can say.", "c"]] },
-  { icon: "♻️", short: "Recycle", title: "Route B: recycle mechanically in Latvia (our plan for all recycled packs)", line: "We take every pack we recycle apart and shred it here as far as we can. We sell the metals, and ship what we can't process abroad.",
-    viz: function () { return flow([["📦", "Pack", ""], ["🔧", "Modules", "take apart"], ["⚙️", "Shred", "safe, controlled"]], "#ffbe0b") + '<div style="text-align:center;font-size:26px;margin:6px 0">⬇️</div>' + '<div class="grid2"><div class="tile" style="--c:#d68250"><div class="t">🟠 Copper</div><div class="s">to scrap buyers</div></div><div class="tile" style="--c:#c0cad4"><div class="t">⚪ Aluminium</div><div class="s">to scrap buyers</div></div><div class="tile" style="--c:#788796"><div class="t">⬜ Steel</div><div class="s">to scrap buyers</div></div><div class="tile" style="--c:#fff"><div class="t">⚫ Black mass</div><div class="s">to a refiner: nickel, cobalt, lithium powder</div></div></div>'; },
-    stats: [["40–50%", "of an EV battery's weight ends up as black mass; the rest is metals and plastic", "s"], ["60–72%", "of the nickel and cobalt value paid for nickel-based (NMC) black mass (2024)", "s"], ["very low", "value of LFP black mass outside China: mostly just the lithium", "s"]],
-    pts: [["🔧", "Plan: every pack we recycle is taken apart and shredded in Latvia as far as we can, and we sell copper, aluminium and steel locally.", "a"], ["🚚", "The black mass and anything we can't process go abroad, so we ship far less weight than whole packs.", "a"], ["📉", "Nickel-based (NMC) black mass has real value. LFP black mass is worth little and we should expect to pay for it (gate fees of €500–4,000 per tonne quoted for scrap LFP, 2024–25). Most LFP black mass in Europe counts as hazardous waste.", "s"], ["🏗️", "A small mechanical line is far cheaper than a refinery. One reference: a plant for 10,000 tonnes a year cost about €3M (Redux, 2018). Our own line's cost is still unknown.", "s"], ["🤝", "Before promising anything we plan a joint test batch with a refiner and ask for a written letter of intent. In our numbers only nickel-based black mass counts as income.", "a"], ["🚫", "We do not refine: that is a huge chemical plant.", "s"], ["❓", "Black mass per pack, line cost, running cost and permits: to find out. For nickel-based packs, a refiner might pay more for the black mass than for the whole pack: to check.", "c"]] },
-  { icon: "🚚", short: "Send", title: "Route C: ship what we can't process to Poland or Finland", line: "The black mass and the parts we can't process go to big recyclers abroad, instead of shipping whole packs.",
-    viz: function () { return flow([["🏭", "Our hub", "Latvia"], ["🇫🇮", "Fortum", "Finland"]], "#ffbe0b") + '<div style="height:10px"></div>' + flow([["🏭", "Our hub", "Latvia"], ["🇵🇱", "AE Elemental, Eneris", "Poland"]], "#ffbe0b"); },
-    stats: [["€350–600", "freight per whole pack (the old plan)", "a"], ["about half", "the weight we ship if we shred first (estimate)", "a"], ["to quote", "what refiners pay (NMC) or charge (LFP) for our black mass", "c"]],
-    pts: [["⚖️", "Black mass is about 40–50% of a battery's weight, so shredding first roughly halves what we ship.", "a"], ["📜", "Dangerous-goods transport rules apply, and cross-border waste needs consent. Most LFP black mass in Europe counts as hazardous waste.", "s"], ["💬", "Nobody publishes prices. We need written quotes for NMC and LFP black mass.", "c"]] },
-  { icon: "📊", short: "Money", title: "A first rough pilot: 100 packs a year", line: "This rough model still ships whole packs abroad, and loses money before staff and rent. If we shred first and ship about half the weight, the base case improves by about €16k a year, but our own line's cost is not counted.",
-    viz: function () { function bar(l, v, col) { var w = Math.abs(v) / 60 * 50; var s = v < 0 ? "right:50%;width:" + w + "%" : "left:50%;width:" + w + "%"; return '<div class="bar"><span>' + l + '</span><div class="track"><div class="fill" style="' + s + ";background:" + col + '"></div></div><b>' + (v > 0 ? "+" : "") + v + "k €</b></div>"; } return '<div class="bars">' + bar("Low case", -58.6, "#ff6b6b") + bar("Base case", -20.8, "#ffbe0b") + bar("High case", 39.3, "#3ddc97") + '</div><div class="gl" style="margin-top:8px"><span>Result per year, before staff, rent, insurance and equipment</span></div>'; },
-    stats: [["+€8k–49k", "extra per year from a health-test service (100–600 tests)", "a"], ["not counted", "staff, storage, insurance, permits, equipment", "c"]],
-    pts: [["🧮", "Assumes 30 packs sold to ENGYcell and 70 shipped whole to a recycler.", "a"], ["🔧", "Not in these numbers: building and running our own shredding line, and what we get for copper, aluminium and steel.", "c"], ["💡", "What helps: fees from producers, a paid test service, cheap packs, more volume, and later our own processing.", "a"], ["📝", "All numbers are rough estimates built from our research. We will replace them with quotes.", "a"]] },
-  { icon: "🔎", short: "Next", title: "What we know, and what is still open", line: "We found part of the answers on the web. The rest needs phone calls and quotes.",
-    viz: function () { return '<div class="grid2"><div class="tile" style="--c:#3ddc97"><div class="t">✅ Found</div><div class="s">Latvian law asks for sealed storage and yearly inspection. Health tests sell used EVs for more (vendor data). ENGYcell is a Riga start-up with €450k funding.</div></div><div class="tile" style="--c:#ff6b6b"><div class="t">❓ Still open</div><div class="s">Latvian penalty amounts. Recycler quotes. Waste permit and fire rules. Whether ENGYcell buys packs. What dealers do with old packs. Demand for a health test in Latvia.</div></div></div>'; },
+    pts: [["📞", "What dealers really do with old packs: we must ask.", "c"]] },
+  { icon: "💶", short: "Who pays", title: "Who has to pay?", line: "By EU law the carmaker or importer must take old batteries back and pay for it. The price is agreed, not fixed.",
+    viz: function () { return flow([["🏭", "Carmaker or importer", "pays"], ["🏢", "Us", "take it back"]], "#ff8f8f") + chips(["Nickel-based pack: about €0–140", "LFP pack: about €1,050–1,400 (2024)"], "#ffbe0b"); },
+    stats: [["€0–1,400", "per pack, depending on chemistry (2024 scrap fees)", "s"]],
+    pts: [["⚖️", "If they don't comply, each country sets the penalty. Latvia's: not found.", "c"]] },
+  { icon: "🏭", short: "Our hub", title: "Our take-back hub", line: "We collect used packs from many places into one safe site and check them in.",
+    viz: function () { return '<div class="flow">' + ["🚌|Fleets", "🔧|Dealers", "🚨|Insurers", "🧰|Dismantlers", "📦|Carmaker surplus", "🌍|Imports"].map(function (x) { var p = x.split("|"); return node(p[0], p[1], "", "#3ddc97"); }).join("") + "</div><div style='text-align:center;font-size:26px;margin:6px 0'>⬇️</div>" + '<div class="flow">' + node("🏭", "Our hub", "", "#3ddc97") + "</div>"; },
     stats: [],
-    pts: [["📞", "Next: call dealers, importers and ENGYcell, and ask three recyclers for written quotes.", "a"], ["📝", "Get letters of intent: a refiner for the black mass, and ENGYcell for volume and price.", "a"], ["💼", "Funding idea: EU and Latvian grants plus one investor from the chain, such as a recycler or a logistics firm.", "a"]] }
+    pts: [["🌍", "Latvia alone is too small, so we plan a Baltic hub.", "a"], ["🚫", "No damaged packs at the start.", "a"]] },
+  { icon: "🔬", short: "Test", title: "We test every pack", line: "Each pack gets a check-up, then a grade: reuse, take apart, or recycle.",
+    viz: function () { return flow([["📖", "Read data", ""], ["👀", "Damage", ""], ["⚡", "Insulation", ""], ["🔋", "Capacity", ""]], "#3ddc97") + '<div class="chips" style="margin-top:14px"><span class="chip" style="--c:#3ddc97">A · reuse</span><span class="chip" style="--c:#ffbe0b">B · take apart</span><span class="chip" style="--c:#b79cff">C · recycle</span></div>'; },
+    stats: [["~€99", "price of a consumer battery health test", "s"]],
+    pts: [["💶", "We can charge a fee for each test and certificate.", "a"]] },
+  { icon: "✅", short: "Certify", title: "Approvals", line: "Three kinds of approval. We can do some ourselves.",
+    viz: function () { return '<div class="grid3">' + tile("📝", "Used, not waste", "A test record and a sale contract. We can issue it.", "#3ddc97") + tile("📋", "New product", "A repurposed battery is a new product. We are its maker.", "#ffbe0b") + tile("🏅", "Lab certificate", "Needs an outside lab.", "#b79cff") + "</div>"; },
+    stats: [["Feb 2027", "battery passport becomes mandatory", "s"]],
+    pts: [] },
+  { icon: "⚡", short: "Reuse", title: "Route A: a second life. Who buys?", line: "Good packs live again as storage or as replacement packs.",
+    viz: function () { return '<div class="grid2">' + tile("⚡", "ENGYcell", "Riga storage start-up", "#ffbe0b") + tile("🚗", "Drivers", "Tested replacement pack", "#ffbe0b") + tile("🏭", "Businesses", "Chargers, backup, farms", "#ffbe0b") + tile("🔍", "Health test", "For dealers and importers", "#ffbe0b") + "</div>"; },
+    stats: [["€550–1,100", "extra price for a certified used EV (vendor data)", "s"]],
+    pts: [["🛡️", "We offer buyers a take-back guarantee.", "a"], ["❓", "Does ENGYcell buy packs, and at what price?", "c"]] },
+  { icon: "♻️", short: "Recycle", title: "Route B: recycle mechanically in Latvia", line: "We take packs apart and shred them here as far as we can. We sell the metals and ship the rest.",
+    viz: function () { return flow([["📦", "Pack", ""], ["🔧", "Take apart", ""], ["⚙️", "Shred", ""]], "#ffbe0b") + '<div style="text-align:center;font-size:24px;margin:6px 0">⬇️</div><div class="grid2"><div class="tile" style="--c:#d68250"><div class="t">🟠 Copper, aluminium, steel</div><div class="s">sold locally</div></div><div class="tile" style="--c:#fff"><div class="t">⚫ Black mass</div><div class="s">shipped to a refiner</div></div></div>'; },
+    stats: [["40–50%", "of a battery's weight ends up as black mass", "s"]],
+    pts: [["📉", "Nickel-based black mass has value; LFP black mass is worth little.", "s"], ["🚫", "We do not refine.", "s"]] },
+  { icon: "🚚", short: "Send", title: "Route C: ship the rest abroad", line: "Black mass and what we can't process go to recyclers in Finland or Poland.",
+    viz: function () { return flow([["🏭", "Our hub", "Latvia"], ["🇫🇮", "Finland", "Fortum"]], "#ffbe0b") + '<div style="height:10px"></div>' + flow([["🏭", "Our hub", "Latvia"], ["🇵🇱", "Poland", "AE Elemental, Eneris"]], "#ffbe0b"); },
+    stats: [["about half", "the weight shipped if we shred first (estimate)", "a"]],
+    pts: [["💬", "Nobody publishes prices. We need written quotes.", "c"]] },
+  { icon: "📊", short: "Money", title: "A first rough pilot: 100 packs a year", line: "Before staff and rent, this rough pilot loses money. Shipping whole packs is the biggest cost.",
+    viz: function () { function bar(l, v, col) { var w = Math.abs(v) / 60 * 50; var s = v < 0 ? "right:50%;width:" + w + "%" : "left:50%;width:" + w + "%"; return '<div class="bar"><span>' + l + '</span><div class="track"><div class="fill" style="' + s + ";background:" + col + '"></div></div><b>' + (v > 0 ? "+" : "") + v + "k €</b></div>"; } return '<div class="bars">' + bar("Low case", -58.6, "#ff6b6b") + bar("Base case", -20.8, "#ffbe0b") + bar("High case", 39.3, "#3ddc97") + '</div><div class="gl" style="margin-top:8px"><span>Result per year, before staff, rent and equipment</span></div>'; },
+    stats: [["+€8k–49k", "extra per year from a health-test service", "a"]],
+    pts: [["📝", "Rough estimates. Our own shredding line is not counted.", "c"]] },
+  { icon: "🔎", short: "Next", title: "What we know, and what is open", line: "We found part of the answers. The rest needs phone calls and quotes.",
+    viz: function () { return '<div class="grid2"><div class="tile" style="--c:#3ddc97"><div class="t">✅ Found</div><div class="s">Latvian storage rules. Health tests sell used EVs for more. ENGYcell exists.</div></div><div class="tile" style="--c:#ff6b6b"><div class="t">❓ Open</div><div class="s">Penalties. Recycler quotes. Permits. Demand in Latvia.</div></div></div>'; },
+    stats: [],
+    pts: [["📞", "Call dealers, importers and ENGYcell. Ask recyclers for quotes.", "a"], ["📝", "Get letters of intent.", "a"]] },
+  { icon: "🎤", short: "Pitch", title: "Our pitch: what we sell", line: "We take old EV batteries off carmakers' and dealers' hands, test them, and give the good ones a second life.",
+    viz: function () { return '<div class="grid2">' + tile("🏭", "Take-back service", "Carmakers, dealers, fleets pay us. Main income.", "#b79cff") + tile("⚡", "Tested packs", "Storage buyers and drivers pay.", "#b79cff") + tile("🔍", "Health tests", "Dealers and importers pay.", "#b79cff") + tile("♻️", "Recycled materials", "Scrap buyers and refiners pay.", "#b79cff") + "</div>"; },
+    stats: [["3 + 3 min", "pitch and questions (Sunday 1 Nov, 12:30)", "s"]],
+    pts: [["⚠️", "Be honest: the 30/70 split is a guess, and we have no quotes yet.", "a"], ["❓", "Still to decide: first customer and demo.", "c"]] }
 ];
 
 var cur = -1;
@@ -103,7 +107,7 @@ function show(i) {
     '<div class="phead"><span class="big">' + s.icon + '</span><div><div style="font-size:13px;color:' + s.color + ';font-weight:700">STEP ' + (i + 1) + " OF " + STEPS.length + " · " + s.phase.toUpperCase() + '</div><h2 class="ptitle">' + s.title + '</h2></div>' +
     '<div class="nav"><button class="nb" id="prev">← Back</button><button class="nb" id="next">Next →</button><button class="nb" id="close">Close</button></div></div>' +
     '<p class="line">' + s.line + "</p>" +
-    '<div class="cols"><div class="viz" style="--c:' + s.color + '">' + s.viz() + '</div><div>' + (stats ? '<div class="stats">' + stats + "</div>" : "") + '<ul class="pts">' + pts + "</ul></div></div>";
+    '<div class="cols"><div class="viz" style="--c:' + s.color + '">' + s.viz() + '</div><div>' + (stats ? '<div class="stats">' + stats + "</div>" : "") + (pts ? '<ul class="pts">' + pts + "</ul>" : "") + "</div></div>";
   document.getElementById("prev").addEventListener("click", function () { show(cur - 1); });
   document.getElementById("next").addEventListener("click", function () { show(cur + 1); });
   document.getElementById("close").addEventListener("click", closePanel);
