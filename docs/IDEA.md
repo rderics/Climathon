@@ -1,24 +1,23 @@
-# The idea (v2, synthesised from the whole repo — 2026-10-30)
+# The idea (v3, final synthesis — 2026-10-31)
 
-Team 5, "5th team Battery monster", EIT Urban Mobility challenge: *Giving EV batteries a second life*.
-Full working detail (economics tables, Q&A prep, expert questions, decisions list) is in **docs/IDEA_DETAIL.md**. Sources: docs/ and data/ (teammate research).
+Team 5, "Battery Monster", EIT Urban Mobility challenge: *Giving EV batteries a second life*.
+Full working detail: `docs/INSURER_PILOT_PLAN.md`, `docs/POST_CRASH_SCAN.md`, `docs/PITCH.md`, and `docs/INVESTOR_VIEW.md`.
 
 ## One-liner
-We run a Baltic take-back and grading hub for retired EV batteries. We decide for each pack whether it goes to a second life in small grid-limited storage units (EV charging hubs, depots) or to a recycler. We take responsibility for safety, the battery passport and end of life, so fleets and energy companies don't have to.
+**The Triage Gateway to Second Life:** We provide a 24-hour post-incident battery diagnostic protocol for insurers that saves €435/claim by stopping premature write-offs and unnecessary quarantine. In doing so, we certify and route healthy retired packs into second-life energy storage (ENGYcell / fleet charging buffers) and send degraded packs to OECD recyclers.
 
-## What changed from the original idea
-The original plan was a big block of used batteries storing electricity for electricity companies. The research says that does not work as a stand-alone business:
-- New stationary storage is cheap and still falling (about $177/kWh turnkey in Europe, BNEF 2025).
-- Baltic reserve-market (balancing) prices are down 70–90% from 2025 and the market is saturated (`docs/GRID_BALANCING.md`).
-- Second life is about 0.2% of European grid-scale projects; some firms switched back to new batteries (`data/skeptic_case.md`).
-- Break-even studies say used packs must cost no more than about 40–60% of new, roughly $28–42/kWh.
-So we keep the block, but sell something different.
+## The Problem
+- The second-life battery market suffers from a **Trust and Feedstock Chokepoint**: nobody knows which retired or crashed batteries are safe, so insurers, dismantlers and fire services treat them all as hazardous waste.
+- Insurers face massive costs: EV towing costs about double ICE cars; quarantine yards charge €76–100/day; and entire €13,000–€43,000 packs are written off over minor bracket or underbody contact (Allianz & Thatcham data). In 2% of EV collisions, the battery is involved—driving 7% of total claims cost.
+- Meanwhile, second-life storage projects struggle to source certified, safe, legally documented modules. Under EU Regulation 2023/1542 (Annex XIV and 2027 Battery Passport), undocumented batteries cannot legally cross borders or be repurposed.
 
-## Problem
-- Packs retire at about 70–80% health, and SoH alone does not say whether they are safe to reuse (EIT UM brief).
-- Pack designs and data are fragmented; manufacturers lock the history data.
-- Insurers and fire services are wary and liability is unclear. Under EU Regulation 2023/1542 the repurposer becomes the manufacturer, with a new battery passport from 18 Feb 2027.
-- Latvia has no confirmed EV-pack collection route and very few packs: 13,916 EVs, about 80 packs retiring a year (teammate estimate).
+## The Solution
+1. **Immediate Service (Paid on Day 1 by Insurers):** A standardized, non-destructive 24h triage protocol (modelled on the Swiss SVV Annex guideline):
+   - Physical casing check (<10 mm deformation limit).
+   - Direct BMS link (cell delta voltage, insulation resistance, pyrofuse status).
+   - Defensible report: **Keep** (save €13k–€43k), **Repair** (casing swap €1k–€2k), or **Decommission**.
+2. **Circular Gateway (The Second-Life Engine):** For written-off vehicles with healthy cells (Grade A/B), we certify the pack data for reuse and partner with repurposers (such as ENGYcell in Riga) to install them as buffer storage at EV fast-chargers or bus depots. Degraded packs (Grade C) go directly to certified OECD hydromet recyclers (Fortum, AE Elemental).
+3. **Zero Capex Start:** We run mobile diagnostic kits (€2,000–€4,000) with certified HV technicians. No expensive shredders, no multi-million euro real estate. High-margin service from day one.
 
 ## The offer (decision 30.10: A + B)
 - **A — circularity as a service:** one liable party that sources packs, grades them beyond SoH, certifies and documents them, operates them with monitoring, and takes them back at end of life.

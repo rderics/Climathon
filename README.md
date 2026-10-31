@@ -4,7 +4,7 @@
 > **Event:** Climathon Riga 2026, RTU ZIC (Ķīpsalas iela 6A) · 30 Oct – 1 Nov 2026 · final pitches Sun 1 Nov 12:30, results 14:30
 
 ## The idea (one paragraph)
-Retired EV / used-car batteries still hold a large share of their capacity — too little for a car, plenty for stationary storage. We collect them, test and grade them, assemble them into a single grid-connected **battery block**, and sell **energy storage as a service** to electricity companies (store surplus/cheap power, release it at peak).
+The European second-life battery market is stalled by a trust and feedstock chokepoint: after crashes or fleet retirements, insurers and operators write off intact packs or pay for weeks of costly quarantine because they lack a fast, legally grounded diagnostic protocol. **Battery Monster** is the 24-hour post-incident triage protocol (modelled on the Swiss SVV guideline) that saves insurers ~€435 per triggered claim by providing defensible **Keep / Repair / Replace** decisions. For written-off vehicles with healthy cells, we certify and route the feedstock directly into second-life edge storage (EV charging buffers, depot peak-shaving with partners like ENGYcell) and send degraded packs to OECD recyclers. Insurers fund the diagnostic on Day 1; the circular economy gets the certified feedstock it needs.
 
 ## Repo layout
 | Path | Purpose |
@@ -18,7 +18,7 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 | `docs/PACK_SPECS_AND_RECYCLING.md` | Specs of common EV packs (kWh, V, kg), spent-pack process, recyclers |
 | `docs/RECYCLING_ROUTES_AND_COSTS.md` | Recycler shortlist, who pays whom, shipping cost per pack |
 | `media/climathon_concept_video.mp4` | 2-minute explainer video of the idea (source in `media/video_source/`) |
-| `web/battery-monster/` | Interactive mind map of the whole process A to Z (live: rderics.id.lv/battery-monster); notes in `docs/MINDMAP.md` |
+| `web/battery-monster/` | Live product site and interactive triage simulator (live: rderics.id.lv/battery-monster) |
 | `docs/ANSWERS.md` | Answers found by web research to the question list, with what is still open |
 | `docs/QUESTIONS.md` | Question list for experts, dealers, ENGYcell, recyclers and authorities |
 | `docs/BENCHMARKS.md` | What we can take from tozero, Voltfang and Skeleton Technologies |
