@@ -95,3 +95,10 @@ From tozero (hydromet recycler), Voltfang (second-life storage) and Skeleton Tec
 6. **Funding:** EU and Latvian grants plus a strategic investor from the chain (recycler, logistics, utility); tozero and Voltfang rounds are examples only (their totals are partly unverified).
 7. **Capex:** lease existing industrial space (tozero's demo plant, Voltfang's halls) and keep the mechanical line small.
 8. **Regulation gap:** none of the three explains Regulation 2023/1542, battery-passport or hazardous-waste duties; we must resolve this with the Latvian authority and a lawyer.
+
+## Profit-protected structure (31.10; RECOMMENDATION for the team to decide; details docs/PROFIT_MODEL.md)
+Real-data check (docs/CHECKED_ITEMS.md) shows that handing over a pack costs money (GRS reference tariff: NMC/NCA €1.31/kg, LFP €3.68/kg plus pallet fees), the Latvian producer scheme fee is only €0.23/kg (about €92 per pack), black mass has no 2026 European payable, ENGYcell is not a verified buyer, and a hub with a fixed cost base needs about 45 packs a month. So:
+- **Start as a take-back broker/service with zero fixed costs and pass-through pricing**: no pack without a signed fee that covers the recycler's binding quote, freight, handling and a margin; prepayment; intact packs only; no inventory, no lease, no shredder, no payroll.
+- **This reverses the earlier plan to start with our own mechanical line**; the line becomes a later option once quotes, yields, volume and the permit justify it.
+- **Needed fee (our arithmetic): about €1,500-1,600 per NMC/NCA pack and about €2,700 per LFP pack.** Whether producers will pay that is unknown and is the first thing to test.
+- Second-life sales and health tests are add-ons, not the base case.
