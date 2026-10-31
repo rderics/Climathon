@@ -57,8 +57,8 @@ What is NOT found: any figure for a **small pre-treatment line** (discharge, dis
 - Even the smallest pre-treatment plant benchmark (USD 65 M, 56,000 packs/yr) is sized for **100x the packs Latvia retires per year** (Latvia has ~13,900 EVs in total). A plant needs volume to pay back; Latvian volumes would leave it almost idle, and European capacity already exceeds supply.
 - A **collection and storage hub** (permitted fire-safe storage, discharge/testing bay, ADR packing, forklift/crane, monitoring) is a different scale: likely well below EUR 1 M, but **no sourced figure** — to be quoted. This is what we recommend (see docs/IDEA.md): partner with Fortum, AE Elemental or Eneris for the actual recycling.
 
-## 4c. Revised plan: mechanically recycle LFP packs in Latvia, ship the rest abroad (31 Oct 2026)
-Decision by Rinalds. Replaces the earlier assumption that whole packs are shipped to a recycler. Sources are search results, [B] or [C]; nothing is quoted yet.
+## 4c. Revised plan: mechanically recycle all recycled packs (NMC, NCA, LFP) in Latvia, ship the rest abroad (31 Oct 2026)
+Decision by Rinalds (first said for LFP, then confirmed for all recycled packs). Replaces the earlier assumption that whole packs are shipped to a recycler. Sources are search results, [B] or [C]; nothing is quoted yet.
 **What we know**
 - Black mass is about 40-50 % of an EV battery's weight; the rest is separated as copper, aluminium, steel casing and plastics [C]. The teammate pre-feasibility warns not to assume a fixed share; measure it on trial batches.
 - LFP black mass composition varies by source (one table: iron 40-45 %, copper and aluminium 5-10 % each; a peer-reviewed sample: lithium 2.9 %, iron 11.7 %, manganese 7.7 %, phosphorus 6.2 %) [C]. Lithium is the only real value.
