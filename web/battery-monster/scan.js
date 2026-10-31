@@ -439,6 +439,7 @@ if (!reduce && matchMedia('(pointer: fine)').matches) addEventListener('pointerm
 
 // ---------- Loop ----------
 const params = new URLSearchParams(location.search);
+if (params.has('clean')) document.documentElement.classList.add('clean');
 if (params.has('t')) { time = clamp(parseFloat(params.get('t')), 0, T); playing = false; }
 const clock = new THREE.Clock();
 let running = true;
