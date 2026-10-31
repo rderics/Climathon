@@ -83,6 +83,17 @@
     Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) nio.observe(s); });
   }
 
+  // Hero loop video: play only while visible, never when the visitor prefers reduced motion
+  var vid = document.getElementById('loop');
+  if (vid && 'IntersectionObserver' in window && !reduce) {
+    var vio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); } else { vid.pause(); }
+      });
+    }, { threshold: 0.25 });
+    vio.observe(vid);
+  }
+
   // Mobile menu
   var btn = document.querySelector('.menu-btn');
   var panel = document.getElementById('panel');
