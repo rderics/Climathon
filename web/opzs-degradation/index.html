@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPzS Cell Degradation Scan</title>
+<style>
+:root{--bg:#fff;--surface-1:#f3f2ee;--text-primary:#1f1e1d;--text-secondary:#5f5e5a;--text-muted:#888780;--text-success:#3b6d11;--text-warning:#854f0b;--text-danger:#a32d2d;--text-accent:#185fa5;--border-accent:#378add;--border-strong:#b4b2a9}
+@media (prefers-color-scheme:dark){:root{--bg:#1a1a19;--surface-1:#262624;--text-primary:#f1efe8;--text-secondary:#b4b2a9;--text-muted:#888780;--text-success:#97c459;--text-warning:#ef9f27;--text-danger:#f09595;--text-accent:#85b7eb;--border-accent:#378add;--border-strong:#5f5e5a}}
+*{box-sizing:border-box}
+body{margin:0;padding:16px;background:var(--bg);color:var(--text-primary);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;max-width:760px;margin-inline:auto}
+h1{font-size:20px;font-weight:500;margin:0 0 4px}
+p.sub{margin:0 0 16px;font-size:13px;color:var(--text-secondary)}
+button{font:inherit;font-size:14px;padding:6px 12px;border:0.5px solid var(--border-strong);border-radius:8px;background:transparent;color:var(--text-primary);cursor:pointer}
+</style>
+</head>
+<body>
+<h1>OPzS cell degradation, 3D scan view</h1>
+<p class="sub">Original point-cloud model of a 2 V flooded OPzS cell at 5-year steps. ILLUSTRATIVE ONLY: the degradation figures are generic assumptions for float service at ~20 °C, not measured or sourced data. Do not cite them as facts.</p>
+<div id="btns" style="display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px;"></div>
+<div style="background:var(--surface-1); border-radius:12px; padding:4px; position:relative;">
+<div id="host" style="width:100%; touch-action:none; cursor:grab; line-height:0;"></div>
+<div style="position:absolute; left:14px; bottom:10px; font-size:12px; color:var(--text-muted); line-height:1.4;">Drag to rotate, scroll to zoom</div>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:8px; margin:10px 0;">
+<button id="rot">Auto-rotate: on</button>
+<button id="mode">Colors: real</button>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:16px; margin:0 0 12px; font-size:12px; color:var(--text-secondary);">
+<span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#378ADD;opacity:.6"></span>Electrolyte</span>
+<span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#6b4a2a"></span>Positive tubes</span>
+<span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#888780"></span>Negative plates</span>
+<span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#F1EFE8;border:0.5px solid var(--border-strong)"></span>Sulfate crystals</span>
+<span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#5F5E5A"></span>Sludge</span>
+</div>
+<div id="metrics" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px;"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+var yrs=[0,5,10,15,20,25];
+var cap=[100,98,93,86,78,62];
+var ir=[0,10,25,45,75,120];
+var corr=[0,12,30,52,78,100];
+var sludge=[0,8,22,40,62,90];
+var sulf=[0,0.05,0.15,0.35,0.6,0.9];
+var cloud=[0,0.05,0.15,0.3,0.5,0.75];
+var strat=[0,0.05,0.2,0.4,0.7,1];
+var gas=[2,3,5,8,12,18];
+var sg=[1.240,1.238,1.235,1.230,1.222,1.210];
+var status=['New','Healthy','Healthy','Ageing','Past end of life','Replace now'];
+var stCol=['var(--text-success)','var(--text-success)','var(--text-success)','var(--text-warning)','var(--text-danger)','var(--text-danger)'];
+var cur=0,auto=true,scanMode=false;
+var host=document.getElementById('host');
+var W=host.clientWidth||680,H=Math.round(W*0.68);
+var renderer,scene,camera,group,solids,liquid;
+try{
+renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+renderer.setSize(W,H);
+renderer.domElement.style.width='100%';renderer.domElement.style.height='auto';
+host.appendChild(renderer.domElement);
+}catch(e){host.innerHTML='<div style="padding:2rem;font-size:14px;color:var(--text-secondary);line-height:1.5;">WebGL is not available, so the 3D scan cannot render.</div>';renderer=null;}
+function rnd(seed){var s=seed;return function(){s=(s*9301+49297)%233280;return s/233280;};}
+function cl01(x){return Math.min(1,Math.max(0,x));}
+function mixa(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+function build(i){
+var t=corr[i]/100,sl=sludge[i]/100,su=sulf[i],cl=cloud[i],st=strat[i];
+var r=rnd(i*13+5);
+var sp=[],sc=[],ep=[],ec=[];
+function add(a,b,x,y,z,c,j){j=j||0.07;var v=(r()-0.5)*0.1;a.push(x+(r()-0.5)*j,y+(r()-0.5)*j,z+(r()-0.5)*j);b.push(cl01(c[0]+v),cl01(c[1]+v),cl01(c[2]+v));}
+function S(x,y,z,c,j){add(sp,sc,x,y,z,c,j);}
+var gray=[0.62,0.66,0.7],lead=[0.53,0.53,0.5],dark=[0.37,0.37,0.35],lite=[0.83,0.82,0.78],white=[0.95,0.94,0.91];
+function edge(x1,y1,z1,x2,y2,z2){for(var n=0;n<=60;n++){var f=n/60;S(x1+(x2-x1)*f,y1+(y2-y1)*f,z1+(z2-z1)*f,gray,0.05);}}
+var xs=[-15,15],ys=[0,34],zs=[-10,10],a,b,c;
+for(a=0;a<2;a++)for(b=0;b<2;b++){edge(-15,ys[a],zs[b],15,ys[a],zs[b]);edge(xs[a],ys[b],-10,xs[a],ys[b],10);edge(xs[a],0,zs[b],xs[a],34,zs[b]);}
+for(var k=0;k<450;k++){S(r()*30-15,r()*34,10,gray,0.1);S(r()*30-15,r()*34,-10,gray,0.1);S(15,r()*34,r()*20-10,gray,0.1);S(-15,r()*34,r()*20-10,gray,0.1);S(r()*30-15,0,r()*20-10,gray,0.1);}
+for(k=0;k<1500;k++){S(r()*30-15,35.5,r()*20-10,dark,0.05);}
+for(k=0;k<500;k++){S(r()*30-15,34+r()*1.5,r()<0.5?10:-10,dark,0.05);S(r()<0.5?15:-15,34+r()*1.5,r()*20-10,dark,0.05);}
+[-8,8].forEach(function(px){
+for(var n=0;n<260;n++){var an=r()*6.283;S(px+1.3*Math.cos(an),35.5+r()*3,1.3*Math.sin(an),lead,0.05);}
+var cn=Math.round(300*t),rad=1.2+3*t;
+for(n=0;n<cn;n++){var u=r()*2-1,an2=r()*6.283,q=Math.sqrt(1-u*u),rr=rad*Math.pow(r(),0.4);S(px+rr*q*Math.cos(an2),38.2+rr*u*0.8,rr*q*Math.sin(an2),[0.36,0.79,0.65],0.05);}
+});
+var widths=[1.6,1.8,1.6,1.8,1.6,1.8,1.6],x=-13.1;
+for(var p=0;p<7;p++){
+var w=widths[p],xc=x+w/2,n,j;
+if(p%2===0){
+[x,x+w].forEach(function(f,fi){
+for(var m=0;m<1300;m++){S(f,6+r()*22.5,r()*16-8,lead,0.06);}
+if(su>0){var cc=Math.round(1+4*su),per=Math.round(1300*su/(cc*2));
+for(var g=0;g<cc;g++){var cz=r()*14-7,cy=6+Math.pow(r(),1.6)*21;
+for(var q2=0;q2<per;q2++){S(f+(fi?0.12:-0.12),cy+(r()-0.5)*2.4,cz+(r()-0.5)*2.4,white,0.1);}}}
+});
+for(n=0;n<150;n++){S(x+r()*w,6,r()*16-8,lead,0.05);S(x+r()*w,28.5,r()*16-8,lead,0.05);}
+for(n=0;n<70;n++){S(xc+(r()-0.5)*0.8,28.5+r()*7,-4+(r()-0.5)*1.5,lead,0.05);}
+}else{
+var tubeCol=[0.29+0.26*t,0.2+0.19*t,0.13+0.11*t];
+for(j=0;j<8;j++){
+var zc=-7+j*2;
+for(n=0;n<170;n++){var an3=r()*6.283;S(xc+0.8*Math.cos(an3),6+r()*22.5,zc+0.8*Math.sin(an3),tubeCol,0.05);}
+var ncr=Math.round(5*t);
+for(var cr=0;cr<ncr;cr++){var y0=7+r()*20,a0=r()*6.283;for(var q3=0;q3<9;q3++){S(xc+0.82*Math.cos(a0+q3*0.12),y0+q3*0.1,zc+0.82*Math.sin(a0+q3*0.12),lite,0.04);}}
+}
+var spCol=mixa(lead,[0.3,0.3,0.28],t);
+for(n=0;n<350;n++){S(xc+(r()-0.5)*w,28.5+r()*1.2,r()*16-8,spCol,0.05);}
+for(n=0;n<70;n++){S(xc+(r()-0.5)*0.8,29.7+r()*5.8,-4+(r()-0.5)*1.5,lead,0.05);}
+}
+if(p<6){for(n=0;n<150;n++){S(x+w+1.2,6+r()*22,r()*17-8.5,lite,0.05);}}
+x+=w+2.4;
+}
+var sh=5.6*sl;
+if(sh>0.2){
+var cnt=Math.round(5200*sl);
+for(k=0;k<cnt;k++){S(r()*29.6-14.8,0.1+r()*sh,r()*19.6-9.8,dark,0.1);}
+for(k=0;k<Math.round(900*sl);k++){S(r()*29.6-14.8,sh,r()*19.6-9.8,[0.45,0.44,0.41],0.08);}
+for(k=0;k<Math.round(600*sl);k++){S(r()*26-13,sh+r()*(6-sh),r()*16-8,[0.27,0.27,0.25],0.1);}
+}
+var ey=31-1.2*i,bot=sh,blue=[0.22,0.54,0.87],brown=[0.52,0.31,0.04];
+for(k=0;k<9000;k++){
+var u2=Math.pow(r(),1-0.45*st),yy=bot+0.1+u2*(ey-bot),bn=1-u2;
+add(ep,ec,r()*29.6-14.8,yy,r()*19.6-9.8,mixa(blue,brown,cl*0.9*(0.5+0.5*bn)),0.1);
+}
+for(k=0;k<900;k++){add(ep,ec,r()*29.6-14.8,ey,r()*19.6-9.8,[0.55,0.75,0.95],0.06);}
+for(k=0;k<gas[i]*3;k++){
+var bx=r()*26-13,by=bot+2+r()*(ey-bot-3),bz=r()*16-8;
+for(var q4=0;q4<10;q4++){var u3=r()*2-1,a4=r()*6.283,s4=Math.sqrt(1-u3*u3);add(ep,ec,bx+0.35*s4*Math.cos(a4),by+0.35*u3,bz+0.35*s4*Math.sin(a4),[0.85,0.93,1],0.02);}
+}
+if(scanMode){
+[[sp,sc],[ep,ec]].forEach(function(pr){var P=pr[0],C=pr[1];for(var m=0;m<P.length/3;m++){var h=cl01(P[m*3+1]/38);C[m*3]=0.1+0.3*h;C[m*3+1]=0.45+0.5*h;C[m*3+2]=0.7+0.3*h;}});
+}
+if(solids){group.remove(solids);solids.geometry.dispose();}
+if(liquid){group.remove(liquid);liquid.geometry.dispose();}
+var g1=new THREE.BufferGeometry();g1.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));g1.setAttribute('color',new THREE.Float32BufferAttribute(sc,3));
+var g2=new THREE.BufferGeometry();g2.setAttribute('position',new THREE.Float32BufferAttribute(ep,3));g2.setAttribute('color',new THREE.Float32BufferAttribute(ec,3));
+solids=new THREE.Points(g1,new THREE.PointsMaterial({size:0.3,vertexColors:true,sizeAttenuation:true,transparent:true,opacity:0.95}));
+liquid=new THREE.Points(g2,new THREE.PointsMaterial({size:0.26,vertexColors:true,sizeAttenuation:true,transparent:true,opacity:0.4,depthWrite:false}));
+group.add(solids);group.add(liquid);
+}
+if(renderer){
+scene=new THREE.Scene();
+camera=new THREE.PerspectiveCamera(35,W/H,1,500);
+camera.position.set(0,4,100);camera.lookAt(0,0,0);
+group=new THREE.Group();group.position.y=-18;
+var pivot=new THREE.Group();pivot.add(group);scene.add(pivot);
+pivot.rotation.y=0.6;pivot.rotation.x=0.22;
+var dragging=false,lx=0,ly=0;
+host.addEventListener('pointerdown',function(e){dragging=true;lx=e.clientX;ly=e.clientY;auto=false;document.getElementById('rot').textContent='Auto-rotate: off';host.style.cursor='grabbing';try{host.setPointerCapture(e.pointerId);}catch(x){}});
+host.addEventListener('pointermove',function(e){if(!dragging)return;pivot.rotation.y+=(e.clientX-lx)*0.008;pivot.rotation.x=Math.max(-1.2,Math.min(1.2,pivot.rotation.x+(e.clientY-ly)*0.006));lx=e.clientX;ly=e.clientY;});
+function up(){dragging=false;host.style.cursor='grab';}
+host.addEventListener('pointerup',up);host.addEventListener('pointercancel',up);
+host.addEventListener('wheel',function(e){e.preventDefault();camera.position.z=Math.max(50,Math.min(150,camera.position.z+e.deltaY*0.08));},{passive:false});
+document.getElementById('rot').onclick=function(){auto=!auto;this.textContent='Auto-rotate: '+(auto?'on':'off');};
+document.getElementById('mode').onclick=function(){scanMode=!scanMode;this.textContent='Colors: '+(scanMode?'scan intensity':'real');build(cur);};
+function loop(){requestAnimationFrame(loop);if(auto&&!dragging)pivot.rotation.y+=0.004;renderer.render(scene,camera);}
+loop();
+}
+function drawBtns(){
+var b=document.getElementById('btns');b.innerHTML='';
+yrs.forEach(function(y,k){var e=document.createElement('button');e.textContent=y===0?'New':y+' years';e.style.fontWeight=k===cur?'500':'400';e.style.borderColor=k===cur?'var(--border-accent)':'';e.style.color=k===cur?'var(--text-accent)':'';e.onclick=function(){cur=k;update();};b.appendChild(e);});
+}
+function drawMetrics(){
+var i=cur;
+function card(l,v,sub,col){return '<div style="background:var(--surface-1);border-radius:8px;padding:1rem;"><div style="font-size:13px;color:var(--text-secondary);">'+l+'</div><div style="font-size:22px;font-weight:500;'+(col?'color:'+col+';':'')+'">'+v+'</div><div style="font-size:12px;color:var(--text-muted);">'+sub+'</div></div>';}
+document.getElementById('metrics').innerHTML=
+card('Capacity',cap[i]+'%','80% = end of life')+
+card('Internal resistance','+'+ir[i]+'%','vs new')+
+card('Acid density',sg[i].toFixed(3),'kg/L, fully charged')+
+card('Sludge',sludge[i]+'%','of sump full')+
+card('Condition',status[i],'year '+yrs[i],stCol[i]);
+}
+function update(){drawBtns();drawMetrics();if(renderer)build(cur);}
+update();
+</script>
+</body>
+</html>
