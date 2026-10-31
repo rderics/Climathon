@@ -272,7 +272,12 @@
     .journey.j7 { grid-template-columns:1fr; padding:var(--s-300); }
     .journey .link-line, .journey .branch .link-line { width:var(--s-600); }
   }
-  @media (prefers-reduced-motion: reduce) { .journey .link-line::after { animation:none; } }
+  @keyframes glow { 0%, 100% { opacity:0.1; } 50% { opacity:0.95; } }
+  @keyframes ringfade { 0%, 100% { opacity:0; } 50% { opacity:0.55; } }
+  @media (prefers-reduced-motion: reduce) {
+    .journey .link-line::after { width:100%; background:var(--ok); transform:none; animation:glow 2.4s ease-in-out infinite; animation-delay:calc(var(--d, 0) * 600ms); }
+    .node .disc::after { transform:none; animation:ringfade 3.2s ease-in-out infinite; animation-delay:calc(var(--d, 0) * 600ms); }
+  }
 </style>
 </head>
 <body>
