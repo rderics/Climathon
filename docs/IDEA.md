@@ -102,3 +102,6 @@ Real-data check (docs/CHECKED_ITEMS.md) shows that handing over a pack costs mon
 - **This reverses the earlier plan to start with our own mechanical line**; the line becomes a later option once quotes, yields, volume and the permit justify it.
 - **Needed fee (our arithmetic): about €1,500-1,600 per NMC/NCA pack and about €2,700 per LFP pack.** Whether producers will pay that is unknown and is the first thing to test.
 - Second-life sales and health tests are add-ons, not the base case.
+
+## Option: battery-first diagnostic report pilot (31.10, decided by Rinalds; plan in docs/PILOT_PLAN.md)
+A full-body scanner cannot measure battery health (it sees casing, tyres, underside); health comes from the car's battery data. So the option is a **no-scanner report service**: a licensed state-of-health method plus fault codes, a human photo checklist and our own green/yellow/red grade, sold as one electronic report to used-EV importers and independent garages at €50-90. **Pilot: 30-50 cars in 8 weeks, capped spend, go/stop gates at week 8.** It is a learning and lead-generation step for take-back and second-life sourcing, not a profit engine (variable cost about €65-70 per car, estimate). A scanner lane (about €150,000 to buy) stays out of scope until demand is proven.

@@ -26,6 +26,7 @@ Retired EV / used-car batteries still hold a large share of their capacity — t
 | `docs/CHECKED_ITEMS.md` | Open questions checked against real data (permits, fines, fees, buyers, costs) |
 | `docs/PROFIT_MODEL.md` | Profit-protected broker model: stop-loss rules, price per pack, remaining risks |
 | `docs/DIAGNOSTIC_CENTER.md` | Full-body scanner and diagnostic-center idea: verdict, players, models, minimum version |
+| `docs/PILOT_PLAN.md` | 30-50 car diagnostic report pilot (no scanner): scope, weeks, budget, gates |
 | `docs/RULES.md` | Judging criteria (5 x 20 %), 3+3 min pitch, prizes |
 | `docs/IDEA.md` | The idea in one page (v2) |
 | `docs/IDEA_DETAIL.md` | Full concept detail: economics, risks, Q&A, expert questions |

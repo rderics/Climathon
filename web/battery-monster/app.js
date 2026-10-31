@@ -30,7 +30,7 @@ var STEPS = [
   { icon: "🔬", short: "Collect & test", title: "We collect, test and grade every pack", line: "We bring used packs into one safe site, check each one, and give it a grade.",
     viz: function () { return chips(["Fleets", "Dealers", "Insurers", "Dismantlers", "Carmaker surplus", "Imports"], "#3ddc97") + '<div style="text-align:center;font-size:24px;margin:8px 0">⬇️</div>' + flow([["🏭", "Collect", ""], ["🔬", "Test", ""], ["✅", "Grade", ""]], "#3ddc97") + '<div class="chips" style="margin-top:12px"><span class="chip" style="--c:#3ddc97">A · reuse</span><span class="chip" style="--c:#ffbe0b">B · take apart</span><span class="chip" style="--c:#b79cff">C · recycle</span></div>'; },
     stats: [["~€99", "price of a consumer battery health test", "s"]],
-    pts: [["🌍", "Latvia alone is too small, so we plan a Baltic hub.", "a"], ["💶", "We can charge a fee for each test and certificate.", "a"], ["📝", "We can issue the 'used, not waste' record ourselves. Lab certificates need an outside lab.", "a"]] },
+    pts: [["🌍", "Latvia alone is too small, so we plan a Baltic hub.", "a"], ["💶", "We can charge a fee for each test and certificate.", "a"], ["📝", "We can issue the 'used, not waste' record ourselves. Lab certificates need an outside lab.", "a"], ["🧪", "Option: a pilot of 30–50 cars. A battery health report for garages and importers, with no scanner.", "a"]] },
   { icon: "⚡", short: "Reuse", title: "Good packs get a second life", line: "Packs that pass the tests are sold for storage or as replacement packs.",
     viz: function () { return '<div class="grid2">' + tile("⚡", "ENGYcell", "Riga storage start-up", "#ffbe0b") + tile("🚗", "Drivers", "Tested replacement pack", "#ffbe0b") + tile("🏭", "Businesses", "Chargers, backup, farms", "#ffbe0b") + tile("🔍", "Health test", "For dealers and importers", "#ffbe0b") + "</div>"; },
     stats: [["€550–1,100", "extra price for a certified used EV (vendor data)", "s"]],
@@ -46,7 +46,7 @@ var STEPS = [
   { icon: "🎤", short: "Pitch", title: "Our pitch: what we sell", line: "We take old EV batteries off carmakers' and dealers' hands, test them, and give the good ones a second life.",
     viz: function () { return '<div class="grid2">' + tile("🏭", "Take-back service", "Carmakers, dealers, fleets pay us. Main income.", "#b79cff") + tile("⚡", "Tested packs", "Storage buyers and drivers pay.", "#b79cff") + tile("🔍", "Health tests", "Dealers and importers pay.", "#b79cff") + tile("♻️", "Recycled materials", "Scrap buyers and refiners pay.", "#b79cff") + "</div>"; },
     stats: [["3 + 3 min", "pitch and questions (Sunday 1 Nov, 12:30)", "s"]],
-    pts: [["⚠️", "Be honest: we start as a service with no capex, the price is an estimate, and nobody has agreed to pay it yet.", "a"], ["📞", "Next: call dealers, importers and ENGYcell, and ask recyclers for quotes.", "a"], ["❓", "Still to decide: first customer and demo.", "c"]] }
+    pts: [["⚠️", "Be honest: we start as a service with no capex, the price is an estimate, and nobody has agreed to pay it yet.", "a"], ["📞", "Next: ask importers and dealers what they pay today, get recycler quotes, and run the 30–50 car report pilot.", "a"], ["❓", "Still to decide: first customer and demo.", "c"]] }
 ];
 
 var cur = -1;
