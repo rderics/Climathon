@@ -3,71 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="description" content="Battery Monster in 3D: scroll through a battery check after an EV crash. An illustration, not real data.">
+<meta name="description" content="Battery Monster in 3D: a full car scan after an EV crash, then a zoom into the battery. An illustration, not real data.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#050607">
-<meta property="og:title" content="Battery Monster in 3D: scan the battery">
+<meta property="og:title" content="Battery Monster in 3D: scan the car, then the battery">
 <meta property="og:image" content="https://rderics.id.lv/battery-monster/logo-512.png">
-<title>Battery Monster in 3D: scan the battery</title>
+<title>Battery Monster in 3D: scan the car, then the battery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#050607; --surface:#181818; --line:#313131; --text:#ffffff; --muted:#9b9b9b; --ok:#5fd08a; --warn:#f2c14e; --bad:#f2876b; --curve:cubic-bezier(0.22,1,0.36,1); }
   * { box-sizing:border-box; }
-  html { scroll-behavior:auto; }
-  body { margin:0; background:var(--bg); color:var(--text); font-family:"Manrope", system-ui, sans-serif; font-size:16px; line-height:24px; font-weight:400; }
+  html, body { height:100%; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:"Manrope", system-ui, sans-serif; font-size:16px; line-height:24px; font-weight:400; overflow:hidden; }
   #gl { position:fixed; inset:0; width:100vw; height:100vh; display:block; z-index:0; }
   a { color:var(--text); }
-  a:focus-visible, button:focus-visible { outline:2px solid var(--ok); outline-offset:2px; border-radius:8px; }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:2px solid var(--ok); outline-offset:2px; border-radius:8px; }
 
   .top { position:fixed; top:16px; left:16px; right:16px; z-index:5; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
   .top > * { pointer-events:auto; }
-  .back { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; background:rgba(24,24,24,0.72); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); border:1px solid var(--line); text-decoration:none; font-size:14px; line-height:20px; font-weight:600; transition:transform 300ms var(--curve); }
+  .glass { background:rgba(24,24,24,0.72); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); border:1px solid var(--line); }
+  .back { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; text-decoration:none; font-size:14px; line-height:20px; font-weight:600; transition:transform 300ms var(--curve); }
   .back:hover { transform:translateX(-2px); }
   .back img { width:24px; height:24px; border-radius:8px; }
-  .dots { position:fixed; right:16px; top:50%; transform:translateY(-50%); z-index:5; display:flex; flex-direction:column; gap:12px; }
-  .dots a { display:block; width:8px; height:8px; border-radius:999px; background:var(--line); transition:transform 500ms var(--curve), background-color 300ms var(--curve); }
-  .dots a[aria-current="true"] { background:var(--ok); transform:scale(1.6); }
+  .live { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; font-size:12px; line-height:16px; font-weight:600; color:var(--muted); }
+  .live i { width:8px; height:8px; border-radius:999px; background:var(--ok); animation:blink 1.6s var(--curve) infinite; }
+  @keyframes blink { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(0.6); opacity:0.5; } }
 
-  main { position:relative; z-index:2; }
-  .chap { min-height:130vh; display:flex; align-items:flex-end; padding:0 16px 12vh; }
-  .chap:first-child { min-height:120vh; }
-  .chap:last-child { min-height:110vh; }
-  .copy { max-width:420px; background:rgba(5,6,7,0.55); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border:1px solid var(--line); border-radius:16px; padding:24px; opacity:0; transform:translateY(32px); transition:opacity 700ms var(--curve), transform 700ms var(--curve); }
-  .chap.in .copy { opacity:1; transform:none; }
+  .cap { position:fixed; left:16px; bottom:88px; z-index:4; width:min(420px, calc(100vw - 32px)); border-radius:16px; padding:24px; transition:opacity 500ms var(--curve), transform 500ms var(--curve); }
+  .cap.swap { opacity:0; transform:translateY(12px); }
   .eyebrow { font-size:12px; line-height:16px; font-weight:600; color:var(--ok); margin:0 0 8px; }
-  h1, h2 { margin:0; font-weight:600; text-wrap:balance; }
-  h1 { font-size:36px; line-height:40px; }
-  h2 { font-size:30px; line-height:36px; }
-  .copy p { margin:12px 0 0; color:var(--muted); text-wrap:pretty; }
-  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
-  .chip { padding:8px 12px; border-radius:8px; font-size:14px; line-height:20px; font-weight:600; background:#272727; color:var(--muted); border:1px solid var(--line); transition:transform 500ms var(--curve), background-color 300ms var(--curve), color 300ms var(--curve); }
-  .chip.on { background:var(--warn); color:#000; border-color:var(--warn); transform:translateY(-2px); }
+  h1 { margin:0; font-size:30px; line-height:36px; font-weight:600; text-wrap:balance; }
+  .cap p { margin:12px 0 0; color:var(--muted); text-wrap:pretty; }
+  .chips { display:none; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .chips.show { display:flex; }
+  .chip { padding:8px 12px; border-radius:8px; font-size:14px; line-height:20px; font-weight:600; background:#272727; color:var(--muted); border:1px solid var(--line); }
+  .chip.on { background:var(--warn); color:#000; border-color:var(--warn); }
+  .note { font-size:12px; line-height:16px; color:var(--muted); margin-top:12px; display:none; }
+  .note.show { display:block; }
   .btn { display:inline-flex; align-items:center; gap:8px; margin-top:16px; padding:8px 16px; border-radius:8px; background:var(--text); color:#000; text-decoration:none; font-size:16px; line-height:24px; font-weight:600; border:1px solid var(--text); transition:transform 300ms var(--curve); }
   .btn:hover { transform:translateY(-2px); }
   .btn:active { transform:scale(0.98); }
-  .note { margin-top:12px; font-size:12px; line-height:16px; color:var(--muted); }
-  .hint { position:fixed; left:50%; bottom:16px; transform:translateX(-50%); z-index:5; font-size:12px; line-height:16px; font-weight:600; color:var(--muted); display:flex; flex-direction:column; align-items:center; gap:8px; transition:opacity 500ms var(--curve); }
-  .hint i { display:block; width:2px; height:24px; background:var(--muted); transform-origin:top; animation:drip 2s var(--curve) infinite; }
-  @keyframes drip { 0% { transform:scaleY(0); } 60%,100% { transform:scaleY(1); opacity:0; } }
-  .hint.gone { opacity:0; }
+  .btn[hidden] { display:none; }
+
+  .bar { position:fixed; left:16px; right:16px; bottom:16px; z-index:5; border-radius:16px; padding:12px 16px; display:flex; align-items:center; gap:16px; }
+  .ctl { flex:0 0 auto; min-width:72px; padding:8px 12px; border-radius:8px; border:1px solid var(--line); background:#272727; color:var(--text); font:inherit; font-size:14px; line-height:20px; font-weight:600; cursor:pointer; transition:transform 300ms var(--curve), background-color 300ms var(--curve); }
+  .ctl:hover { background:#313131; transform:translateY(-1px); }
+  .ctl:active { transform:scale(0.98); }
+  .time { flex:0 0 auto; font-size:12px; line-height:16px; font-weight:600; color:var(--muted); font-variant-numeric:tabular-nums; min-width:44px; text-align:right; }
+  input[type=range] { -webkit-appearance:none; appearance:none; flex:1; height:24px; background:transparent; cursor:pointer; }
+  input[type=range]::-webkit-slider-runnable-track { height:4px; border-radius:4px; background:linear-gradient(to right, var(--ok) var(--fill, 0%), #313131 var(--fill, 0%)); }
+  input[type=range]::-moz-range-track { height:4px; border-radius:4px; background:#313131; }
+  input[type=range]::-moz-range-progress { height:4px; border-radius:4px; background:var(--ok); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:999px; background:var(--text); margin-top:-6px; border:0; }
+  input[type=range]::-moz-range-thumb { width:16px; height:16px; border-radius:999px; background:var(--text); border:0; }
   .nogl { display:none; }
   .no-gl .nogl { display:block; position:fixed; inset:0; z-index:1; background:radial-gradient(circle at 50% 40%, #12302a, #050607 70%); }
   @media (min-width:768px) {
-    h1 { font-size:60px; line-height:60px; }
-    h2 { font-size:36px; line-height:40px; }
-    .chap { padding:0 48px 14vh; }
-    .copy { padding:32px; }
+    h1 { font-size:36px; line-height:40px; }
+    .cap { left:48px; bottom:96px; padding:32px; }
+    .top { left:48px; right:48px; }
+    .bar { left:48px; right:48px; }
   }
-  @media (prefers-reduced-motion: reduce) {
-    .copy { transition:opacity 300ms linear; transform:none; }
-    .hint i { animation:none; }
-    .back, .btn, .chip, .dots a { transition:none; }
-  }
+  @media (max-width:520px) { .live { display:none; } .cap { bottom:92px; padding:16px; } h1 { font-size:24px; line-height:32px; } }
+  @media (prefers-reduced-motion: reduce) { .cap { transition:opacity 300ms linear; transform:none; } .live i { animation:none; } .back, .ctl, .btn { transition:none; } }
 </style>
 </head>
 <body>
@@ -75,61 +78,28 @@
 <div class="nogl" aria-hidden="true"></div>
 
 <header class="top">
-  <a class="back" href="./"><img src="logo-128.png" alt="">Battery Monster</a>
+  <a class="back glass" href="./"><img src="logo-128.png" alt="">Battery Monster</a>
+  <span class="live glass"><i></i>Auto play · illustration, not real data</span>
 </header>
-<nav class="dots" aria-label="Chapters">
-  <a href="#c0" aria-label="Chapter 1: the crash"></a>
-  <a href="#c1" aria-label="Chapter 2: scan the casing"></a>
-  <a href="#c2" aria-label="Chapter 3: read every cell"></a>
-  <a href="#c3" aria-label="Chapter 4: the weak zone"></a>
-  <a href="#c4" aria-label="Chapter 5: the verdict"></a>
-</nav>
-<div class="hint" id="hint" aria-hidden="true"><span>Scroll</span><i></i></div>
 
-<main id="main">
-  <section class="chap" id="c0">
-    <div class="copy">
-      <p class="eyebrow">AFTER A CRASH</p>
-      <h1>Is the battery still good?</h1>
-      <p>It is the most expensive part of the car, and it hides under a metal lid.</p>
-    </div>
-  </section>
-  <section class="chap" id="c1">
-    <div class="copy">
-      <p class="eyebrow">1 · SCAN THE CASING</p>
-      <h2>Dents and heat show up in seconds.</h2>
-      <p>The scan sweeps the lid and marks anything out of shape.</p>
-    </div>
-  </section>
-  <section class="chap" id="c2">
-    <div class="copy">
-      <p class="eyebrow">2 · READ EVERY CELL</p>
-      <h2>420 cells. One health colour each.</h2>
-      <p>Voltage and temperature come from the car's own battery data.</p>
-    </div>
-  </section>
-  <section class="chap" id="c3">
-    <div class="copy">
-      <p class="eyebrow">3 · FIND THE WEAK ZONE</p>
-      <h2>Cells near the impact stand out.</h2>
-      <p>Amber and red cells sit right under the dent.</p>
-    </div>
-  </section>
-  <section class="chap" id="c4">
-    <div class="copy">
-      <p class="eyebrow">4 · THE REPORT</p>
-      <h2>Keep, repair or replace.</h2>
-      <div class="chips" id="chips" aria-label="Example outcome">
-        <span class="chip" data-k="keep">Keep</span>
-        <span class="chip on" data-k="repair">Repair</span>
-        <span class="chip" data-k="replace">Replace</span>
-      </div>
-      <a class="btn" href="./#money">See the plan</a>
-      <p class="note">An illustration with made up cell data. Not a real scan. We never say "safe", only what we found today.</p>
-    </div>
-  </section>
-</main>
+<section class="cap glass" id="cap" aria-live="polite">
+  <p class="eyebrow" id="eyebrow">AFTER A CRASH</p>
+  <h1 id="title">Is the battery still good?</h1>
+  <p id="body">The most expensive part of an EV hides under the floor.</p>
+  <div class="chips" id="chips" aria-label="Example outcome">
+    <span class="chip">Keep</span><span class="chip on">Repair</span><span class="chip">Replace</span>
+  </div>
+  <p class="note" id="note">Made up cell data. We never say "safe", only what we found today.</p>
+  <a class="btn" id="cta" href="./#money" hidden>See the plan</a>
+</section>
 
-<script type="module" src="scan.js?v=2"></script>
+<div class="bar glass">
+  <button class="ctl" id="play" type="button" aria-label="Pause">Pause</button>
+  <button class="ctl" id="restart" type="button">Replay</button>
+  <input id="seek" type="range" min="0" max="28" step="0.01" value="0" aria-label="Timeline">
+  <span class="time" id="time">0:00</span>
+</div>
+
+<script type="module" src="scan.js?v=3"></script>
 </body>
 </html>
