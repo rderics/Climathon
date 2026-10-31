@@ -30,7 +30,7 @@ So we keep the block, but sell something different.
 2. **Grade**: capacity, internal resistance, self-discharge, insulation; route each pack to reuse, repurpose or recycle.
 3. **Assemble**: strings separated by chemistry and voltage (Hyundai/Kia 800 V packs cannot share a string with 400 V packs), a DC-DC converter per string. One 20 ft container holds about 1–2 MWh (our estimate), weighs 25–40 t and needs a reinforced concrete pad (`docs/SIZING_AND_COST.md`).
 4. **Operate**: software monitors every string, isolates a failing pack; failed packs are swapped, re-graded or recycled.
-5. **Close the loop**: failed packs go to Fortum (Finland), AE Elemental or Eneris (Poland) under contract. We do not build recycling ourselves (about EUR 50–400 M; `docs/RECYCLING_ROUTES_AND_COSTS.md`).
+5. **Close the loop**: packs that fail are mechanically processed in Latvia as far as we can (LFP first; see the recycling plan below); what we cannot process goes to Fortum (Finland), AE Elemental or Eneris (Poland) under contract. We do not build a refinery or full chemical plant (about EUR 50–400 M; `docs/RECYCLING_ROUTES_AND_COSTS.md`).
 
 ## Economics (honest version)
 - Our first-pass cost for 1 MWh usable is about $160–340k, about $190–440k with grid connection (unvalidated). That is similar to new storage, so we do not win on kWh price.
@@ -47,7 +47,7 @@ So we keep the block, but sell something different.
 ## What this idea is not
 - Not a merchant balancing business.
 - Not a cheaper-kWh-than-new pitch.
-- Not our own recycling plant.
+- Not a refinery or full chemical recycling plant. We do run a small mechanical line (take apart, shred, separate).
 
 ## Conflicts in the repo to resolve as a team
 1. **Challenge choice — DECIDED 30.10 (Rinalds): we do the EV battery challenge.** (`docs/CHALLENGE_EVALUATION.md` had recommended other challenges.)
@@ -59,7 +59,7 @@ So we keep the block, but sell something different.
 The rules at the front door: what we accept, from whom, in what condition, and where it goes.
 - **Accept:** intact packs or modules with known make, model and year from fleets, dismantlers and insurers, with a test record or history (needed under Annex XIV of Regulation 2023/1542 to treat a pack as "used" rather than "waste").
 - **NMC/NCA** (Tesla, Hyundai, Kia, VW): accept; they carry metal value, and the best go to ENGYcell.
-- **LFP:** accept only if the supplier pays a fee or the pack is good enough for second life (recycling LFP usually costs money).
+- **LFP:** accept. Plan (Rinalds, 31.10): process LFP packs mechanically in Latvia as far as we can, then ship what we cannot process (mainly the black mass) abroad. LFP black mass is worth little, so the supplier's fee must cover the cost (see the recycling plan below).
 - **Early Nissan Leaf (LMO):** recycling only, and only for a fee.
 - **Damaged packs:** do not take at the start (much costlier to ship and handle; about USD 1,300–2,730 per pack in one estimate).
 - **Three outcomes per pack:** Grade A -> sell to ENGYcell (target about 30 %); Grade B -> disassemble into modules/cells and process in Latvia if the permit allows; Grade C -> ship to Poland or Finland. Grade thresholds come from ENGYcell's specification.
@@ -77,3 +77,10 @@ No hardware. Supporting asset: a 1-minute explainer video of the concept (see `m
 - Whether any customer will pay a premium for the service.
 - Latvian fire and permit rules for storage.
 Expert questions for Saturday: `docs/IDEA_DETAIL.md` section 11.
+
+## Recycling plan (decided 31.10 by Rinalds)
+**Mechanically recycle LFP packs as far as we can in Latvia, and ship the parts we cannot process abroad** (Finland or Poland), instead of shipping whole packs.
+- **What changes:** freight is paid on far less weight (black mass is about 40-50 % of a battery's weight; estimate, not yet measured), and copper, aluminium and steel are sold locally.
+- **What stays hard:** LFP black mass is worth little outside China (mostly the lithium); gate fees for scrap LFP were EUR 3,000-4,000/t in 2024 (one 2025 source: EUR 500-800/t); most LFP black mass in Europe counts as hazardous waste, which limits export to non-OECD countries; a 2025 industry panel said lithium would need to be about USD 20,000/t for LFP recycling to break even in Europe, and one panelist saw no European business case. So the take-back fee and the metal sales must carry the economics.
+- **Capex:** a small mechanical line is far cheaper than a refinery. Reference points: Redux/Saubermacher Bremerhaven, about EUR 3 M for 10,000 t/yr incl. discharge (2018 press); an Indian consultancy blog puts 500-1,000 t/yr at roughly EUR 0.3-0.6 M (weak source). The teammate pre-feasibility (10,000 t/yr, EUR 20-35 M) is much larger. Our own line's cost: **unknown, needs equipment quotes**.
+- **To find out:** black mass and metal yield per LFP pack, price a refiner pays or charges for LFP black mass, line and running cost, VVD permit for treatment, hazardous-waste shipping rules. Details and sources: docs/RECYCLING_ROUTES_AND_COSTS.md section 4c.

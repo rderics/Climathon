@@ -57,6 +57,24 @@ What is NOT found: any figure for a **small pre-treatment line** (discharge, dis
 - Even the smallest pre-treatment plant benchmark (USD 65 M, 56,000 packs/yr) is sized for **100x the packs Latvia retires per year** (Latvia has ~13,900 EVs in total). A plant needs volume to pay back; Latvian volumes would leave it almost idle, and European capacity already exceeds supply.
 - A **collection and storage hub** (permitted fire-safe storage, discharge/testing bay, ADR packing, forklift/crane, monitoring) is a different scale: likely well below EUR 1 M, but **no sourced figure** — to be quoted. This is what we recommend (see docs/IDEA.md): partner with Fortum, AE Elemental or Eneris for the actual recycling.
 
+## 4c. Revised plan: mechanically recycle LFP packs in Latvia, ship the rest abroad (31 Oct 2026)
+Decision by Rinalds. Replaces the earlier assumption that whole packs are shipped to a recycler. Sources are search results, [B] or [C]; nothing is quoted yet.
+**What we know**
+- Black mass is about 40-50 % of an EV battery's weight; the rest is separated as copper, aluminium, steel casing and plastics [C]. The teammate pre-feasibility warns not to assume a fixed share; measure it on trial batches.
+- LFP black mass composition varies by source (one table: iron 40-45 %, copper and aluminium 5-10 % each; a peer-reviewed sample: lithium 2.9 %, iron 11.7 %, manganese 7.7 %, phosphorus 6.2 %) [C]. Lithium is the only real value.
+- Value: outside China LFP black mass is worth very little (Fastmarkets: a Chinese buyer was seeking European LFP black mass for free); in China it was priced per 1 % lithium (about CNY 2,600-2,900 per 1 % Li, Feb 2025) [B]. Most LFP black mass in Europe is classed as hazardous waste, which limits export to non-OECD countries [B].
+- Gate fees for scrap LFP: EUR 3,000-4,000/t (Fastmarkets, 2024); EUR 500-800/t (ACE Green interview, date unclear) [B/C]. These were quoted for scrap batteries, not necessarily for black mass.
+- Economics: a Feb 2025 forum said lithium needs to be about USD 20,000/t for LFP recycling to break even in Europe; another panelist said there is no business case in Europe; CRU and Worley call it finely balanced, driven by feedstock cost and lithium price [B].
+- Capex references for mechanical lines: Redux/Saubermacher Bremerhaven about EUR 3 M, 10,000 t/yr, includes discharge (2018) [B]; Indian consultancy blog: 500-1,000 t/yr for about INR 3-6 crore (about EUR 0.3-0.6 M at an assumed rate) [C, weak]; Lithion (Quebec) plans a 2,000 t/yr mechanical plant, no capex found [C].
+**Effect on the pilot model (docs/MINDMAP.md, 100 packs a year)**
+- If shredding first halves the weight shipped (estimate: freight per recycled pack EUR 475 -> about EUR 240), the base case improves by about EUR 16k a year (from about -EUR 20.8k to about -EUR 4.1k, before fixed costs). This **does not** include the line's capex or running cost, the sale of copper, aluminium and steel, or the price of LFP black mass.
+**Unknowns that decide it**
+1. Black mass and metal yield per LFP pack (trial batch).
+2. Price a refiner pays or charges for LFP black mass (written quotes: Fortum, AE Elemental, Eneris; ask specifically for LFP black mass).
+3. Cost of a small line (discharge, dismantling, shredding, separation, gas and dust handling) and its running cost: equipment quotes.
+4. VVD permit for treatment and the site requirements in Cabinet Regulation 485 (sealed surface, water collection, wastewater, yearly inspection).
+5. Hazardous-waste shipping rules for black mass inside the EU.
+
 ## 5. Next steps (this week)
 1. **Email Fortum** (battery recycling contact form): "Latvia-based collection hub for retired EV packs, ~20 packs/year pilot, NMC/NCA and some LFP, undamaged: do you accept, what price per tonne/per pack, do you supply ADR boxes and transport?"
 2. **Email AE Elemental and Eneris** with the same questions; ask about acceptance criteria and EPR documentation.
