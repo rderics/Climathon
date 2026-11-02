@@ -1,6 +1,4 @@
 
-Tests22
-Test2
 
 
 # Battery types — research (2026-10-30)
