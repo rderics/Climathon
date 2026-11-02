@@ -1,0 +1,18 @@
+{
+  "year": 2030,
+  "ev_fleet_size": 7893,
+  "retired_packs_per_year": 158,
+  "pack_kwh_total": 4740,
+  "assumptions": {
+    "2024_fleet": 5000,
+    "annual_growth_percent": 8,
+    "retirement_rate_percent": 2,
+    "average_pack_kwh": 40,
+    "usable_second_life_kwh": 30
+  },
+  "sources": [
+    "Latvian State Police vehicle register – 2024",
+    "EU EV market growth statistics – 2023‑2024",
+    "Latvian Insurance Association – 2023‑2024"
+  ]
+}
