@@ -1,3 +1,8 @@
+
+Tests22
+Test2
+
+
 # Battery types — research (2026-10-30)
 
 Purpose: know what we would actually receive as "used car batteries", and which of it is usable in a block for electricity companies.
@@ -16,6 +21,7 @@ Confidence: **[A]** primary/authoritative (IEA, peer-reviewed) · **[B]** second
 | **Lead-acid** | 12 V auxiliary, very old/low-speed EVs | very low | short | n/a | Not relevant for a grid block |
 | **Sodium-ion** | Just entering market (CATL, BYD); small cars, light vehicles, stationary | up to ~175 Wh/kg [A: IEA] | n/a | good | **Not in retiring fleets for ~10 years**; may become a *competitor* for cheap new storage. Capacity ≈ 1 % of Li-ion today [A] |
 | **Solid-state / Li-S** | Prototypes/pilots | n/a | n/a | n/a | Irrelevant to feedstock before 2030 [B: Bain via search] |
+
 
 ### Market mix (what is on the road → what retires)
 - Global 2025: LFP **>55 %** of EV batteries deployed, up from ~50 % in 2024 [A: IEA GEVO 2026].
